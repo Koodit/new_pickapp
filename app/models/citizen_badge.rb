@@ -1,0 +1,3 @@
+class CitizenBadge < ApplicationRecord
+  belongs_to :user
+end
