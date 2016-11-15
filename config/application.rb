@@ -20,7 +20,5 @@ module Pickapp
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff)$)
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
-    
->>>>>>> UI GigaRefactor
   end
 end
