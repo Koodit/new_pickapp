@@ -3,11 +3,17 @@
     = render "shared/logo"
 
   .header_menu
-    a href="#" Home
-    a href=room_categories_path Vrooms!
+    a href=root_path Home
+    - if current_user
+      a href=room_categories_path Vrooms!
+      a href=destroy_user_session_path LOGOUT DIOMERDA
+    - else
+      a href=new_user_session_path Accedi
+      a href=new_user_registration_path Registrati
   
-  .user_menu
-    a.user_name href="#" Andrea Macchieraldo
-    .user_settings.fa.fa-cog
-    .profile_picture
-      .notifications 3
+  - if current_user
+    .user_menu
+      a.user_name href="#" = current_user.full_name
+      .user_settings.fa.fa-cog
+      .profile_picture style=("background-image: url(#{current_user.profile_image_url})" if current_user.profile_image_url)
+        .notifications = current_user.unread_notifications + current_user.unread_messages

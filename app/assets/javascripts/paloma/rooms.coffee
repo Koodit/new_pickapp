@@ -3,11 +3,6 @@ Paloma.controller('Rooms', {
   show: ->
     # Room Map
 
-    # fake
-    # this.params.room = {}
-    # this.params.room.latitude = 45.563384
-    # this.params.room.longitude = 8.053154
-
     room_map = new Pickapp.map({
       element: 'room_map'
       zoom: 15

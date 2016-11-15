@@ -3,6 +3,9 @@
     h1 = @room.name
   .j_footer
 
+.back_button_container
+  a.back_button href=room_category_path(@room.room_category) Torna a #{@room.room_category.name}
+
 .grid.room_page
   .row
     .col.room_sidebar
@@ -23,39 +26,48 @@
             .action.toggle_travels_list.travel_offers Offerte
 
         .travels_list.travel_requests.active
-          - @room.travel_requests.next_24_hours.each do |tr|
-            .t_item
-              .ti_user
-                .profile_picture
-                .user_name Andrea Macchieraldo
+          - if @travel_requests.any?
+            - @travel_requests.each do |tr|
+              .t_item
+                .ti_user
+                  .profile_picture
+                  .user_name Andrea Macchieraldo
 
-              .ti_meta
-                .ti_label.red PER
-                - if tr.towards_room
-                  .ti_text = @room.name
-                - else
-                  .ti_text.capitalize = tr.starting_address
+                .ti_meta
+                  .ti_label.red PER
+                  - if tr.towards_room
+                    .ti_text = @room.name
+                  - else
+                    .ti_text.capitalize = tr.starting_address
 
-              .ti_meta
-                .ti_label.orange ALLE
-                .ti_text #{tr.one_way_datetime.strftime('%d/%m %H:%M')}
-              .ti_status.orange DA SVOLGERE
+                .ti_meta
+                  .ti_label.orange ALLE
+                  .ti_text #{tr.one_way_datetime.strftime('%d/%m %H:%M')}
+                .ti_status.orange DA SVOLGERE
+          - else
+            .no_travels
+              p Nessuno richiede passaggi da/verso questa destinazione.<br/><a href="#">Sarai tu il primo?</a>
+
 
         .travels_list.travel_offers
-          - @room.travels.next_24_hours.each do |tr|
-            .t_item
-              .ti_user
-                .profile_picture
-                .user_name Andrea Macchieraldo
+          - if @travel_offers.any?
+            - @travel_offers.each do |to|
+              .t_item
+                .ti_user
+                  .profile_picture
+                  .user_name Andrea Macchieraldo
 
-              .ti_meta
-                .ti_label.red PER
-                - if tr.towards_room
-                  .ti_text = @room.name
-                - else
-                  .ti_text.capitalize = tr.starting_address
+                .ti_meta
+                  .ti_label.red PER
+                  - if to.towards_room
+                    .ti_text = @room.name
+                  - else
+                    .ti_text.capitalize = to.starting_address
 
-              .ti_meta
-                .ti_label.orange ALLE
-                .ti_text #{tr.departure_datetime.strftime('%d/%m %H:%M')}
-              .ti_status.orange DA SVOLGERE
+                .ti_meta
+                  .ti_label.orange ALLE
+                  .ti_text #{to.departure_datetime.strftime('%d/%m %H:%M')}
+                .ti_status.orange DA SVOLGERE
+          - else
+            .no_travels
+              p Nessuno offre passaggi da/verso questa destinazione.<br/><a href="#">Sarai tu il primo?</a>

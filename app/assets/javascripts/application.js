@@ -14,6 +14,8 @@
 // require jquery_ujs
 // require_tree .
 //= require paloma
+//= require flatpickr-calendar/dist/flatpickr.min
+//= require flatpickr-calendar/dist/l10n/it
 //= require ./pickapp/_init
 //= require_tree ./pickapp/components
 //= require ./pickapp

@@ -1,6 +1,7 @@
 {
-  "name": "dsl-generated dependencies",
+  "name": "dsl-generated-dependencies",
   "dependencies": {
-    "normalize.css": "latest"
+    "normalize.css": "latest",
+    "flatpickr-calendar": "latest"
   }
 }

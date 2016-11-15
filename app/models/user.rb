@@ -78,6 +78,20 @@ class User < ApplicationRecord
     self.provider = "email" if provider.blank?
   end
 
+  def full_name
+    "#{name} #{surname}"
+  end
+
+  def profile_image_url
+    if profile_image.present?
+      profile_image.url
+    elsif object.provider == "facebook"
+      "#{object.image}?width=400&height=400"
+    else
+      "https://s3-eu-west-1.amazonaws.com/koodit/pickapp/shared/missing_user_photo.jpg"
+    end
+  end
+
   def unread_notifications
     notifications_as_receiver.not_messages.unclicked.count
   end

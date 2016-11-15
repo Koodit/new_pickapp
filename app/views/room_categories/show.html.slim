@@ -2,6 +2,9 @@
   .j_content
     h1 = @room_category.name
 
+.back_button_container
+  a.back_button href=room_categories_path Torna alle Vrooms
+
 .page_content
   .grid
     - @room_category.rooms.each_slice(3) do |rooms_row|

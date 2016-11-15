@@ -1,83 +1,98 @@
-h2 Sign up
+.grid
+  .row
+    .col
 
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = devise_error_messages!
+    .col
+      .card
+        .card_title.red
+          .ct_title REGISTRATI A PICKAPP
 
-  .field
-    = f.label :name
-    br
-    = f.text_field :name
-  br
+        .card_content#register_form
+          = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+            = devise_error_messages!
 
-  .field
-    = f.label :surname
-    br
-    = f.text_field :surname
-  br
+            .input_container
+              = f.label 'Nome'
+              = f.text_field :name
 
-  .field
-    = f.label :birth_date
-    br
-    = f.date_field :birth_date
-  br
+            .input_container
+              = f.label 'Cognome'
+              = f.text_field :surname
 
-  .field
-    = f.label :nickname
-    br
-    = f.text_field :nickname
-  br
+            .input_container
+              = f.label 'Data di Nascita'
+              = f.date_field :birth_date, id:'birth_date'
 
-  .field
-    = f.label :address
-    br
-    = f.text_field :address
-  br
+            .input_container
+              = f.label 'Nickname'
+              = f.text_field :nickname
 
-  .field
-    = f.label :comune
-    br
-    = f.text_field :comune
-  br
+            .input_container
+              = f.label 'Indirizzo di Nascita'
+              = f.text_field :address
 
-  .field
-    = f.label :prov
-    br
-    = f.text_field :prov
-  br
+            .input_container
+              = f.label 'Comune di Nascita'
+              = f.text_field :comune
 
-  .field
-    = f.label :zip_code
-    br
-    = f.text_field :zip_code
-  br
+            .input_container
+              = f.label 'Provincia di Nascita'
+              = f.text_field :prov
 
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true
-  br
+            .input_container
+              = f.label 'CAP'
+              = f.text_field :zip_code
 
-  .field
-    = f.label :password
-    br
-    = f.password_field :password, autocomplete: "off"
-  br
+            .input_container
+              = f.label :email
+              = f.email_field :email, autofocus: true
 
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "off"
-  br
+            .input_container
+              = f.label :password
+              = f.password_field :password, autocomplete: "off"
 
-  .field
-    = f.label :profile_image
-    br
-    = f.file_field :profile_image
-  br
+            .input_container
+              = f.label 'Conferma Password'
+              = f.password_field :password_confirmation, autocomplete: "off"
 
-  .actions
-    = f.submit "Sign up"
+            .input_container.picture
+              = f.label 'Foto Profilo'
+              #profile_picture_image
+              = f.file_field :profile_image, id: 'profile_picture_input'
 
-= render "devise/shared/links"
+            br
+
+            = f.submit "Registrati a PickApp", class:'button red w100 block'
+
+          = render "devise/shared/links"
 
 
+    .col
+
+
+coffee:
+  current_date = new Date()
+
+  max_birth_date = new Date(
+      current_date.getFullYear()-13,
+      current_date.getMonth(),
+      current_date.getDate());
+
+  flatpickr_config = {
+    dateFormat: "j F Y"
+    maxDate: max_birth_date,
+    defaultDate: max_birth_date,
+    locale:'it'
+  }
+  document.getElementById("birth_date").flatpickr(flatpickr_config)
+
+
+  document.getElementById("profile_picture_input").onchange = ->
+    # image preview
+    reader = new FileReader()
+    reader.onload = (e) ->
+      # get loaded data and render thumbnail.
+      document.getElementById("profile_picture_image").classList.add('has_image')
+      document.getElementById("profile_picture_image").style.backgroundImage = "url(#{e.target.result})"
+    # read the image file as a data URL.
+    reader.readAsDataURL(this.files[0])

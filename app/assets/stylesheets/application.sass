@@ -13,6 +13,7 @@
  * require_tree .
  * require_self
  *= require normalize.css/normalize
+ *= require flatpickr-calendar/dist/flatpickr.min
  *= require font-awesome
  */
 
@@ -39,6 +40,10 @@
 @import "pickapp/components/user_card"
 @import "pickapp/components/latest_room_card"
 
+@import "pickapp/forms/form"
+@import "pickapp/forms/input"
+@import "pickapp/forms/checkbox"
+
 *
   font-family: 'Roboto', sans-serif
   -webkit-font-smoothing: antialiased
@@ -52,3 +57,18 @@ body
 
   &.no_jumbotron
     padding-top: 100px
+
+#register_form
+  #profile_picture_image
+    margin: 15px auto
+    width: 100px
+    height: 100px
+    background: $p_light
+    border-radius: 50%
+    display: none
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center
+
+    &.has_image
+      display: block

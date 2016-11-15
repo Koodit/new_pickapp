@@ -42,6 +42,7 @@ class Room < ApplicationRecord
 
   before_save :set_coordinates
 
+
   def is_active?
     end_date >= Time.now
   end

@@ -2,3 +2,4 @@
 # UI
 
 asset 'normalize.css'
+asset 'flatpickr-calendar'

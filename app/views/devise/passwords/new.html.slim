@@ -1,0 +1,22 @@
+.grid
+  .row
+    .col
+
+    .col
+      .card
+        .card_title.blue
+          .ct_title RECUPERO PASSWORD
+
+        .card_content
+          = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+            = devise_error_messages!
+
+            .input_container
+              = f.label 'Indirizzo Email'
+              = f.email_field :email, autofocus: true
+            
+            = f.submit "INVIA ISTRUZIONI DI RECUPERO", class: 'button w100 block blue'
+
+          = render "devise/shared/links"
+
+    .col

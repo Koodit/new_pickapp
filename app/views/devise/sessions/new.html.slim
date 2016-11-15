@@ -1,22 +1,33 @@
-h2 Log in
+.grid
+  .row
+    .col
 
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true
+    .col
+      .card
+        .card_title
+          .ct_title ACCEDI A PICKAPP
+        .card_content
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .input_container
+              = f.label :email
+              = f.email_field :email, autofocus: true
 
-  .field
-    = f.label :password
-    br
-    = f.password_field :password, autocomplete: "off"
+            .input_container
+              = f.label :password
+              = f.password_field :password, autocomplete: "off"
 
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
+            - if devise_mapping.rememberable?
+              .input_container
+                .checkbox
+                  .check_text Ricordami
+                  = f.check_box :remember_me
+                  = f.label :remember_me, class: 'check_toggle'
+                    .pin
+                    
+            br
 
-  .actions
-    = f.submit "Log in"
+            = f.submit "Accedi a PickApp", class:'button blue w100 block'
 
-= render "devise/shared/links"
+          = render "devise/shared/links"
+
+    .col
