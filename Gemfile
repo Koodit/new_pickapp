@@ -62,7 +62,17 @@ group :development do
   gem "capistrano-rvm"
   gem "highline"
   ### END CAPISTRANO
+
+  gem "guard"
+  gem "guard-rubocop"
+  gem "guard-rspec", git: "https://github.com/rentziass/guard-rspec.git"
+  gem "guard-livereload", "~> 2.5", require: false
+  gem "rack-livereload"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Custom Macchie
+gem "slim-rails"
+gem "bourbon"
