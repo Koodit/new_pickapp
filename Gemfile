@@ -39,6 +39,10 @@ gem "devise", git: "https://github.com/plataformatec/devise.git"
 gem "devise-i18n"
 gem 'omniauth-facebook',      :git => 'git://github.com/mkdynamic/omniauth-facebook.git'
 gem 'devise_mailchimp', :git => 'https://github.com/rentziass/devise_mailchimp.git'
+gem 'devise_token_auth'
+
+### COCOON
+gem "cocoon"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -68,6 +72,12 @@ group :development do
   gem "guard-rspec", git: "https://github.com/rentziass/guard-rspec.git"
   gem "guard-livereload", "~> 2.5", require: false
   gem "rack-livereload"
+
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
+  gem 'pry'
+  gem 'pry-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

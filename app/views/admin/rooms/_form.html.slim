@@ -1,0 +1,46 @@
+= form_for room, url: url do |f|
+  = f.label :name
+  = f.text_field :name
+  br
+  = f.label :room_category
+  = f.select :room_category_id, RoomCategory.all.collect { |rc| [rc.name, rc.id] }
+  br
+  = f.label :address
+  = f.text_field :address
+  br
+  = f.label :description
+  = f.text_area :description
+  br
+  = f.label :price
+  = f.number_field :price, min: 0
+  br
+  = f.label :phone
+  = f.text_field :phone
+  br
+  = f.label :website
+  = f.text_field :website
+  br
+  = f.label :facebook
+  = f.text_field :facebook
+  br
+  = f.label :twitter
+  = f.text_field :twitter
+  br
+  = f.label :intagram
+  = f.text_field :instagram
+  br
+  = f.label :trip_advisor
+  = f.text_field :trip_advisor
+  br
+  = f.label :is_school
+  = f.check_box :is_school
+  br
+  = f.fields_for :school_room_setting do |setting|
+    = render 'school_room_setting_fields', f: setting
+  = link_to_add_association 'add settings', f, :school_room_setting, force_non_association_create: true
+  br
+  = f.label :background_image
+  = f.file_field :background_image
+  br
+
+  = f.submit submit

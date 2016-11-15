@@ -1,0 +1,11 @@
+doctype html
+html
+  head
+    title Pickapp
+    = csrf_meta_tags
+
+    = stylesheet_link_tag 'admin', media: 'all'
+    = javascript_include_tag 'admin'
+
+  body
+    = yield

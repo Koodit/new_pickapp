@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include DeviseTokenAuth::Concerns::User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -65,5 +66,16 @@ class User < ApplicationRecord
 
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\Z/
+
+  if Rails.env.development?
+    before_save :skip_confirmation!
+  end
+
+  before_validation do
+    self.uid = email if uid.blank?
+    self.provider = "email" if provider.blank?
+  end
+  
+  validates_presence_of :name, :surname, :birth_date, :nickname
 
 end

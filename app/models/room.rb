@@ -36,4 +36,7 @@ class Room < ApplicationRecord
 
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :background_image, content_type: /\Aimage\/.*\Z/
+
+  accepts_nested_attributes_for :room_images, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :school_room_setting, reject_if: :all_blank, allow_destroy: truex
 end
