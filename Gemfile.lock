@@ -151,6 +151,7 @@ GEM
     font-awesome-rails (4.7.0.0)
       railties (>= 3.2, < 5.1)
     formatador (0.2.5)
+    geocoder (1.4.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     guard (2.14.0)
@@ -373,6 +374,7 @@ DEPENDENCIES
   devise_mailchimp!
   devise_token_auth
   font-awesome-rails
+  geocoder
   guard
   guard-livereload (~> 2.5)
   guard-rspec!
@@ -402,4 +404,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.12.5
+   1.13.2

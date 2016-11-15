@@ -23,4 +23,8 @@ class RoomCategory < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   validates_presence_of :name
+
+  def self.with_rooms
+    RoomCategory.all.select { |rc| rc.rooms.any? }
+  end
 end
