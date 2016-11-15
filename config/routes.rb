@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   root "home#index"
 
+  resources :room_categories
+  resources :rooms
+
   namespace :admin do
     root "dashboard#index"
     resources :rooms

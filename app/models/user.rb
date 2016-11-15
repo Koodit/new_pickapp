@@ -67,6 +67,8 @@ class User < ApplicationRecord
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\Z/
 
+  validates_presence_of :name, :surname, :birth_date, :nickname
+
   if Rails.env.development?
     before_save :skip_confirmation!
   end
@@ -75,7 +77,21 @@ class User < ApplicationRecord
     self.uid = email if uid.blank?
     self.provider = "email" if provider.blank?
   end
-  
-  validates_presence_of :name, :surname, :birth_date, :nickname
+
+  def unread_notifications
+    notifications_as_receiver.not_messages.unclicked.count
+  end
+
+  def unread_messages
+    notifications_as_receiver.messages.unclicked.count
+  end
+
+  def travels_count
+    travels.count
+  end
+
+  def reviews_count
+    travel_reviews.count
+  end
 
 end

@@ -38,5 +38,36 @@ class Room < ApplicationRecord
   validates_attachment_content_type :background_image, content_type: /\Aimage\/.*\Z/
 
   accepts_nested_attributes_for :room_images, reject_if: :all_blank, allow_destroy: true
-  accepts_nested_attributes_for :school_room_setting, reject_if: :all_blank, allow_destroy: truex
+  accepts_nested_attributes_for :school_room_setting, reject_if: :all_blank, allow_destroy: true
+
+  before_save :set_coordinates
+
+  def is_active?
+    end_date >= Time.now
+  end
+
+  def self.active
+    where("end_date >= ?", Time.now)
+  end
+
+  def self.latest
+    active.order(created_at: :desc).first
+  end
+
+  def self.searchable_language
+    'italian'
+  end
+
+  private
+
+  def set_coordinates
+    if self.lat.nil?
+      loc = Geocoder.search(self.address)
+      unless loc.nil?
+        self.lat = loc[0].latitude
+        self.long = loc[0].longitude
+      end
+    end
+  end
+
 end
