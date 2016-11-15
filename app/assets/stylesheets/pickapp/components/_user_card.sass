@@ -1,0 +1,125 @@
+.user_card
+  @extend .card
+  
+  position: relative
+  height: 350px
+  box-sizing: border-box
+  background: white
+
+  +display(flex)
+  +flex-direction(column)
+
+  .uc_notifications
+    position: absolute
+    top: 0px
+    left: 0px
+    padding-left: 35px
+    width: 35px
+    height: 35px
+    line-height: 35px
+    text-align: center
+    font-size: 16px
+    color: white
+    font-weight: 700
+    background: $p_assertive
+
+    &:before
+      position: absolute
+      top: 0px
+      left: 0px
+      content: '\f0f3'
+      display: inline-block
+      font-family: 'FontAwesome'
+      width: 35px
+      font-size: 18px
+      font-weight: normal
+      text-align: center
+      background: rgba(black, .15)
+
+  .uc_messages
+    position: absolute
+    top: 0px
+    right: 0px
+    padding-right: 35px
+    width: 35px
+    height: 35px
+    line-height: 35px
+    text-align: center
+    font-size: 16px
+    color: white
+    font-weight: 700
+    background: $p_calm
+
+    &:after
+      position: absolute
+      top: 0px
+      right: 0px
+      content: '\f086'
+      display: inline-block
+      font-family: 'FontAwesome'
+      width: 35px
+      font-size: 18px
+      font-weight: normal
+      text-align: center
+      background: rgba(black, .15)
+
+  .uc_badges
+    +flex(1)
+    margin: 40px 20px 55px 20px
+
+    +display(flex)
+    +flex-direction(column)
+
+    .ucb_row
+      +display(flex)
+      +flex(1)
+
+      .ucb_col
+        +display(flex)
+        +flex(1)
+
+        .badge
+          position: relative
+          margin: auto
+          width: 50px
+          min-width: 50px
+          height: 50px
+          min-height: 50px
+          border-radius: 50%
+          background: #ffffff
+          border: 2px solid lighten($p_stable, 20%)
+          text-align: center
+          cursor: pointer
+          
+          +transition( all .15s linear )
+
+          path
+            +transition( all .15s linear )
+            fill: $p_stable !important
+
+          .badge_icon
+            margin: 10px
+            width: 30px
+            height: 30px
+            min-width: 30px
+            min-height: 30px
+
+          .badge_label
+            +transition( all .15s linear )
+            margin: 5px 0px 0px 0px
+            width: auto
+            min-height: 16px
+            line-height: 16px
+            font-size: 13px
+            font-weight: 600
+            color: $p_stable
+
+          &:hover
+            border: 2px solid $p_balanced
+
+            .badge_icon
+              path
+                fill: $p_balanced !important
+
+            .badge_label
+              color: $p_balanced

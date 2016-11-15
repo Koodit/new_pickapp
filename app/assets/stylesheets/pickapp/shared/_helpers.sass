@@ -1,0 +1,48 @@
+.text-left
+  text-align: left
+
+.text-center
+  text-align: center
+
+.text-right
+  text-align: right
+
+.text-justify
+  text-align: justify
+
+
+.back_button_container
+  position: relative
+  width: 95%
+  max-width: $w-max-width
+  min-width: $w-min-width
+  margin: 30px auto 15px auto
+
+  .back_button
+    margin-left: 20px
+    position: relative
+    display: inline-block
+    height: 40px
+    line-height: 40px
+    padding-left: 55px
+    padding-right: 10px
+    font-weight: 700
+    color: $p_dark
+    text-decoration: none
+
+    &:before
+      position: absolute
+      top: 0px
+      left: 0px
+      content: '\f060'
+      font-family: "FontAwesome"
+      width: 40px
+      height: 40px
+      line-height: 40px
+      font-size: 22px
+      font-weight: normal
+      text-align: center
+      border-radius: 50%
+      background: $p_calm
+      color: white
+  

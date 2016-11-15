@@ -86,3 +86,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Custom Macchie
 gem "slim-rails"
 gem "bourbon"
+gem "bower-rails"
+gem "font-awesome-rails"
+gem "paloma"

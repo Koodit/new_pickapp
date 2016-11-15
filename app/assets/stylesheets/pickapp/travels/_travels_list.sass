@@ -1,0 +1,97 @@
+.travels_list
+  width: 100%
+
+  .t_item
+    width: 100%
+    height: 50px
+    border-bottom: 1px solid rgba($p_stable, .35)
+    cursor: pointer
+    
+    +display(flex)
+    +transition(all .2s)
+
+    &:nth-child(even)
+      background: rgba($p_stable, .05)
+
+    &:last-child
+      border-bottom: none
+
+    &:hover
+      background: rgba($p_stable, .1)
+
+    .ti_user
+      +display(flex)
+      margin-right: auto
+
+      .profile_picture
+        position: relative
+        margin: auto 0px auto 10px
+        width: 30px
+        height: 30px
+        background-image: url(http://eadb.org/wp-content/uploads/2015/08/profile-placeholder.jpg)
+        background-size: cover
+        background-position: center
+        background-repeat: no-repeat
+        border-radius: 50%
+        +box-shadow(0px 1px 3px rgba(black, .15))
+
+      .user_name
+        margin: auto 10px
+        line-height: 30px
+        height: 30px
+        font-size: 13px
+        color: $p_dark
+        font-weight: 500
+        text-decoration: none
+
+    .ti_meta
+      +display(flex)
+      margin: auto 0px
+      padding: 0px 5px
+
+      .ti_label
+        height: 20px
+        line-height: 20px
+        text-align: 20px
+        padding: 0px 5px
+        font-size: 12px
+        color: white
+        font-weight: 600
+        text-transform: uppercase
+        border-radius: 3px
+
+        &.red
+          background: $p_assertive
+          
+        &.orange
+          background: $p_royal
+
+      .ti_text
+        height: 20px
+        line-height: 20px
+        text-align: 20px
+        padding: 0px 5px
+        font-size: 12px
+        color: $p_dark
+        font-weight: 600
+
+    .ti_status
+      margin: auto 10px auto 0px
+      height: 20px
+      line-height: 20px
+      text-align: 20px
+      padding: 0px 5px
+      font-size: 12px
+      color: white
+      font-weight: 600
+      text-transform: uppercase
+      border-radius: 3px
+
+      &.red
+        background: $p_assertive
+      &.orange
+        background: $p_royal
+
+
+  
+      

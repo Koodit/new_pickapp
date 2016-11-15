@@ -13,3 +13,9 @@
 // require jquery
 // require jquery_ujs
 // require_tree .
+//= require paloma
+//= require ./pickapp/_init
+//= require_tree ./pickapp/components
+//= require ./pickapp
+//= require ./paloma/rooms
+

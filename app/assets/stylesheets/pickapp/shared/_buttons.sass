@@ -1,0 +1,73 @@
+=create-button-colors($name, $color)
+  &.#{$name}
+    background: $color
+    color: white !important
+
+    &:hover
+      background: tint($color, 10%)
+
+    &:active
+      background: shade($color, 5%)
+
+    &:visited
+      color: white !important
+
+button, .button
+  display: inline-block
+  position: relative
+  margin: 10px 0px 10px 0px
+  cursor: pointer
+  text-decoration: none
+  text-align: center
+  text-transform: uppercase
+
+  background: $p_dark
+  color: white
+
+  height: 40px
+  line-height: 40px
+
+  padding: 0px 25px
+  border: none
+
+  font-size: 14px
+  font-weight: 800
+
+  &.block
+    display: block
+
+  &.w100
+    width: 100%
+
+  &.small
+    height: 30px
+    line-height: 30px
+    font-size: 13px
+    padding: 0px 10px
+
+  &:hover
+    text-decoration: none !important
+    background: lighten($p_dark, 10%)
+
+  +transition ( all .1s )
+  +transition-delay(0s)
+  +text-shadow ( 0px 1px 0px rgba(black, .3) )
+
+  +create-button-colors('red', $p_assertive)
+  +create-button-colors('green', $p_balanced)
+  +create-button-colors('blue', $p_calm)
+  +create-button-colors('facebook', $facebook)
+  
+  &:active
+    background: shade($p_dark, 5%)
+
+
+  &.disabled
+    opacity: .5
+    cursor: default
+
+  &.large
+    height: 60px
+    line-height: 60px
+    font-size: 18px
+    padding: 0px 40px

@@ -1,0 +1,71 @@
+.room_card
+  @extend .card
+  
+  position: relative
+  background-size: cover
+  background-position: center
+  background-repeat: no-repeat
+
+  display: block
+  width: 80%
+  padding: 0px
+  margin: 0px auto
+  min-width: 200px
+  max-width: 300px
+
+  cursor: pointer
+
+  &:before
+    content: ''
+    position: relative
+    display: block
+    padding-top: 100%
+
+  +transition(all .15s)
+
+  &:hover
+    +transform(scale(1.05))
+
+  .rc_content
+    +fillthebox
+    +display(flex)
+
+    .is_favourite
+      +triangle(50px 50px, transparent $p_assertive, down-left)
+      position: absolute
+      top: 0px
+      right: 0px
+      z-index: 1
+
+      i
+        position: absolute
+        z-index: 200
+        width: 30px
+        height: 30px
+        line-height: 30px
+        top: 0px
+        right: -50px
+        text-align: center
+        color: #fff
+
+    .rc_title
+      +flex(1)
+      padding: 15px 10px
+      margin: auto 10px 10px 10px
+      background: #222
+
+      text-align: center
+      font-size: 14px
+      line-height: 14px
+      font-weight: 500
+      color: white
+      text-transform: uppercase
+
+      +box-shadow( (inset 0px 0px 0px 4px #222, inset 0px 0px 0px 6px white) )
+
+
+
+
+
+    
+

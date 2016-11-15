@@ -1,22 +1,113 @@
-h1 HOME
+.jumbotron style="background-image: url(https://s3-eu-west-1.amazonaws.com/koodit/pickapp/shared/bg_moods.jpg);"
+  .j_content
+    h1 BALMA / LAME DEL TORRENTE
+  .j_footer
+
+.back_button_container
+  a.back_button href="#" Torna a Sto cazzo
+
+.grid
+  .row
+    .col.x3
+      .latest_room_card style="background-image: url(http://koodit.s3.amazonaws.com/pickapp/rooms/background_images/45/original/logo-scritta_new4.jpg.jpg?1477646293)"
+        .lrc_info
+          .flag
+          .content
+            .text
+              h4
+                | {{latest_room.name}}
+              p
+                | {{latest_room.address}}
+            
+            a.icon ng-href="#/rooms/{{latest_room.id}}" 
+              i.fa.fa-arrow-right
+
+    .col
+      .user_card
+        .uc_notifications 9
+        .uc_messages 12
+        
+        .uc_badges
+          .ucb_row
+            .ucb_col
+              .badge
+                = render "shared/badges/ecoking"
+                .badge_label EcoKing
+            .ucb_col
+              .badge
+                = render "shared/badges/social_master"
+                .badge_label Social Master
+          .ucb_row
+            .ucb_col
+              .badge
+                = render "shared/badges/nerd"
+                .badge_label Nerd
+            .ucb_col
+              .badge
+                = render "shared/badges/citizen"
+                .badge_label Citizen
+
+.grid.room_page
+  .row
+    .col.room_sidebar
+      .card
+        .room_map#room_map
+        .card_content
+          .button.block Bottone
+          .button.block.red Bottone
+          .button.block.blue Bottone
+          .button.block.green Bottone
+          .button.block.facebook Bottone
+
+
+    .col.x3
+      .card
+        .card_title
+          .ct_icon.fa.fa-car
+          .ct_actions
+            .action.active Richieste
+            .action Offerte
+        .travels_list
+          - 10.times
+            .t_item
+              .ti_user
+                .profile_picture
+                .user_name Andrea Macchieraldo
+              .ti_meta
+                .ti_label.red PER
+                .ti_text Via Mazzini 25 Biella 13900
+              .ti_meta
+                .ti_label.orange ALLE
+                .ti_text 15/11 14:30
+              .ti_status.orange DA SVOLGERE
+
 .grid
   .row
     .col
+      .room_card style="background-image: url(http://koodit.s3.amazonaws.com/pickapp/room_categories/images/8/original/AriaAperta.png.png?1437985827)"
+        .rc_content
+          .is_favourite
+            i.fa.fa-heart
+          .rc_title Weekend Al Lago
     .col
+      .room_card style="background-image: url(http://koodit.s3.amazonaws.com/pickapp/room_categories/images/9/original/BrunchTime.png.png?1437985898)"
+        .rc_content
+          .rc_title Nightlife
     .col
-
+      .room_card style="background-image: url(http://koodit.s3.amazonaws.com/pickapp/room_categories/images/10/original/CenaConVista.png.png?1437985952)"
+        .rc_content
+          .rc_title Pendolari Lavoro Scuola
+          
   .row
     .col
+      .room_card style="background-image: url(http://koodit.s3.amazonaws.com/pickapp/room_categories/images/8/original/AriaAperta.png.png?1437985827)"
+        .rc_content
+          .rc_title Weekend Al Lago
     .col
-
-  .row
+      .room_card style="background-image: url(http://koodit.s3.amazonaws.com/pickapp/room_categories/images/9/original/BrunchTime.png.png?1437985898)"
+        .rc_content
+          .rc_title Nightlife
     .col
-
-  .row
-    .col
-    .col
-
-  .row
-    .col
-    .col
-    .col
+      .room_card style="background-image: url(http://koodit.s3.amazonaws.com/pickapp/room_categories/images/10/original/CenaConVista.png.png?1437985952)"
+        .rc_content
+          .rc_title Pendolari Lavoro Scuola

@@ -1,0 +1,39 @@
+// Border Box Mixin
+
+=fillthebox
+  position: absolute
+  top: 0px
+  left: 0px
+  right: 0px
+  bottom: 0px
+
+// Border Box Mixin
+
+=borderbox
+  box-sizing: border-box
+
+// Box Shadow Mixin
+
+=box-shadow ($var)
+  +prefixer (box-shadow, $var, webkit moz ms o spec)
+
+// Text Shadow Mixin
+
+=text-shadow ($var)
+  +prefixer(text-shadow, $var, webkit moz ms o spec)
+
+// Placeholder tesxt
+=placeholder ( $text )
+  &:after
+    content: 'placeholder: #{$text}'
+    position: absolute
+    top: 0px
+    left: 0px
+    right: 0px
+    bottom: 0px
+    padding: 50px
+    color: $fanta_yellow
+    font-size: 14px
+    font-style: italic
+    box-sizing: border-box
+

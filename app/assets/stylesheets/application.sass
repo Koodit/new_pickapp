@@ -12,9 +12,40 @@
  *
  * require_tree .
  * require_self
+ *= require normalize.css/normalize
+ *= require font-awesome
  */
-
 
 @import "bourbon"
 
+@import "pickapp/shared/mixins"
+@import "pickapp/shared/colors"
+@import "pickapp/shared/responsive"
+
 @import "pickapp/shared/grid"
+@import "pickapp/shared/jumbotron"
+@import "pickapp/shared/buttons"
+@import "pickapp/shared/card"
+@import "pickapp/shared/helpers"
+
+@import "pickapp/header/header"
+@import "pickapp/footer/footer"
+
+@import "pickapp/rooms/room_card"
+@import "pickapp/rooms/room_page"
+
+@import "pickapp/travels/travels_list"
+
+@import "pickapp/components/user_card"
+@import "pickapp/components/latest_room_card"
+
+*
+  font-family: 'Roboto', sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
+body
+  background: $p_light
+
+  &.no_jumbotron
+    padding-top: 100px
