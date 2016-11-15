@@ -1,1 +1,16 @@
-h1 ROOM CATEGORY SHOW
+.jumbotron.blue.small
+  .j_content
+    h1 = @room_category.name
+
+.page_content
+  .grid
+    - @room_category.rooms.each_slice(3) do |rooms_row|
+      .row
+        - rooms_row.each do |r|
+          .col
+            a.room_card href=room_path(r) style="background-image: url(#{r.background_image.url(:medium)})"
+              .rc_content
+                - if current_user.preferred_room_ids.include? (r.id)
+                  .is_favourite
+                    i.fa.fa-heart 
+                .rc_title = r.name

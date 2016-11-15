@@ -1,1 +1,13 @@
-h1 ROOM CATEGORY INDEX
+.jumbotron style="background-image: url(https://s3-eu-west-1.amazonaws.com/koodit/pickapp/shared/bg_moods.jpg);"
+  .j_content
+    h1 TROVA LA TUA VROOM
+  .j_footer
+
+.grid
+  - @room_categories.each_slice(3) do |rc|
+    .row
+      - rc.each do |c|
+        .col
+          a.room_card href=room_category_path(c) style="background-image: url(#{c.image.url(:medium)})"
+            .rc_content
+              .rc_title = c.name

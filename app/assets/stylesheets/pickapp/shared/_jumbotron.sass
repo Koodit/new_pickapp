@@ -5,10 +5,11 @@
 .jumbotron
   position: relative
   width: 100%
-  min-height: 30vh
+  min-height: 27.5vh
   background-size: cover
   background-repeat: no-repeat
   background-position: center
+  padding-top: 80px
 
   +create-jumbotron-colors('blue', $p_calm)
   +create-jumbotron-colors('red', $p_assertive)
@@ -19,8 +20,17 @@
     +fillthebox
     background: rgba(black, .3)
 
+  &.small
+    min-height: 12.5vh
+
+    h1
+      font-size: 3vmax !important
+
   +lg
-    min-height: 45vh
+    min-height: 37.5vh
+
+    &.small
+      min-height: 17.5vh
 
   +display(flex)
   +flex-direction(column)
@@ -38,6 +48,7 @@
       line-height: 3.75vmax
       color: white
       text-shadow: 0px 2px 4px rgba(black, .3)
+      text-transform: uppercase
 
       +xs
         margin-top: 40px
@@ -47,5 +58,5 @@
     width: 100%
     margin: 0px
     padding: 10px
-    min-height: 70px
+    min-height: 40px
     background: rgba(black, .75)

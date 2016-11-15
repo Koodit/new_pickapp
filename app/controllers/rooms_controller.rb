@@ -6,5 +6,7 @@ class RoomsController < ApplicationController
         redirect_to room_category_path(@room.room_category), notice: "Non puoi accedere a questa stanza"
       end
     end
+
+    js room: { latitude: @room.lat, longitude: @room.long }
   end
 end

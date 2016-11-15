@@ -1,12 +1,12 @@
-Paloma.controller('Home', {
+Paloma.controller('Rooms', {
 
-  index: ->
+  show: ->
     # Room Map
 
     # fake
-    this.params.room = {}
-    this.params.room.latitude = 45.563384
-    this.params.room.longitude = 8.053154
+    # this.params.room = {}
+    # this.params.room.latitude = 45.563384
+    # this.params.room.longitude = 8.053154
 
     room_map = new Pickapp.map({
       element: 'room_map'
@@ -19,5 +19,18 @@ Paloma.controller('Home', {
     })
 
     room_map.add_marker({id:'room', choords: {lat: this.params.room.latitude, lng: this.params.room.longitude} })
+
+    activateTravelsList = (enable_travels_list_type, disable_travels_list_type) ->
+      document.querySelector(".toggle_travels_list.#{enable_travels_list_type}").classList.add("active")
+      document.querySelector(".toggle_travels_list.#{disable_travels_list_type}").classList.remove("active")
+      document.querySelector(".travels_list.#{enable_travels_list_type}").classList.add("active")
+      document.querySelector(".travels_list.#{disable_travels_list_type}").classList.remove("active")
+
+    document.querySelector('.toggle_travels_list.travel_requests').addEventListener 'click', ->
+      activateTravelsList('travel_requests', 'travel_offers')
+
+    document.querySelector('.toggle_travels_list.travel_offers').addEventListener 'click', ->
+      activateTravelsList('travel_offers', 'travel_requests')
+      
 
 })

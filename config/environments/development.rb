@@ -9,6 +9,16 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  ###### PAPERCLIP
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['PICKAPP_S3_BUCKET_NAME'],
+      :access_key_id => ENV['PICKAPP_AWS_ACCESS_KEY'],
+      :secret_access_key => ENV['PICKAPP_AWS_SECRET_ACCESS_KEY']
+    }
+  }
+
   # Show full error reports.
   config.consider_all_requests_local = true
 

@@ -15,7 +15,7 @@ class RoomCategory < ApplicationRecord
                     },
                     default_url: "http://koodit.s3.amazonaws.com/pickapp/shared/sample/missing.png",
                     path: "pickapp/:class/:attachment/:id/:style/:filename.:extension",
-                    preserve_files: "true",
+                    # preserve_files: "true",
                     url: ":s3_domain_url",
                     s3_region: "eu-west-1"
 
