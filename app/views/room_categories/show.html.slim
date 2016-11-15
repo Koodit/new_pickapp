@@ -11,7 +11,7 @@
       .row
         - rooms_row.each do |r|
           .col
-            a.room_card href=room_path(r) style="background-image: url(#{r.background_image.url(:medium)})"
+            a.room_card href=room_path(r) style="background-image: url(#{r.image_url(:medium)})"
               .rc_content
                 - if current_user.preferred_room_ids.include? (r.id)
                   .is_favourite

@@ -1,6 +1,6 @@
 class RoomCategoriesController < ApplicationController
   def index
-    @room_categories = RoomCategory.all
+    @room_categories = RoomCategory.with_rooms
   end
 
   def show

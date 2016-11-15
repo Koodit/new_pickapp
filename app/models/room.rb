@@ -59,6 +59,16 @@ class Room < ApplicationRecord
     'italian'
   end
 
+  def image_url(size)
+    if background_image.present?
+      background_image.url(size)
+    else
+      if room_category.image.present?
+        room_category.image.url(size)
+      end
+    end
+  end
+
   private
 
   def set_coordinates

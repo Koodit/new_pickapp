@@ -85,7 +85,11 @@ class User < ApplicationRecord
   def profile_image_url
     if profile_image.present?
       profile_image.url
-    elsif provider == "facebook"
+    else
+      "https://s3-eu-west-1.amazonaws.com/koodit/pickapp/shared/missing_user_photo.jpg"
+    end
+
+    if provider == "facebook"
       "#{image}?width=400&height=400"
     else
       "https://s3-eu-west-1.amazonaws.com/koodit/pickapp/shared/missing_user_photo.jpg"
@@ -106,6 +110,15 @@ class User < ApplicationRecord
 
   def reviews_count
     travel_reviews.count
+  end
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
+    end
   end
 
 end
