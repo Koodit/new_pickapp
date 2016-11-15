@@ -25,6 +25,6 @@ class RoomCategory < ApplicationRecord
   validates_presence_of :name
 
   def self.with_rooms
-    RoomCategory.all.select { |rc| rc.rooms.any? }
+    RoomCategory.all.select { |rc| rc.rooms.active.any? }
   end
 end
