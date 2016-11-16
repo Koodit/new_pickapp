@@ -1,0 +1,4 @@
+class PublicMessagesController < ApplicationController
+
+  
+end

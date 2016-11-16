@@ -19,6 +19,10 @@ Rails.application.configure do
     }
   }
 
+  ##### ACTIONCABLE
+
+  config.action_cable.url = "ws://localhost:3000/cable"
+
   # Show full error reports.
   config.consider_all_requests_local = true
 

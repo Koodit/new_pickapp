@@ -52,7 +52,7 @@
         .travels_list.travel_offers
           - if @travel_offers.any?
             - @travel_offers.each do |to|
-              .t_item
+              a.t_item href=room_travel_path(to)
                 .ti_user
                   .profile_picture
                   .user_name Andrea Macchieraldo

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :room_categories
   resources :rooms do
+    resources :travels
     resources :travel_requests
   end
 

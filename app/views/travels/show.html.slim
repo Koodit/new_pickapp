@@ -1,0 +1,12 @@
+.page_content
+  ul#chat data-travel-id="#{@travel.id}"
+    = render @travel.public_messages
+
+  = form_for @public_message, url: '#', authenticity_token: true do |f|
+    = f.label :content
+    = f.text_field :content
+
+    = f.hidden_field :travel_id, value: @travel.id
+    = f.hidden_field :author_id, value: current_user.id
+    = f.hidden_field :is_travel_owner, value: true
+    = f.submit "send", data: {send: "public_message"}
