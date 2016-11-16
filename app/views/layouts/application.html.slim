@@ -21,3 +21,8 @@ html
     = insert_paloma_hook
 
     = render 'shared/footer'
+    
+    - if current_user
+      script type="text/javascript"
+        | CURRENT_USER_ID = #{current_user.id};
+

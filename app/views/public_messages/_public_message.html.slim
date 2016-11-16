@@ -1,3 +1,9 @@
-li
-  b = public_message.author.full_name 
-  = ": #{public_message.content}"
+- chat_message_class = ''
+- chat_message_class += 'travel_owner' if public_message.travel.driver_id == public_message.author_id
+- chat_message_class += ' is_yours' if (public_message.author_id == user_requester_id) && use_requester_id
+
+.chat_message class="#{chat_message_class}"
+  .bubble #{public_message.content}
+  .sender 
+    b #{public_message.author.full_name} 
+    span #{public_message.created_at.strftime('%H:%M:%S')}

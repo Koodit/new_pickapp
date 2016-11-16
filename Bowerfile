@@ -3,3 +3,4 @@
 
 asset 'normalize.css'
 asset 'flatpickr-calendar'
+asset 'iscroll'

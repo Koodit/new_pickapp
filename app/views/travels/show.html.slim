@@ -1,12 +1,37 @@
-.page_content
-  ul#chat data-travel-id="#{@travel.id}"
-    = render @travel.public_messages
+.jumbotron.blue.small
+  .j_content
+    - if @travel.towards_room
+      h1 = "Viaggio per #{@travel.room.name}"
+    - else
+      h1 = "Viaggio da #{@travel.room.name}"
 
-  = form_for @public_message, url: '#', authenticity_token: true do |f|
-    = f.label :content
-    = f.text_field :content
+.back_button_container
+  a.back_button href=room_path(@travel.room) Torna a #{@travel.room.name}
 
-    = f.hidden_field :travel_id, value: @travel.id
-    = f.hidden_field :author_id, value: current_user.id
-    = f.hidden_field :is_travel_owner, value: true
-    = f.submit "send", data: {send: "public_message"}
+.grid.room_page
+  .row
+    .col.x3
+      .card
+        / .room_map#room_map
+        / .card_content
+        /   .button.block.orange Cerca nella Vroom
+        /   .button.block.red Rimuovi Preferito
+        /   .button.block.green Offri Passaggio
+        /   a.button.block href=new_room_travel_request_path(@room) Richiedi Passaggio
+
+    .col
+      .card
+        .card_title
+          .ct_icon.fa.fa-comments
+          .ct_title CHAT PUBBLICA
+
+        .chat#chat data-travel-id="#{@travel.id}"
+          .chat_messages#chat_messages
+            .iscroll-scroller
+              = render @travel.public_messages, {user_requester_id: current_user.id, use_requester_id: true}
+
+          = form_for @public_message, url: '#', authenticity_token: true do |f|
+            = f.text_field :content, placeholder: 'Scrivi un messaggio...', autocomplete: :off
+            = f.hidden_field :travel_id, class:'chat_input', value: @travel.id
+            button.chat_submit data-send="public_message"
+              i.fa.fa-paper-plane

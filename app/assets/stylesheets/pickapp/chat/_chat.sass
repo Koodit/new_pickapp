@@ -1,0 +1,129 @@
+.chat
+  position: relative
+  min-height: 400px
+  height: 50vh
+
+  .iScrollVerticalScrollbar 
+    position: absolute !important
+    z-index: 99 !important
+    width: 7px !important
+    bottom: 0px !important
+    top: 0px !important
+    right: 0px !important
+    overflow: hidden !important
+    background-color: $p_light !important
+
+  .iScrollVerticalScrollbar .iScrollIndicator
+    width: 100% !important
+    background-color: $p_balanced !important
+    border-radius: 0px !important
+    border: none !important
+
+  .chat_messages
+    position: absolute
+    width: 100%
+    top: 0px
+    left: 0px
+    bottom: 45px
+    padding: 0px 15px
+    overflow: hidden
+    box-sizing: border-box
+
+    .iscroll-scroller
+      padding: 10px 0px
+
+    .chat_message
+      position: relative
+      padding: 10px 0px 20px 0px
+      +display(flex)
+
+      &.travel_owner
+        .bubble
+          background: $p_assertive !important
+          color: white !important
+
+          &:after
+            +triangle(15px 15px, transparent $p_assertive, down-right)
+
+      &.is_yours
+        .bubble
+          background: $p_calm !important
+          color: white !important
+          margin-left: auto
+
+          &:after
+            left: auto
+            right: 0px
+            +triangle(0px 0px, transparent transparent, down-right)
+            +triangle(15px 15px, transparent $p_calm, down-left)
+
+        .sender
+          left: auto
+          right: 15px
+
+      .bubble
+        position: relative
+        display: inline-block
+        min-width: 10%
+        max-width: 60%
+        padding: 10px 15px
+        background: lighten($p_stable, 30%)
+        font-size: 13px
+        line-height: 17px
+        font-weight: 600
+        color: $p_dark
+        text-align: justify
+
+        &:after
+          content: ''
+          position: absolute
+          bottom: -15px
+          left: 0px
+          +triangle(15px 15px, transparent lighten($p_stable, 30%), down-right)
+
+      .sender
+        position: absolute
+        bottom: 0px
+        left: 15px
+        height: 20px
+        line-height: 20px
+        font-size: 12px
+        color: $p_dark
+
+        span
+          font-size: 10px
+
+  #new_public_message
+    position: absolute
+    width: 100%
+    left: 0px
+    bottom: 0px
+    height: 45px
+
+    +display(flex)
+
+    #public_message_content
+      +flex(1)
+      border: none
+      padding: 0px
+      margin: 0px
+      font-size: 16px
+      text-indent: 15px
+      background: $p_calm
+      outline: none
+      font-weight: 600
+      color: white
+
+      +placeholder
+        color: rgba(white, .8)
+
+    .chat_submit
+      margin: 0px
+      padding: 0px
+      height: 45px
+      line-height: 45px
+      width: 45px
+      font-size: 22px
+      background: darken($p_calm, 15%)
+
+

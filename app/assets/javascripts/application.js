@@ -15,6 +15,7 @@
 // require_tree .
 //= require cable
 //= require paloma
+//= require iscroll/build/iscroll
 //= require flatpickr-calendar/dist/flatpickr.min
 //= require flatpickr-calendar/dist/l10n/it
 //= require ./pickapp/_init

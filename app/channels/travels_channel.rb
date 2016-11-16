@@ -25,7 +25,9 @@ class TravelsChannel < ApplicationCable::Channel
       end
       unless travel.public_chat_partecipants.count == 0
         # puts travel.public_chat_partecipants.to_a.first.user.name
+        
         # NotificationWorker.perform_async("received_a_public_message", current_user.id, Array.new, options = {from_public_chat: true, owner_id:travel.driver.id, travel_id: travel.id})
+        PublicMessageBroadcastJob.perform_later(public_message, current_user.id)
       end
     end
   end

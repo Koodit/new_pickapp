@@ -1,0 +1,7 @@
+Paloma.controller('Travels', {
+
+  show: ->
+    
+      
+
+})
