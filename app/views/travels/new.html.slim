@@ -102,7 +102,7 @@
               .input_container.flex-item
                 .is_recursive_block style="display: none"
                   = f.label 'Per quante settimane? *'
-                  = f.number_field :repetitions_amount, min: 0
+                  = f.number_field :repetions_amount, min: 0
 
             #travel_stops
               = f.fields_for :travel_stops do |travel_stop|
