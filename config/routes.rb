@@ -5,6 +5,11 @@ Rails.application.routes.draw do
 
   root "home#index"
 
+  resources :users, only: [:show] do
+    member do
+      resources :cars
+    end
+  end
   resources :room_categories
   resources :rooms do
     resources :travels

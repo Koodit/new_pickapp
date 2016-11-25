@@ -10,10 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-// require jquery
-// require jquery_ujs
 // require_tree .
+//= require jquery
+//= require jquery_ujs
 //= require cable
+//= require cocoon
 //= require paloma
 //= require iscroll/build/iscroll
 //= require flatpickr-calendar/dist/flatpickr.min

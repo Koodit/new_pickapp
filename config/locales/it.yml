@@ -1,0 +1,35 @@
+it:
+  activerecord:
+    attributes:
+      room:
+        admin_editable: Editabile da un admin
+        name: Nome
+        rating: Rating
+        total_rating: Rating totale
+        number_of_ratings: Numero di rating
+        price: Prezzo
+        start_date: Data di inizio
+        end_date: Data di fine
+        is_private: Privata
+        website: Sito web
+        facebook: Facebook
+        twitter: Twitter
+        instagram: Instagram
+        trip_advisor: Trip advisor
+        phone: Numero di telefono
+        address: Indirizzo
+        background_image: Immagine di background
+        description: Descrizione
+        is_school: E' una scuola
+        room_category: Categoria stanza
+      room_category:
+        name: Nome
+        image: Immagine
+
+    models:
+      room:
+        one: Stanza
+        other: Stanze
+      room_category:
+        one: Categoria stanza
+        other: Categorie stanza

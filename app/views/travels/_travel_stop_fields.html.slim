@@ -1,0 +1,11 @@
+.nested-fields
+  .fields
+    = f.label :desired_address
+    = f.text_field :desired_address
+    br
+    = f.label :city
+    = f.text_field :city
+    br
+    = f.label :zip_code
+    = f.text_field :zip_code
+  = link_to_remove_association "remove stop", f

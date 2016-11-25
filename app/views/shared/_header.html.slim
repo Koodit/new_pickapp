@@ -13,7 +13,7 @@
   
   - if current_user
     .user_menu
-      a.user_name href="#" = current_user.full_name
+      a.user_name href=user_path(current_user) = current_user.full_name
       .user_settings.fa.fa-cog
       .profile_picture style=("background-image: url(#{current_user.profile_image_url})" if current_user.profile_image_url)
         .notifications = current_user.unread_notifications + current_user.unread_messages

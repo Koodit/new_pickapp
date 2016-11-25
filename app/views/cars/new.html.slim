@@ -1,0 +1,28 @@
+= form_for @car, url: cars_path do |f|
+  - if @car.errors.any?
+    h2
+      = pluralize(@car.errors.count, "error") 
+      = " prevented this record from being saved:"
+  - @car.errors.full_messages.each do |msg|
+    = msg
+    br
+  = f.label :model
+  = f.text_field :model
+  br
+  = f.label :plate
+  = f.text_field :plate
+  br
+  = f.label :sits
+  = f.number_field :sits, min: 0
+  br
+  = f.label :can_smoke
+  = f.check_box :can_smoke
+  br
+  = f.label :animals_allowed
+  = f.check_box :animals_allowed
+  br
+  = f.label :notes
+  = f.text_area :notes
+  br
+  br
+  = f.submit "Aggiungi auto"

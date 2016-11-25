@@ -1,5 +1,5 @@
 class Car < ApplicationRecord
-  belongs_to :car_category
+  belongs_to :car_category, optional: true
   belongs_to :user
 
   has_many :travels, dependent: :destroy

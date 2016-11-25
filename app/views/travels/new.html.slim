@@ -1,0 +1,54 @@
+= form_for @travel_offer, url: room_travels_path do |f|
+  - if @travel_offer.errors.any?
+    h2
+      = pluralize(@travel_offer.errors.count, "error") 
+      = " prevented this record from being saved:"
+  - @travel_offer.errors.full_messages.each do |msg|
+    = msg
+    br
+  br
+  br
+  = f.label :towards_room
+  = f.check_box :towards_room
+  br
+  = f.label :car
+  = f.select :car_id, current_user.cars.collect { |c| [c.model, c.id] }
+  br
+  = f.label :desired_address
+  = f.text_field :desired_address
+  br
+  = f.label :city
+  = f.text_field :city
+  br
+  = f.label :zip_code
+  = f.text_field :zip_code
+  br
+  = f.label :departure_datetime
+  = f.datetime_field :departure_datetime
+  br
+  = f.label :flexible_departure
+  = f.check_box :flexible_departure
+  br
+  = f.label :can_repay
+  = f.check_box :can_repay
+  br
+  = f.label :only_with_feedback
+  = f.check_box :only_with_feedback
+  br
+  = f.label :backwards_too
+  = f.check_box :backwards_too
+  br
+  = f.label :back_departure_datetime
+  = f.datetime_field :back_departure_datetime
+  br
+  = f.label :is_recursive
+  = f.check_box :is_recursive
+  br
+  #travel_stops
+    = f.fields_for :travel_stops do |travel_stop|
+      = render 'travel_stop_fields', f: travel_stop
+    .links
+      = link_to_add_association 'add stops', f, :travel_stops
+  br
+  br
+  = f.submit "Crea"

@@ -30,6 +30,10 @@ class TravelRequest < ApplicationRecord
     @desired_address ||= ""
   end
 
+  def passenger_name
+    "#{passenger.name} #{passenger.surname}"
+  end
+
   private
 
   def set_address

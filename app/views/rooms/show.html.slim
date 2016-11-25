@@ -14,7 +14,7 @@
         .card_content
           .button.block.orange Cerca nella Vroom
           .button.block.red Rimuovi Preferito
-          .button.block.green Offri Passaggio
+          a.button.block.green href=new_room_travel_path(@room) Offri Passaggio
           a.button.block href=new_room_travel_request_path(@room) Richiedi Passaggio
 
     .col.x3
@@ -31,7 +31,8 @@
               .t_item
                 .ti_user
                   .profile_picture
-                  .user_name Andrea Macchieraldo
+                  .user_name
+                    = tr.passenger_name
 
                 .ti_meta
                   .ti_label.red PER
@@ -55,7 +56,8 @@
               a.t_item href=room_travel_path(to)
                 .ti_user
                   .profile_picture
-                  .user_name Andrea Macchieraldo
+                  .user_name
+                    = to.passenger_name
 
                 .ti_meta
                   .ti_label.red PER
