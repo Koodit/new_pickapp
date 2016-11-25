@@ -44,6 +44,9 @@
   = f.label :is_recursive
   = f.check_box :is_recursive
   br
+  = f.label :repetions_amount
+  = f.number_field :repetions_amount
+  br
   #travel_stops
     = f.fields_for :travel_stops do |travel_stop|
       = render 'travel_stop_fields', f: travel_stop

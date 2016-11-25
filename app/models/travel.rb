@@ -34,12 +34,15 @@ class Travel < ApplicationRecord
   scope :recursive, -> { where(is_recursive: true) }
 
   before_save :set_address
+  before_save :set_coordinates
+  before_save :set_completion_token
 
   attr_writer :city
   attr_writer :zip_code
   attr_writer :desired_address
   attr_writer :backwards_too
   attr_writer :back_departure_datetime
+  attr_writer :repetions_amount
 
   def city
     @city ||= ""
@@ -54,11 +57,15 @@ class Travel < ApplicationRecord
   end
 
   def backwards_too
-    @backwards_too
+    @backwards_too ||= false
   end
 
   def back_departure_datetime
     @back_departure_datetime
+  end
+
+  def repetions_amount
+    @repetions_amount
   end
 
   def passenger_name
