@@ -1,6 +1,7 @@
 class TravelRequestsController < ApplicationController
   def new
     @travel_request = TravelRequest.new
+    @room = Room.find(params[:room_id])
   end
 
   def create

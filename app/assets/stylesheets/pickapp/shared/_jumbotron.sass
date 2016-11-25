@@ -10,6 +10,7 @@
   background-repeat: no-repeat
   background-position: center
   padding-top: 80px
+  box-sizing: content-box
 
   +create-jumbotron-colors('blue', $p_calm)
   +create-jumbotron-colors('red', $p_assertive)
@@ -23,8 +24,12 @@
   &.small
     min-height: 12.5vh
 
-    h1
-      font-size: 36px !important
+    &:before
+      display: none
+    
+    .j_content
+      h1
+        font-size: 2em
 
   +lg
     min-height: 37.5vh
@@ -42,16 +47,19 @@
 
     h1
       margin: 0px
-      padding: 0px 20px
+      padding: 0px 1.25rem
       text-align: center
-      font-size: 3.75vmax
-      line-height: 3.75vmax
+      line-height: 4.5rem
+      font-size: 4.5em
       color: white
       text-shadow: 0px 2px 4px rgba(black, .3)
       text-transform: uppercase
 
       +xs
         margin-top: 40px
+        padding: 0px 1rem
+        line-height: 2.5rem
+        font-size: 2.5em
 
   .j_footer
     z-index: 2

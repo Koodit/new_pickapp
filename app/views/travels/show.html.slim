@@ -1,12 +1,12 @@
 .jumbotron.blue.small
   .j_content
-    - if @travel.towards_room
-      h1 = "Viaggio per #{@travel.room.name}"
+    - if @travel_offer.towards_room
+      h1 = "Viaggio per #{@travel_offer.room.name}"
     - else
-      h1 = "Viaggio da #{@travel.room.name}"
+      h1 = "Viaggio da #{@travel_offer.room.name}"
 
 .back_button_container
-  a.back_button href=room_path(@travel.room) Torna a #{@travel.room.name}
+  a.back_button href=room_path(@travel_offer.room) Torna a #{@travel_offer.room.name}
 
 .grid.room_page
   .row
@@ -25,13 +25,13 @@
           .ct_icon.fa.fa-comments
           .ct_title CHAT PUBBLICA
 
-        .chat#chat data-travel-id="#{@travel.id}"
+        .chat#chat data-travel-id="#{@travel_offer.id}"
           .chat_messages#chat_messages
             .iscroll-scroller
-              = render @travel.public_messages, {user_requester_id: current_user.id, use_requester_id: true}
+              = render @travel_offer.public_messages, {user_requester_id: current_user.id, use_requester_id: true}
 
           = form_for @public_message, url: '#', authenticity_token: true do |f|
             = f.text_field :content, placeholder: 'Scrivi un messaggio...', autocomplete: :off
-            = f.hidden_field :travel_id, class:'chat_input', value: @travel.id
+            = f.hidden_field :travel_id, class:'chat_input', value: @travel_offer.id
             button.chat_submit data-send="public_message"
               i.fa.fa-paper-plane

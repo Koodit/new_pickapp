@@ -1,11 +1,14 @@
-.nested-fields
-  .fields
-    = f.label :desired_address
+.form-group.nested-fields
+  .input_container
+    = f.label 'Indirizzo *'
     = f.text_field :desired_address
-    br
-    = f.label :city
-    = f.text_field :city
-    br
-    = f.label :zip_code
-    = f.text_field :zip_code
-  = link_to_remove_association "remove stop", f
+  .flex
+    .input_container.flex-item
+      = f.label 'Città *'
+      = f.text_field :city
+
+    .input_container.flex-item
+      = f.label 'CAP *'
+      = f.text_field :zip_code
+
+  = link_to_remove_association "RIMUOVI FERMATA INTERMEDIA", f, class:'button red w100 block'

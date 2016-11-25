@@ -1,0 +1,31 @@
+body
+  background: $p_light
+
+  .page_content
+    min-height: 50vh
+
+  &.no_jumbotron
+    padding-top: 100px
+
+html
+  font-size: 14px
+  box-sizing: border-box
+
+  *, *:before, *:after
+    box-sizing: inherit
+
+  // @media screen and (max-width: 728px)
+  +xs
+    font-size: 12px
+
+  // @media screen and (max-width: 992px)
+  +sm
+    font-size: 14px
+
+  // @media screen and (min-width: 992px)
+  +md
+    font-size: 16px
+
+  // @media screen and (min-width: 1200px)
+  +lg
+    font-size: 18px

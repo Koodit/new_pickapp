@@ -11,6 +11,7 @@
 // about supported directives.
 //
 // require_tree .
+//= require helpers
 //= require jquery
 //= require jquery_ujs
 //= require cable

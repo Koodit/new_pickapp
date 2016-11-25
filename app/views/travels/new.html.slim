@@ -1,57 +1,115 @@
-= form_for @travel_offer, url: room_travels_path do |f|
-  - if @travel_offer.errors.any?
-    h2
-      = pluralize(@travel_offer.errors.count, "error") 
-      = " prevented this record from being saved:"
-  - @travel_offer.errors.full_messages.each do |msg|
-    = msg
-    br
-  br
-  br
-  = f.label :towards_room
-  = f.check_box :towards_room
-  br
-  = f.label :car
-  = f.select :car_id, current_user.cars.collect { |c| [c.model, c.id] }
-  br
-  = f.label :desired_address
-  = f.text_field :desired_address
-  br
-  = f.label :city
-  = f.text_field :city
-  br
-  = f.label :zip_code
-  = f.text_field :zip_code
-  br
-  = f.label :departure_datetime
-  = f.datetime_field :departure_datetime
-  br
-  = f.label :flexible_departure
-  = f.check_box :flexible_departure
-  br
-  = f.label :can_repay
-  = f.check_box :can_repay
-  br
-  = f.label :only_with_feedback
-  = f.check_box :only_with_feedback
-  br
-  = f.label :backwards_too
-  = f.check_box :backwards_too
-  br
-  = f.label :back_departure_datetime
-  = f.datetime_field :back_departure_datetime
-  br
-  = f.label :is_recursive
-  = f.check_box :is_recursive
-  br
-  = f.label :repetions_amount
-  = f.number_field :repetions_amount
-  br
-  #travel_stops
-    = f.fields_for :travel_stops do |travel_stop|
-      = render 'travel_stop_fields', f: travel_stop
-    .links
-      = link_to_add_association 'add stops', f, :travel_stops
-  br
-  br
-  = f.submit "Crea"
+.jumbotron.blue.small
+  .j_content
+    h1 NUOVA OFFERTA DI PASSAGGIO
+
+.back_button_container
+  a.back_button href=room_path(@room) Torna a #{@room.name}
+
+.grid
+  .row
+    .col.single-page
+      .card
+        .card_title
+          .ct_title NUOVA OFFERTA DI PASSAGGIO
+        .card_content
+          = form_for @travel_offer, url: room_travels_path do |f|
+            - if @travel_offer.errors.any?
+              h2
+                = pluralize(@travel_offer.errors.count, "error") 
+                = " prevented this record from being saved:"
+            - @travel_offer.errors.full_messages.each do |msg|
+              = msg
+              br
+            
+            .flex
+              .input_container.flex-item
+                label DIREZIONE DEL VIAGGIO
+                .checkbox
+                  .check_text <e class="towards_room_label_text">Verso</e>: #{@room.name}
+                  = f.check_box :towards_room, class: 'towards_room_check'
+                  = f.label :towards_room, class: 'check_toggle'
+                    .pin
+
+              .input_container.flex-item
+                = f.label 'SELEZIONA UN AUTO'
+                .select-wrapper
+                  = f.select :car_id, current_user.cars.collect { |c| [c.model, c.id] }, {}, { :class => 'select-dropdown' }
+
+            .input_container
+              label <e class="desired_address_label_text">Indirizzo di Partenza</e> *
+              = f.text_field :desired_address
+          
+            .flex
+              .input_container.flex-item
+                = f.label 'Città *'
+                = f.text_field :city
+
+              .input_container.flex-item
+                = f.label 'CAP *'
+                = f.text_field :zip_code
+            
+            .flex
+              .input_container.flex-item
+                = f.label 'Data di partenza *'
+                = f.datetime_field :departure_datetime, id:'departure_datetime'
+
+              .input_container.flex-item
+                label Flessibilità dell'orario
+                .checkbox
+                  .check_text Disponibile a flessibilità
+                  = f.check_box :flexible_departure
+                  = f.label :flexible_departure, class: 'check_toggle'
+                    .pin
+            
+            .flex
+              .input_container.flex-item
+                .checkbox
+                  .check_text Rimborso richiesto
+                  = f.check_box :can_repay
+                  = f.label :can_repay, class: 'check_toggle'
+                    .pin
+
+              .input_container.flex-item
+                .checkbox
+                  .check_text Solo passeggeri con Recensioni
+                  = f.check_box :only_with_feedback
+                  = f.label :only_with_feedback, class: 'check_toggle'
+                    .pin
+            
+            .flex
+              .input_container.flex-item
+                label Vuoi creare anche il viaggio di ritorno?
+                .checkbox
+                  .check_text Crea viaggio di ritorno
+                  = f.check_box :backwards_too, class: 'back_departure_datetime_check'
+                  = f.label :backwards_too, class: 'check_toggle'
+                    .pin
+
+              .input_container.flex-item
+                .back_departure_datetime_block style="display: none"
+                  = f.label 'Data di ritorno *'
+                  = f.datetime_field :back_departure_datetime, id:'back_departure_datetime'
+            
+            .flex
+              .input_container.flex-item
+                label Ripetizione settimanale del viaggio
+                .checkbox
+                  .check_text Vuoi ripetere questo viaggio?
+                  = f.check_box :is_recursive, class: 'is_recursive_check'
+                  = f.label :is_recursive, class: 'check_toggle'
+                    .pin
+
+              .input_container.flex-item
+                .is_recursive_block style="display: none"
+                  = f.label 'Per quante settimane? *'
+                  = f.number_field :repetitions_amount, min: 0
+
+            #travel_stops
+              = f.fields_for :travel_stops do |travel_stop|
+                = render 'travel_stop_fields', f: travel_stop
+              .links
+                = link_to_add_association 'Aggiungi Fermata Intermedia', f, :travel_stops, class:'button w100 block'
+                    
+            br
+
+            = f.submit "Pubblica Offerta", class:'button blue w100 block'
