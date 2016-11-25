@@ -24,7 +24,11 @@ class Travel < ApplicationRecord
                                 reject_if: :all_blank,
                                 allow_destroy: true
 
-  validates_presence_of :car_id
+  validates_presence_of :car_id,
+                        :desired_address,
+                        :city,
+                        :zip_code,
+                        :departure_datetime
 
   scope :available_now, -> { where("departure_datetime > ?", Time.now) }
   scope :next_24_hours, -> { where(departure_datetime: Time.now..(Time.now + 60.day)) }
@@ -33,6 +37,7 @@ class Travel < ApplicationRecord
   scope :not_completed, -> { where(completed: false) }
   scope :recursive, -> { where(is_recursive: true) }
 
+  before_save :validates_attributes
   before_save :set_address
   before_save :set_coordinates
   before_save :set_completion_token
@@ -70,6 +75,12 @@ class Travel < ApplicationRecord
 
   def passenger_name
     "#{driver.name} #{driver.surname}"
+  end
+
+  def validates_attributes
+    if self.is_recursive == true && self.repetions_amount.empty?
+      false
+    end
   end
 
   private

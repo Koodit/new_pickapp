@@ -55,6 +55,7 @@ class TravelsController < ApplicationController
 
       redirect_to room_path(@room), notice: "Offerta di passaggio creata con successo"
     else
+      js "#new"
       render :new
     end
   end

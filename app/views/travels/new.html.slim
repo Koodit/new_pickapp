@@ -51,7 +51,7 @@
             .flex
               .input_container.flex-item
                 = f.label 'Data di partenza *'
-                = f.datetime_field :departure_datetime, id:'departure_datetime'
+                = f.text_field :departure_datetime, id:'departure_datetime'
 
               .input_container.flex-item
                 label Flessibilità dell'orario
@@ -88,7 +88,7 @@
               .input_container.flex-item
                 .back_departure_datetime_block style="display: none"
                   = f.label 'Data di ritorno *'
-                  = f.datetime_field :back_departure_datetime, id:'back_departure_datetime'
+                  = f.text_field :back_departure_datetime, id:'back_departure_datetime'
             
             .flex
               .input_container.flex-item

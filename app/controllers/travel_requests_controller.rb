@@ -13,6 +13,7 @@ class TravelRequestsController < ApplicationController
     if @travel_request.save
       redirect_to room_path(@travel_request.room), notice: "Richiesta passaggio creata con successo"
     else
+      js "#new"
       render :new
     end
   end
