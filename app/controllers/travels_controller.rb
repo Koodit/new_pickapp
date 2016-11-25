@@ -1,6 +1,7 @@
 class TravelsController < ApplicationController
+  before_action :set_travel, only: [:show, :destroy]
+
   def show
-    @travel = Travel.includes(:public_messages).find_by(id: params[:room_id])
     @public_message = PublicMessage.new
   end
 
@@ -57,7 +58,23 @@ class TravelsController < ApplicationController
     end
   end
 
+  def destroy
+    room = Room.find params[:room_id]
+    if current_user.id == @travel.driver_id
+      if @travel_offer
+        @travel_offer.destroy
+        redirect_to room_path(room)
+      end
+    else
+      render json: {error: "Verifica di essere il proprietario dell'offerta' e riprova."}, root: false, status: 513
+    end
+  end
+
   private
+
+  def set_travel
+    @travel_offer = Travel.includes(:public_messages).find params[:id]
+  end
 
   def travel_params
     params.require(:travel).permit(

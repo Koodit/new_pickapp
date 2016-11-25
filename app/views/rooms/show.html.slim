@@ -53,7 +53,7 @@
         .travels_list.travel_offers
           - if @travel_offers.any?
             - @travel_offers.each do |to|
-              a.t_item href=room_travel_path(to)
+              a.t_item href=room_travel_path(@room, to)
                 .ti_user
                   .profile_picture
                   .user_name
