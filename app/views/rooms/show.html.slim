@@ -13,8 +13,11 @@
         .room_map#room_map
         .card_content
           .button.block.orange Cerca nella Vroom
-          .button.block.red Rimuovi Preferito
-          a.button.block.green href=new_room_travel_path(@room) Offri Passaggio
+          - if @room.is_favourite(current_user)
+            = link_to "Rimuovi Preferito", unset_favourite_room_path(@room), method: :post, class: "button block red"
+          - else
+            = link_to "Aggiungi Preferito", set_favourite_room_path, method: :post, class: "button block green"
+          a.button.block.blue href=new_room_travel_path(@room) Offri Passaggio
           a.button.block href=new_room_travel_request_path(@room) Richiedi Passaggio
 
     .col.x3
