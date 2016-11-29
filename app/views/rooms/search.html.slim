@@ -1,0 +1,123 @@
+.jumbotron.blue.small
+  .j_content
+    h1
+      = "CERCA IN #{@room.name}"
+
+.back_button_container
+  a.back_button href=room_path(@room) Torna a #{@room.name}
+  
+.grid
+  .row
+    .col
+      .card
+        .card_title
+          .ct_title NUOVA RICHIESTA DI PASSAGGIO
+        .card_content
+          = form_for :q, url: search_room_path(@room), method: :get do |f|
+            .input_container
+              .checkbox
+                .check_text Towards room
+                - if @filter.towards_room == "1"
+                  = f.check_box :towards_room, checked: true
+                - else
+                  = f.check_box :towards_room
+                = f.label :towards_room, class: 'check_toggle'
+                  .pin
+
+            .flex
+              .input_container.flex-item
+                = f.label 'Min:'
+                = f.text_field :min_departure_datetime, id: "start_datetime_picker"
+
+            .flex
+              .input_container.flex-item
+                = f.label 'Max:'
+                = f.text_field :max_departure_datetime, id: "end_datetime_picker"
+
+            .input_container
+              .checkbox
+                .check_text Orari flessibili
+                - if @filter.flexible_departure == true
+                  = f.check_box :flexible_departure, checked: true
+                - else
+                  = f.check_box :flexible_departure
+                = f.label :flexible_departure, class: 'check_toggle'
+                  .pin
+
+            .input_container
+              .checkbox
+                .check_text Ricerca ricorsiva
+                - if @filter.is_recursive == true
+                  = f.check_box :is_recursive, checked: true
+                - else
+                  = f.check_box :is_recursive
+                = f.label :is_recursive, class: 'check_toggle'
+                  .pin
+
+            .input_container
+              .checkbox
+                .check_text Rimborso spese
+                - if @filter.can_repay == true
+                  = f.check_box :can_repay, checked: true
+                - else
+                  = f.check_box :can_repay
+                = f.label :can_repay, class: 'check_toggle'
+                  .pin
+
+            .input_container
+              .checkbox
+                .check_text Si può fumare
+                - if @filter.can_smoke == true
+                  = f.check_box :can_smoke, checked: true
+                - else
+                  = f.check_box :can_smoke
+                = f.label :can_smoke, class: 'check_toggle'
+                  .pin
+
+            .input_container
+              .checkbox
+                .check_text Animali ammessi
+                - if @filter.animals_allowed == true
+                  = f.check_box :animals_allowed, checked: true
+                - else
+                  = f.check_box :animals_allowed
+                = f.label :animals_allowed, class: 'check_toggle'
+                  .pin
+
+            / .input_container
+            /   .checkbox
+            /     .check_text Solo guidatori con review
+            /     = f.check_box :only_with_review
+            /     = f.label :only_with_review, class: 'check_toggle'
+            /       .pin
+
+            = f.submit "Cerca viaggio", class:'button blue w100 block'
+
+    .col.x3
+      .card
+        .card_title
+          .ct_title Risultati della ricerca
+
+        .travels_list.active
+          - if @travels.any?
+            - @travels.each do |to|
+              a.t_item href=room_travel_path(@room, to)
+                .ti_user
+                  .profile_picture
+                  .user_name
+                    = to.passenger_name
+
+                .ti_meta
+                  .ti_label.red PER
+                  - if to.towards_room
+                    .ti_text = @room.name
+                  - else
+                    .ti_text.capitalize = to.starting_address
+
+                .ti_meta
+                  .ti_label.orange ALLE
+                  .ti_text #{to.departure_datetime.strftime('%d/%m %H:%M')}
+                .ti_status.orange DA SVOLGERE
+          - else
+            .no_travels
+              p Nessuno offre passaggi da/verso questa destinazione.<br/><a href="#">Sarai tu il primo?</a>

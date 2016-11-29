@@ -48,6 +48,8 @@ class Travel < ApplicationRecord
   attr_writer :backwards_too
   attr_writer :back_departure_datetime
   attr_writer :repetions_amount
+  attr_writer :min_departure_datetime
+  attr_writer :max_departure_datetime
 
   def city
     @city ||= ""
@@ -73,6 +75,14 @@ class Travel < ApplicationRecord
     @repetions_amount
   end
 
+  def min_departure_datetime
+    @min_departure_datetime
+  end
+
+  def max_departure_datetime
+    @max_departure_datetime
+  end
+
   def passenger_name
     "#{driver.name} #{driver.surname}"
   end
@@ -81,6 +91,26 @@ class Travel < ApplicationRecord
     if self.is_recursive == true && self.repetions_amount.empty?
       false
     end
+  end
+
+  def has_not_flexible_departure
+    flexible_departure == false
+  end
+
+  def cannot_repay
+    can_repay == false
+  end
+
+  def cannot_smoke
+    car.can_smoke == false
+  end
+
+  def animals_not_allowed
+    car.animals_allowed == false
+  end
+
+  def is_not_recursive
+    is_recursive == false
   end
 
   private

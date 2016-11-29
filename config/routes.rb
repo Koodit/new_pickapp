@@ -15,8 +15,9 @@ Rails.application.routes.draw do
     resources :travels
     resources :travel_requests
     member do
-      post '/set_favourite', to: "rooms#set_favourite"
-      post '/unset_favourite', to: "rooms#unset_favourite"
+      get "/search", to: "rooms#search"
+      post "/set_favourite", to: "rooms#set_favourite"
+      post "/unset_favourite", to: "rooms#unset_favourite"
     end
   end
 

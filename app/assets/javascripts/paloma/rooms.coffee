@@ -26,6 +26,50 @@ Paloma.controller('Rooms', {
 
     document.querySelector('.toggle_travels_list.travel_offers').addEventListener 'click', ->
       activateTravelsList('travel_offers', 'travel_requests')
-      
+  
+  search: ->
+
+    current_date = new Date().timeNow()
+    min_departure_datetime = this.params.min_departure_datetime
+    max_departure_datetime = this.params.max_departure_datetime
+
+    flatpickr_config = {
+      # dateFormat: "j F Y - H:i",
+      altFormat: "j F Y - H:i",
+      altInput: true,
+      minDate: current_date,
+      defaultDate: min_departure_datetime or current_date,
+      enableTime: true,
+      time_24hr: true,
+      locale:'it',
+      onChange: (selectedDates, dateStr, instance) ->
+        setBackDepartureDatetimePicker(selectedDates[0])
+    }
+    document.getElementById("start_datetime_picker").flatpickr(flatpickr_config)
+
+    # back_departure_datetime
+    back_departure_datetime_picker = null
+
+    setBackDepartureDatetimePicker = (departure_datetime) ->
+      back_departure_datetime_picker.destroy() if back_departure_datetime_picker
+
+      if departure_datetime
+        min_date = departure_datetime
+      else
+        min_date = current_date
+
+      flatpickr_config = {
+        # dateFormat: "j F Y - H:i",
+        altFormat: "j F Y - H:i",
+        altInput: true,
+        minDate: new Date(min_date - 60000),
+        defaultDate: max_departure_datetime or min_date,
+        enableTime: true,
+        time_24hr: true,
+        locale:'it'
+      }
+      back_departure_datetime_picker = document.getElementById("end_datetime_picker").flatpickr(flatpickr_config)
+
+    setBackDepartureDatetimePicker()
 
 })
