@@ -1,5 +1,6 @@
 class TravelsController < ApplicationController
   before_action :set_travel, only: [:show, :destroy]
+  before_action :check_if_driver, only: [:new, :create]
 
   def show
     @public_message = PublicMessage.new
@@ -161,6 +162,13 @@ class TravelsController < ApplicationController
 
         end
       end
+    end
+  end
+
+  def check_if_driver
+    @room = Room.find params[:room_id]
+    unless current_user.is_driver
+      redirect_to room_path(@room)
     end
   end
 

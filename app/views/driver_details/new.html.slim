@@ -1,0 +1,57 @@
+.jumbotron.red.small
+  .j_content
+    h1 Diventa guidatore
+
+.back_button_container
+  a.back_button href=profile_path Torna al profilo
+
+.grid
+  .row
+    .col
+      .card
+        .card_content
+          = form_for @driver_detail, url: driver_details_path do |f|
+            .input_container
+              = f.label :patente
+              = f.file_field :patente
+
+            .input-container
+              = f.label :license_type
+              = f.select :license_type, [nil, "B","C"]
+
+            .input-container
+              = f.label :license_number
+              = f.text_field :license_number
+
+            .input-container
+              = f.label :license_release_city_common
+              = f.text_field :license_release_city_common
+
+            .input-container
+              = f.label :license_release_city
+              = f.text_field :license_release_city
+
+            .input_container
+              = f.label 'Data di rilascio *'
+              = f.text_field :license_release_date, id:'one_way_datetime'
+
+            .input_container
+              = f.label 'Data di scadenza *'
+              = f.text_field :license_expire_date, id:'one_way_datetime'
+
+            .input_container
+              .checkbox
+                .check_text Accetto i termini e le condizioni
+                = f.check_box :accept_terms
+                = f.label :accept_terms, class: 'check_toggle'
+                  .pin
+
+            .input_container
+              .checkbox
+                .check_text Dichiarazione dati autentici / Responsabilità penale / Manlevo la società dal verificare la congruità e autorizzo a rendere visibile il mio documento a chi si prenota per annuncio passaggio
+                = f.check_box :accept_terms_2
+                = f.label :accept_terms_2, class: 'check_toggle'
+                  .pin
+
+            .input-container
+              = f.submit "Invia", class:'button red'

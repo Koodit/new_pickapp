@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-  resources :users, only: [:show] do
+  get "/profile", to: "users#profile"
+  resources :profile, only: [] do
+    collection do
+      resource :driver_details
+    end
     member do
       resources :cars
     end

@@ -37,7 +37,6 @@ class Travel < ApplicationRecord
   scope :not_completed, -> { where(completed: false) }
   scope :recursive, -> { where(is_recursive: true) }
 
-  before_save :validates_attributes
   before_save :set_address
   before_save :set_coordinates
   before_save :set_completion_token
@@ -85,12 +84,6 @@ class Travel < ApplicationRecord
 
   def passenger_name
     "#{driver.name} #{driver.surname}"
-  end
-
-  def validates_attributes
-    if self.is_recursive == true && self.repetions_amount.empty?
-      false
-    end
   end
 
   def has_not_flexible_departure
