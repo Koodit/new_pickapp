@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   root "home#index"
 
   get "/profile", to: "users#profile"
-  resources :profile, only: [] do
+  resource :profile, only: [] do
     collection do
+      get "/edit", to: "users#edit"
+      put "/update", to: "users#update"
       resource :driver_details
-    end
-    member do
       resources :cars
     end
   end

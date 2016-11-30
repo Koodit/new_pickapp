@@ -1,11 +1,20 @@
 class UsersController < ApplicationController
   def profile
-    @user = current_user
-
     @travels_as_driver = travels_for_user_as_driver
     @travels_as_applied = travels_for_user_as_applied
     @travels_as_approved = travels_for_user_as_approved
     @travels_as_passenger = travels_for_user_as_passenger
+  end
+
+  def edit
+  end
+
+  def update
+    if current_user.update user_params
+      redirect_to profile_path, notice: "I tuoi dati sono stati aggiornati con successo"
+    else
+      render :edit
+    end
   end
 
   private
@@ -39,5 +48,9 @@ class UsersController < ApplicationController
       travels << au.travel
     end
     travels
+  end
+
+  def user_params
+    params.require(:user).permit(:address, :comune, :prov, :zip_code, :birth_date)
   end
 end

@@ -38,7 +38,8 @@
         .card_content
           / .button.block.orange Cerca nella Vroom
           / .button.block.red Rimuovi Preferito
-          a.button.block.blue href=new_car_path(@user) Aggiungi un Auto
+          a.button.block.blue href=new_car_path Aggiungi un Auto
+          a.button.block.red href=edit_profile_path Modifica profilo
           / a.button.block href=new_room_travel_request_path(@room) Richiedi Passaggio
 
     .col.x3
@@ -75,6 +76,4 @@
           /   .no_travels
           /     p Nessuno richiede passaggi da/verso questa destinazione.<br/><a href="#{href=new_room_travel_request_path(@room)}">Sarai tu il primo?</a>
 
-= link_to "Aggiungi una macchina", new_car_path(current_user)
-br
 = link_to "Diventa guidatore", new_driver_details_path

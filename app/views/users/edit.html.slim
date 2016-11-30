@@ -1,0 +1,18 @@
+= form_for current_user, url: update_profile_path, method: :put do |f|
+  = f.label :birth_date
+  = f.text_field :birth_date
+  br
+  = f.label :address
+  = f.text_field :address
+  br
+  = f.label :comune
+  = f.text_field :comune
+  br
+  = f.label :zip_code
+  = f.text_field :zip_code
+  br
+  = f.label :prov
+  = f.text_field :prov
+  br
+  br
+  = f.submit "Conferma"
