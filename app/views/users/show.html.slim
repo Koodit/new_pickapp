@@ -1,0 +1,76 @@
+.jumbotron.small.green
+  .j_content
+    h1 = current_user.full_name
+
+.grid.profile-page
+  .row
+    .col.profile-sidebar
+      .card
+        .uc_notifications = current_user.unread_notifications
+        .uc_messages = current_user.unread_messages
+
+        .card_content
+          .profile-picture-container
+            .profile-picture style=("background-image: url(#{current_user.profile_image_url})" if current_user.profile_image_url)
+        
+        / .uc_badges
+        /   .ucb_row
+        /     .ucb_col
+        /       .badge
+        /         = render "shared/badges/ecoking"
+        /         .badge_label EcoKing
+        /     .ucb_col
+        /       .badge
+        /         = render "shared/badges/social_master"
+        /         .badge_label Social Master
+        /   .ucb_row
+        /     .ucb_col
+        /       .badge
+        /         = render "shared/badges/nerd"
+        /         .badge_label Nerd
+        /     .ucb_col
+        /       .badge
+        /         = render "shared/badges/citizen"
+        /         .badge_label Citizen
+
+      .card
+        .room_map#room_map
+        .card_content
+          / .button.block.orange Cerca nella Vroom
+          / .button.block.red Rimuovi Preferito
+          a.button.block.blue href=new_car_path(@user) Aggiungi un Auto
+          / a.button.block href=new_room_travel_request_path(@room) Richiedi Passaggio
+
+    .col.x3
+      .card
+        .card_title
+          .ct_icon.fa.fa-car
+          .ct_actions
+            .action.active.toggle_travels_list.travel_requests Guidatore
+            .action.toggle_travels_list.travel_offers Passeggero
+            .action.toggle_travels_list.travel_offers Confermato
+            .action.toggle_travels_list.travel_offers Candidato
+
+        .travels_list.travel_requests.active
+          - if @travels_as_driver.any?
+            - @travels_as_driver.each do |t|
+              a.t_item href=room_travel_path(t.room, t)
+                .ti_user
+                  .profile_picture style=("background-image: url(#{t.driver.profile_image_url})" if current_user.profile_image_url)
+                  .user_name
+                    = t.passenger_name
+
+                .ti_meta
+                  .ti_label.red PER
+                  - if t.towards_room
+                    .ti_text = t.room.name
+                  - else
+                    .ti_text.capitalize = t.starting_address
+
+                .ti_meta
+                  .ti_label.orange ALLE
+                  .ti_text #{t.departure_datetime.strftime('%d/%m %H:%M')}
+                .ti_status.orange DA SVOLGERE
+          - else
+            .no_travels
+              p Nessuno richiede passaggi da/verso questa destinazione.<br/><a href="#{href=new_room_travel_request_path(@room)}">Sarai tu il primo?</a>

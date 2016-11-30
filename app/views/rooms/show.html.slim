@@ -51,7 +51,7 @@
                 .ti_status.orange DA SVOLGERE
           - else
             .no_travels
-              p Nessuno richiede passaggi da/verso questa destinazione.<br/><a href="#">Sarai tu il primo?</a>
+              p Nessuno richiede passaggi da/verso questa destinazione.<br/><a href="#{href=new_room_travel_request_path(@room)}">Sarai tu il primo?</a>
 
 
         .travels_list.travel_offers
@@ -76,4 +76,4 @@
                 .ti_status.orange DA SVOLGERE
           - else
             .no_travels
-              p Nessuno offre passaggi da/verso questa destinazione.<br/><a href="#">Sarai tu il primo?</a>
+              p Nessuno offre passaggi da/verso questa destinazione.<br/><a href="#{href=new_room_travel_path(@room)}">Sarai tu il primo?</a>
