@@ -1,0 +1,14 @@
+= "#{@pending_driver.name} #{@pending_driver.surname}"
+br
+= @pending_driver.email
+br
+= image_tag @driver_detail.patente.url
+br
+= @driver_detail.license_number
+
+= form_for @pending_driver, url: become_driver_admin_pending_driver_verification_path, method: :put do |f|
+  = f.submit "Autorizza driver"
+br
+br
+= form_for @pending_driver, url: deny_driver_admin_pending_driver_verification_path, method: :put do |f|
+  = f.submit "Rifiuta driver"

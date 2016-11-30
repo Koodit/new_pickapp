@@ -29,6 +29,12 @@ Rails.application.routes.draw do
     root "dashboard#index"
     resources :rooms
     resources :room_categories
+    resources :pending_driver_verifications do
+      member do
+        put "/become_driver", to: "pending_driver_verifications#become_driver", as: "become_driver"
+        put "/deny_driver", to: "pending_driver_verifications#deny_driver", as: "deny_driver"
+      end
+    end
   end
 
   namespace :api do

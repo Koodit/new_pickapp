@@ -1,0 +1,4 @@
+- @pending_drivers.each do |driver|
+  = link_to driver.name, admin_pending_driver_verification_path(current_user)
+  br
+  = driver.email
