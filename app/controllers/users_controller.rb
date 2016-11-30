@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def profile
-    @user = User.find(params[:id])
+    @user = current_user
 
     @travels_as_driver = travels_for_user_as_driver
     @travels_as_applied = travels_for_user_as_applied
