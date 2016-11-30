@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       get "/edit", to: "users#edit"
       put "/update", to: "users#update"
       resource :driver_details
-      resources :cars
+      resources :cars, except: [:show, :edit, :update]
     end
   end
   resources :room_categories
