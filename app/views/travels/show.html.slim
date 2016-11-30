@@ -12,12 +12,29 @@
   .row
     .col.x3
       .card
-        / .room_map#room_map
-        / .card_content
-        /   .button.block.orange Cerca nella Vroom
-        /   .button.block.red Rimuovi Preferito
-        /   .button.block.green Offri Passaggio
-        /   a.button.block href=new_room_travel_request_path(@room) Richiedi Passaggio
+        .room_map#room_map
+        .card_content
+          / .button.block.orange Cerca nella Vroom
+          / .button.block.red Rimuovi Preferito
+          / .button.block.green Offri Passaggio
+          / a.button.block href=new_room_travel_request_path(@room) Richiedi Passaggio
+          - if @travel_offer.driver_id != current_user.id
+            - if @travel_offer.applied_users.where(user_id: current_user.id).present?
+              = form_for @travel_offer, url: cancel_application_room_travel_path(@travel_offer.room, @travel_offer, current_user), method: :post do |f|
+                = f.submit "Annulla candidatura"
+              br
+            - else
+              = form_for @travel_offer, url: apply_user_room_travel_path(@travel_offer.room, @travel_offer, current_user), method: :post do |f|
+                = f.submit "Candidati"
+              br
+          - else
+            - @travel_offer.applied_users.each do |user|
+              = form_for @travel_offer, url: approve_user_room_travel_path(@travel_offer.room, @travel_offer, user.user_id), method: :post do |f|
+                = f.submit "Approva"
+            br
+            - @travel_offer.approved_users.each do |user|
+              = form_for @travel_offer, url: cancel_approval_room_travel_path(@travel_offer.room, @travel_offer, user.user_id), method: :post do |f|
+                = f.submit "Disapprova"
 
     .col
       .card

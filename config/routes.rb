@@ -16,7 +16,14 @@ Rails.application.routes.draw do
   end
   resources :room_categories
   resources :rooms do
-    resources :travels
+    resources :travels do
+      member do
+        post 'apply_user/:user_id', to: "travels#apply_user", as: "apply_user"
+        post 'cancel_application/:user_id', to: "travels#cancel_application", as: "cancel_application"
+        post 'approve_user/:user_id', to: "travels#approve_user", as: "approve_user"
+        post 'cancel_approval/:user_id', to: "travels#cancel_approval", as: "cancel_approval"
+      end
+    end
     resources :travel_requests
     member do
       get "/search", to: "rooms#search"

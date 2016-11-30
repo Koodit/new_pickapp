@@ -50,7 +50,7 @@ class User < ApplicationRecord
   has_many :travels, through: :applied_users
 
   has_many :approved_users
-  has_many :travels, through: :applied_users
+  has_many :travels, through: :approved_users
 
   has_attached_file :profile_image,
                     styles: {

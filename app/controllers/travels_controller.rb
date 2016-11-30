@@ -1,5 +1,5 @@
 class TravelsController < ApplicationController
-  before_action :set_travel, only: [:show, :destroy]
+  before_action :set_travel, except: [:new, :create]
   before_action :check_if_driver, only: [:new, :create]
 
   def show
@@ -71,6 +71,39 @@ class TravelsController < ApplicationController
     else
       render json: {error: "Verifica di essere il proprietario dell'offerta' e riprova."}, root: false, status: 513
     end
+  end
+
+  def apply_user
+    @travel_offer.applied_users.create user_id: current_user.id
+    redirect_to room_travel_path(@travel_offer)
+    # NotificationWorker.perform_async("user_applied_to_travel", current_user.id, @travel.driver.id, options = {user_applied_to_travel: true, travel_id: @travel.id})
+  end
+
+  def cancel_application
+    applied = @travel_offer.applied_users.where(user_id: current_user.id).first
+    applied.destroy
+    redirect_to room_travel_path(@travel_offer)
+      # notification_id = applied.notification_id
+      # applied.destroy
+      # notification = Notification.where(id: notification_id).first
+      # unless notification.nil?
+      #   notification.destroy
+      # end
+  end
+
+  def approve_user
+    applied = @travel_offer.applied_users.where(user_id: params[:user_id]).first
+    applied.destroy
+    approved = @travel_offer.approved_users.create user_id: params[:user_id]
+    redirect_to room_travel_path(@travel_offer)
+    # NotificationWorker.perform_async("user_approved_by_driver", current_user.id, params[:user_id], options = {user_approved_by_driver: true, travel_id: @travel.id})
+  end
+
+  def cancel_approval
+    @travel_offer.applied_users.create user_id: params[:user_id]
+    approved = @travel_offer.approved_users.where(user_id: params[:user_id]).first
+    approved.destroy
+    redirect_to room_travel_path(@travel_offer)
   end
 
   private

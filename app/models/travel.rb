@@ -18,7 +18,7 @@ class Travel < ApplicationRecord
   has_many :users, through: :applied_users
 
   has_many :approved_users
-  has_many :users, through: :applied_users
+  has_many :users, through: :approved_users
 
   accepts_nested_attributes_for :travel_stops,
                                 reject_if: :all_blank,
