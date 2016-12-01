@@ -10,7 +10,7 @@ class CarsController < ApplicationController
   def create
     @car = current_user.cars.build car_params
     if @car.save
-      redirect_to user_path(current_user), notice: "Macchina aggiunta con successo"
+      redirect_to cars_path(current_user), notice: "Macchina aggiunta con successo"
     else
       render :new
     end

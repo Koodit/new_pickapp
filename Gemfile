@@ -41,6 +41,12 @@ gem 'omniauth-facebook',      :git => 'git://github.com/mkdynamic/omniauth-faceb
 gem 'devise_mailchimp', :git => 'https://github.com/rentziass/devise_mailchimp.git'
 gem 'devise_token_auth'
 
+########## SIDEKIQ
+gem "sidekiq"
+gem "sidekiq-failures"
+gem 'sinatra', require: false, github: "sinatra"
+gem "slim"
+
 ### COCOON
 gem "cocoon"
 

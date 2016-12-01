@@ -76,4 +76,5 @@
           /   .no_travels
           /     p Nessuno richiede passaggi da/verso questa destinazione.<br/><a href="#{href=new_room_travel_request_path(@room)}">Sarai tu il primo?</a>
 
-= link_to "Diventa guidatore", new_driver_details_path
+- if !current_user.is_driver
+  = link_to "Diventa guidatore", new_driver_details_path
