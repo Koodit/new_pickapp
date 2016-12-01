@@ -67,7 +67,9 @@ class User < ApplicationRecord
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\Z/
 
-  validates_presence_of :name, :surname, :birth_date, :nickname
+  validates_presence_of :name, :surname, :birth_date, :nickname,
+                        :address, :comune, :prov, :zip_code
+
   validate :user_is_of_minimum_age, on: :create
 
   after_create :check_email_domain
@@ -139,7 +141,6 @@ class User < ApplicationRecord
       Rails.logger.info Time.now.years_ago(13).to_date
       Rails.logger.info self.birth_date
       Rails.logger.info '#############################'
-      #errors.add(:base, 'Devi avere almeno 13 anni per iscriverti a PickApp!') unless (Date.new(1900)..Time.now.years_ago(13).to_date).cover? self.birth_date
       errors.add(:base, 'Devi avere almeno 13 anni per iscriverti a PickApp!') if Time.now.years_ago(13).to_date - self.birth_date < 0
     end
   end

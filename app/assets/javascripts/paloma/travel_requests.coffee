@@ -3,7 +3,8 @@ Paloma.controller('TravelRequests', {
   new: ->
     current_date = new Date().timeNow()
     flatpickr_config = {
-      dateFormat: "j F Y - H:i"
+      # dateFormat: "j F Y - H:i"
+      altFormat: "j F Y - H:i",
       minDate: current_date,
       defaultDate: current_date,
       enableTime: true,

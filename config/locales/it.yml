@@ -1,6 +1,20 @@
 it:
   activerecord:
     attributes:
+      user:
+        name: Nome
+        surname: Cognome
+        birth_date: Data di nascita
+        nickname: Nickname
+        address: Indirizzo di Nascita
+        comune: Comune di Nascita
+        prov: Provincia di Nascita
+        zip_code: CAP
+        email: Email
+        password: Password
+        password_confirmation: Conferma Password
+        profile_image: Foto profilo
+
       room:
         admin_editable: Editabile da un admin
         name: Nome
@@ -22,11 +36,15 @@ it:
         description: Descrizione
         is_school: E' una scuola
         room_category: Categoria stanza
+
       room_category:
         name: Nome
         image: Immagine
 
     models:
+      user:
+        one: Utente
+        other: Utenti
       room:
         one: Stanza
         other: Stanze

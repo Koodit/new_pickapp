@@ -1,4 +1,11 @@
 = form_for current_user, url: update_profile_path, method: :put do |f|
+  - if current_user.errors.any?
+    h2
+      = pluralize(current_user.errors.count, "error") 
+      = " prevented this record from being saved:"
+  - current_user.errors.full_messages.each do |msg|
+    = msg
+    br
   = f.label :birth_date
   = f.text_field :birth_date
   br

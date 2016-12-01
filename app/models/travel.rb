@@ -30,6 +30,9 @@ class Travel < ApplicationRecord
                         :zip_code,
                         :departure_datetime
 
+  validates_presence_of :repetions_amount, if: :is_recursive?
+  validates_presence_of :back_departure_datetime, if: :is_backwards_too?
+
   scope :available_now, -> { where("departure_datetime > ?", Time.now) }
   scope :next_24_hours, -> { where(departure_datetime: Time.now..(Time.now + 60.day)) }
   scope :by_imminence, -> { order(departure_datetime: :asc) }
@@ -104,6 +107,14 @@ class Travel < ApplicationRecord
 
   def is_not_recursive
     is_recursive == false
+  end
+
+  def is_recursive?
+    is_recursive == true
+  end
+
+  def is_backwards_too?
+    backwards_too == true
   end
 
   private
