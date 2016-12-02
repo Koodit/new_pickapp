@@ -155,16 +155,4 @@ class User < ApplicationRecord
       user.save
     end
   end
-
-  def cancel_pending_driver_verification
-    self.update pending_driver_verification: false
-    # lo so lo so, correva il 26 febbraio 2016 ed era l'1:22
-    # notification = Notification.new(
-    #   receiver_id: id,
-    #   title: "Conferma guidatore fallita!",
-    #   body: "I dati forniti per diventare guidatore non sono stati accettati, per favore invia di nuovo."
-    # )
-    # notification.save
-  end
-
 end

@@ -17,6 +17,11 @@ class Admin::PendingDriverVerificationsController < AdminController
   def deny_driver
     @pending_driver.update pending_driver_verification: false
     @pending_driver.driver_detail.destroy
+    Notification.create(
+      receiver_id: @pending_driver.id,
+      title: "Conferma guidatore fallita!",
+      body: "I dati forniti per diventare guidatore non sono stati accettati, per favore invia di nuovo."
+    )
     redirect_to admin_pending_driver_verifications_path, notice: "Rifiutato utente come driver con successo"
   end
 

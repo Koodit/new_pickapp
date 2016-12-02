@@ -43,6 +43,7 @@ class Travel < ApplicationRecord
   before_save :set_address
   before_save :set_coordinates
   before_save :set_completion_token
+  after_save :fire_notification_for_completion
 
   attr_writer :city
   attr_writer :zip_code

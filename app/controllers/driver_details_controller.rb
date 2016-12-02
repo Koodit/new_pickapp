@@ -20,12 +20,6 @@ class DriverDetailsController < ApplicationController
     end
   end
 
-  def destroy
-    if @driver_detail.destroy
-      user.cancel_pending_driver_verification
-    end
-  end
-
   private
 
   def set_user_pending_verification(driver_detail)

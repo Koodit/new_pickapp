@@ -54,7 +54,7 @@ class Room < ApplicationRecord
     active.order(created_at: :desc).first
   end
 
-  def is_favourite(user)
+  def is_favourite?(user)
     preferred_rooms.any?{ |pr| pr.user_id == user.id }
   end
 
