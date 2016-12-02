@@ -35,9 +35,10 @@
   = f.label :is_school
   = f.check_box :is_school
   br
-  = f.fields_for :school_room_setting do |setting|
-    = render 'school_room_setting_fields', f: setting
-  = link_to_add_association 'add settings', f, :school_room_setting, force_non_association_create: true
+  #school_room_setting
+    = f.fields_for :school_room_setting do |setting|
+      = render 'school_room_setting_fields', f: setting
+    = link_to_add_association 'add settings', f, :school_room_setting, force_non_association_create: true
   br
   = f.label :background_image
   = f.file_field :background_image
