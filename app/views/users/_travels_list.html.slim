@@ -1,0 +1,23 @@
+.travels_list.travel_requests class="#{css_class}" data-type="#{travels_list_type}"
+  - if travels.any?
+    - travels.each do |t|
+      a.t_item href=room_travel_path(t.room, t)
+        .ti_user
+          .profile_picture style=("background-image: url(#{t.driver.profile_image_url})" if current_user.profile_image_url)
+          .user_name
+            = t.passenger_name
+
+        .ti_meta
+          .ti_label.red PER
+          - if t.towards_room
+            .ti_text = t.room.name
+          - else
+            .ti_text.capitalize = t.starting_address
+
+        .ti_meta
+          .ti_label.orange ALLE
+          .ti_text #{t.departure_datetime.strftime('%d/%m %H:%M')}
+        .ti_status.orange DA SVOLGERE
+  / - else
+  /   .no_travels
+  /     p Nessuno richiede passaggi da/verso questa destinazione.<br/><a href="#{href=new_room_travel_request_path(@room)}">Sarai tu il primo?</a>

@@ -1,0 +1,24 @@
+.jumbotron.small.red
+  .j_content
+    h1 Le tue Auto
+
+.back_button_container
+  a.back_button href=profile_path Torna al Profilo
+
+.grid
+  .row
+    .col
+      .text-center
+        a.button.red href=new_car_path(@user) Aggiungi Auto
+.grid
+  - current_user.cars.each_slice(3) do |rc|
+    .row
+      - rc.each do |c|
+        .col
+          .car_card
+            .c_content.text-center
+              h5.model = c.model
+              .tag.balanced = c.plate
+            .c_meta.flex
+              .button.blue.flex-item href=edit_car_path(c) MODIFICA
+              = link_to 'ELIMINA', car_path(c), data: { confirm: "Sei sicuro?" }, method: :delete, class:'button red flex-item'

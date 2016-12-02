@@ -1,28 +1,64 @@
-= form_for @car, url: cars_path do |f|
-  - if @car.errors.any?
-    h2
-      = pluralize(@car.errors.count, "error") 
-      = " prevented this record from being saved:"
-  - @car.errors.full_messages.each do |msg|
-    = msg
-    br
-  = f.label :model
-  = f.text_field :model
-  br
-  = f.label :plate
-  = f.text_field :plate
-  br
-  = f.label :sits
-  = f.number_field :sits, min: 0
-  br
-  = f.label :can_smoke
-  = f.check_box :can_smoke
-  br
-  = f.label :animals_allowed
-  = f.check_box :animals_allowed
-  br
-  = f.label :notes
-  = f.text_area :notes
-  br
-  br
-  = f.submit "Aggiungi auto"
+.jumbotron.small.red
+  .j_content
+    h1 Le tue Auto
+
+.back_button_container
+  a.back_button href=cars_path Torna alle tue Auto
+
+.grid
+  .row
+    .col.single-page
+      .card
+        .card_title.red
+          .ct_title NUOVA AUTO
+        .card_content
+          = form_for @car, url: cars_path do |f|
+            - if @car.errors.any?
+              h2
+                = pluralize(@car.errors.count, "error") 
+                = " prevented this record from being saved:"
+            - @car.errors.full_messages.each do |msg|
+              = msg
+              br
+
+            .flex
+              .input_container.flex-item
+                label MODELLO AUTO
+                = f.text_field :model
+
+              .input_container.flex-item
+                label TARGA
+                = f.text_field :plate
+
+            .flex
+              .input_container.flex-item
+                label POSTI DISPONIBILI
+                = f.number_field :sits, min: 0
+              .flex-item
+
+            .flex
+              .input_container.flex-item
+                label POSSIBILITà di FUMARE NEL VEICOLO
+                .checkbox
+                  .check_text AMMETTI FUMATORI
+                  = f.check_box :can_smoke
+                  = f.label :can_smoke, class: 'check_toggle'
+                    .pin
+
+              .input_container.flex-item
+                label TRASPORTO DI ANIMALI
+                .checkbox
+                  .check_text AMMETTI ANIMALI
+                  = f.check_box :animals_allowed
+                  = f.label :animals_allowed, class: 'check_toggle'
+                    .pin
+
+            .flex
+              .input_container.flex-item
+                label NOTE AGGIUNTIVE
+                = f.text_area :notes
+            br
+            .flex
+              .flex-item
+              .flex-item
+                = f.submit "AGGIUNGI AUTO", class:'button red w100 block'

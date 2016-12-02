@@ -10,6 +10,13 @@
   .row
     .col.room_sidebar
       .card
+        .room_meta          
+          .meta
+            i.fa.fa-group
+            span <b>#{@room.preferred_rooms.count}</b> iscritti
+          .meta
+            i.fa.fa-location-arrow
+            span <b>#{@travel_offers.count}</b> viaggi
         .room_map#room_map
         .card_content
           = link_to "Cerca nella Vroom", search_room_path(@room), class: "button block orange"
@@ -17,11 +24,15 @@
             = link_to "Rimuovi Preferito", unset_favourite_room_path(@room), method: :post, class: "button block red"
           - else
             = link_to "Aggiungi Preferito", set_favourite_room_path, method: :post, class: "button block green"
+          = link_to "Cerca nella Vroom", search_room_path(@room), class: "button block blue"
+          = link_to "Richiedi Passaggio", new_room_travel_request_path(@room), class: "button block blue"
           - if current_user.is_driver
-            = link_to "Offri Passaggio", new_room_travel_path(@room), class: "button block blue"
-          = link_to "Richiedi Passaggio", new_room_travel_request_path(@room), class: "button block"
+            = link_to "Offri Passaggio", new_room_travel_path(@room), class: "button block"
 
-    .col.x3
+          p.inset = @room.description
+
+
+    .col.x4
       .card
         .card_title
           .ct_icon.fa.fa-car

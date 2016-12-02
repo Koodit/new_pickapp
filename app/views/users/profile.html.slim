@@ -12,69 +12,58 @@
         .card_content
           .profile-picture-container
             .profile-picture style=("background-image: url(#{current_user.profile_image_url})" if current_user.profile_image_url)
-        
-        / .uc_badges
-        /   .ucb_row
-        /     .ucb_col
-        /       .badge
-        /         = render "shared/badges/ecoking"
-        /         .badge_label EcoKing
-        /     .ucb_col
-        /       .badge
-        /         = render "shared/badges/social_master"
-        /         .badge_label Social Master
-        /   .ucb_row
-        /     .ucb_col
-        /       .badge
-        /         = render "shared/badges/nerd"
-        /         .badge_label Nerd
-        /     .ucb_col
-        /       .badge
-        /         = render "shared/badges/citizen"
-        /         .badge_label Citizen
 
-      .card
-        .room_map#room_map
+        h3.profile-full-name = current_user.full_name
+
+        .text-center
+          - if current_user.is_driver && !current_user.pending_driver_verification
+            .tag.balanced.profile-status GUIDATORE
+          - if !current_user.is_driver && current_user.pending_driver_verification
+            .tag.royal.profile-status VERIFICA GUIDATORE IN CORSO
+          - if !current_user.is_driver && !current_user.pending_driver_verification
+            .tag.balanced.profile-status PASSEGGERO
+        
+        .uc_badges
+          .ucb_row
+            .ucb_col
+              .badge
+                = render "shared/badges/ecoking"
+                .badge_label EcoKing
+            .ucb_col
+              .badge
+                = render "shared/badges/social_master"
+                .badge_label Social Master
+            .ucb_col
+              .badge
+                = render "shared/badges/nerd"
+                .badge_label Nerd
+            .ucb_col
+              .badge
+                = render "shared/badges/citizen"
+                .badge_label Citizen
+
         .card_content
           / .button.block.orange Cerca nella Vroom
           / .button.block.red Rimuovi Preferito
-          a.button.block.blue href=new_car_path Aggiungi un Auto
-          a.button.block.red href=edit_profile_path Modifica profilo
+          a.button.block href=edit_profile_path Modifica Profilo
+          - if current_user.is_driver
+            a.button.block.blue href=new_car_path(@user) Aggiungi Auto
+            a.button.block.red href=cars_path(@user) Gestisci Auto
+          - if !current_user.is_driver
+            a.button.block.green href=new_driver_details_path Diventa Guidatore
           / a.button.block href=new_room_travel_request_path(@room) Richiedi Passaggio
 
-    .col.x3
+    .col.x4
       .card
         .card_title
           .ct_icon.fa.fa-car
           .ct_actions
-            .action.active.toggle_travels_list.travel_requests Guidatore
-            .action.toggle_travels_list.travel_offers Passeggero
-            .action.toggle_travels_list.travel_offers Confermato
-            .action.toggle_travels_list.travel_offers Candidato
-
-        .travels_list.travel_requests.active
-          - if @travels_as_driver.any?
-            - @travels_as_driver.each do |t|
-              a.t_item href=room_travel_path(t.room, t)
-                .ti_user
-                  .profile_picture style=("background-image: url(#{t.driver.profile_image_url})" if current_user.profile_image_url)
-                  .user_name
-                    = t.passenger_name
-
-                .ti_meta
-                  .ti_label.red PER
-                  - if t.towards_room
-                    .ti_text = t.room.name
-                  - else
-                    .ti_text.capitalize = t.starting_address
-
-                .ti_meta
-                  .ti_label.orange ALLE
-                  .ti_text #{t.departure_datetime.strftime('%d/%m %H:%M')}
-                .ti_status.orange DA SVOLGERE
-          / - else
-          /   .no_travels
-          /     p Nessuno richiede passaggi da/verso questa destinazione.<br/><a href="#{href=new_room_travel_request_path(@room)}">Sarai tu il primo?</a>
-
-- if !current_user.is_driver
-  = link_to "Diventa guidatore", new_driver_details_path
+            .action.toggle_travels_list.active data-type="driver" onclick="setTravelListType('driver')" Guidatore
+            .action.toggle_travels_list data-type="passenger" onclick="setTravelListType('passenger')" Passeggero
+            .action.toggle_travels_list data-type="approved" onclick="setTravelListType('approved')" Confermato
+            .action.toggle_travels_list data-type="applied" onclick="setTravelListType('applied')" Candidato
+        
+        = render partial: 'travels_list', locals: { travels: @travels_as_driver, travels_list_type: 'driver', css_class: 'active' }
+        = render partial: 'travels_list', locals: { travels: @travels_as_passenger, travels_list_type: 'passenger', css_class: '' }
+        = render partial: 'travels_list', locals: { travels: @travels_as_approved, travels_list_type: 'approved', css_class: '' }
+        = render partial: 'travels_list', locals: { travels: @travels_as_applied, travels_list_type: 'applied', css_class: '' }

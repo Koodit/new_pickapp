@@ -1,0 +1,71 @@
+.car_card
+  @extend .card
+  
+  position: relative
+  background-size: cover
+  background-position: center
+  background-repeat: no-repeat
+
+  display: block
+  width: 16.5rem
+  padding: 0px
+  margin: 0px auto
+
+  text-decoration: none
+
+  +display(flex)
+
+  +xs
+    width: 18rem
+
+  cursor: pointer
+
+  &:before
+    content: ''
+    position: relative
+    display: block
+    padding-top: 100%
+
+  &:after
+    content: '\f1b9'
+    font-family: "FontAwesome"
+    color: lighten($p_stable, 35%)
+    line-height: 16.5rem
+    text-align: center
+    font-size: 10em
+    +fillthebox
+
+    +xs
+      line-height: 18rem
+
+  .c_content
+    position: relative
+    z-index: 2
+    margin: auto
+    text-align: center
+
+    h5
+      margin: 0px
+      font-size: 1.5em
+      color: $p_dark
+
+  .c_meta
+    position: absolute
+    bottom: 0px
+    left: 0px 
+    right: 0px
+    z-index: 3
+
+    .button
+      display: block
+      +flex(1)
+      margin: 0px
+
+
+    
+
+
+
+
+    
+

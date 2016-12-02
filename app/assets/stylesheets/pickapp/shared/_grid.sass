@@ -2,7 +2,7 @@
 // $w-min-width: 270px
 
 $w-max-width: 77rem
-$w-min-width: 15rem
+$w-min-width: 17.5rem
 
 .grid
   position: relative
@@ -41,8 +41,55 @@ $w-min-width: 15rem
 
       +flex(1 0 $w-min-width)
 
+      // @media screen and (max-width: 728px)
+      +xs
+        // font-size: 12px
+        +flex(1 0 $w-min-width + 5rem)
+
+      // @media screen and (max-width: 992px)
+      +sm
+        // font-size: 14px
+        +flex(1 0 $w-min-width + 3.33rem)
+
+      // @media screen and (min-width: 992px)
+      +md
+        // font-size: 16px
+        +flex(1 0 $w-min-width + 1.66rem)
+
       @for $i from 2 through 14
         &.x#{$i}
           +flex($i 0 $w-min-width)
+
+          // @media screen and (max-width: 728px)
+          +xs
+            // font-size: 12px
+            +flex($i 0 $w-min-width + 5rem)
+
+          // @media screen and (max-width: 992px)
+          +sm
+            // font-size: 14px
+            +flex($i 0 $w-min-width + 3.33rem)
+
+          // @media screen and (min-width: 992px)
+          +md
+            // font-size: 16px
+            +flex($i 0 $w-min-width + 1.66rem)
+
+          // +flex($i 0 $w-min-width + ($w-min-width/8) * $i )
+
+          // // @media screen and (max-width: 728px)
+          // +xs
+          //   // font-size: 12px
+          //   +flex($i 0 $w-min-width + 5rem + ($w-min-width/8) * $i)
+
+          // // @media screen and (max-width: 992px)
+          // +sm
+          //   // font-size: 14px
+          //   +flex($i 0 $w-min-width + 3.33rem + ($w-min-width/8) * $i)
+
+          // // @media screen and (min-width: 992px)
+          // +md
+          //   // font-size: 16px
+          //   +flex($i 0 $w-min-width + 1.66rem + ($w-min-width/8) * $i)
 
 

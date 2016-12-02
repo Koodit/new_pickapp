@@ -17,14 +17,4 @@ class DriverDetail < ApplicationRecord
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :patente, :content_type => /\Aimage\/.*\Z/
 
-  attr_writer :accept_terms_2
-  attr_writer :accept_terms
-
-  def accept_terms
-    @accept_terms || false
-  end
-
-  def accept_terms_2
-    @accept_terms_2 || false
-  end
 end

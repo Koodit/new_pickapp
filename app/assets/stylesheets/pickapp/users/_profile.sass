@@ -60,7 +60,8 @@
 
       .profile-picture-container
         width: 100%
-        height: 13em
+        height: 11em
+        margin-top: 1.5em
 
         +display(flex)
 
@@ -72,3 +73,71 @@
           background-position: center
           background-repeat: no-repeat
           border-radius: 50%
+
+      .profile-full-name
+        margin: 0
+        color: $p_assertive
+        font-size: 1.25em
+        text-align: center
+
+      .uc_badges
+        +flex(1)
+        margin: 2em 1em
+
+        +display(flex)
+        +flex-direction(column)
+
+        .ucb_row
+          +display(flex)
+          +flex(1)
+
+          .ucb_col
+            +display(flex)
+            +flex(1)
+
+            .badge
+              position: relative
+              margin: auto
+              width: 50px
+              min-width: 50px
+              height: 50px
+              min-height: 50px
+              border-radius: 50%
+              background: #ffffff
+              border: 2px solid lighten($p_stable, 20%)
+              text-align: center
+              cursor: pointer
+              box-sizing: content-box
+              
+              +transition( all .15s linear )
+
+              path
+                +transition( all .15s linear )
+                fill: $p_stable !important
+
+              .badge_icon
+                margin: 10px
+                width: 30px
+                height: 30px
+                min-width: 30px
+                min-height: 30px
+
+              .badge_label
+                +transition( all .15s linear )
+                margin: 5px 0px 0px 0px
+                width: auto
+                min-height: 16px
+                line-height: 16px
+                font-size: 13px
+                font-weight: 600
+                color: $p_stable
+
+              &:hover
+                border: 2px solid $p_balanced
+
+                .badge_icon
+                  path
+                    fill: $p_balanced !important
+
+                .badge_label
+                  color: $p_balanced

@@ -12,6 +12,7 @@
       .card
         .card_title
           .ct_title NUOVA RICHIESTA DI PASSAGGIO
+          
         .card_content
           = form_for :q, url: search_room_path(@room), method: :get do |f|
             .input_container
