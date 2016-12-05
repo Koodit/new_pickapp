@@ -7,9 +7,7 @@
   
 .grid
   .row
-    .col
-
-    .col
+    .col.single-page
       .card
         .card_title
           .ct_title NUOVA RICHIESTA DI PASSAGGIO
@@ -23,42 +21,48 @@
               = msg
               br
 
-            .input_container
-              .checkbox
-                .check_text <e class="towards_room_label_text">Verso</e>: #{@room.name}
-                = f.check_box :towards_room, class: 'towards_room_check'
-                = f.label :towards_room, class: 'check_toggle'
-                  .pin
+            .flex
+              .input_container.flex-item
+                .checkbox
+                  .check_text <e class="towards_room_label_text">Verso</e>: #{@room.name}
+                  = f.check_box :towards_room, class: 'towards_room_check'
+                  = f.label :towards_room, class: 'check_toggle'
+                    .pin
 
-            .input_container
-              .checkbox
-                .check_text Possibilità di Rimborso
-                = f.check_box :can_repay
-                = f.label :can_repay, class: 'check_toggle'
-                  .pin
+              .input_container.flex-item
+                .checkbox
+                  .check_text Possibilità di Rimborso
+                  = f.check_box :can_repay
+                  = f.label :can_repay, class: 'check_toggle'
+                    .pin
+            
+            .flex
+              .input_container.flex-item
+                label <e class="desired_address_label_text">Indirizzo di Partenza</e> *
+                = f.text_field :desired_address
 
-            .input_container
-              label <e class="desired_address_label_text">Indirizzo di Partenza</e> *
-              = f.text_field :desired_address
+              .input_container.flex-item
+                = f.label 'Città *'
+                = f.text_field :city
+            
+            .flex
+              .input_container.flex-item
+                = f.label 'CAP *'
+                = f.text_field :zip_code
+              .flex-item
+            
+            .flex
+              .input_container.flex-item
+                = f.label 'Data di partenza *'
+                = f.text_field :one_way_datetime, id:'one_way_datetime'
 
-            .input_container
-              = f.label 'Città *'
-              = f.text_field :city
-
-            .input_container
-              = f.label 'CAP *'
-              = f.text_field :zip_code
-
-            .input_container
-              = f.label 'Data di partenza *'
-              = f.text_field :one_way_datetime, id:'one_way_datetime'
-
-            .input_container
-              .checkbox
-                .check_text Orario flessibile
-                = f.check_box :flexible_departure
-                = f.label :flexible_departure, class: 'check_toggle'
-                  .pin
+              .input_container.flex-item
+                label.hidden Orario Flessibile
+                .checkbox
+                  .check_text Orario flessibile
+                  = f.check_box :flexible_departure
+                  = f.label :flexible_departure, class: 'check_toggle'
+                    .pin
 
             .input_container
               = f.label :note
@@ -67,5 +71,3 @@
             br
 
             = f.submit "Pubblica Richiesta", class:'button blue w100 block'
-
-    .col
