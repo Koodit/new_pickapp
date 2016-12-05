@@ -5,7 +5,7 @@
 .jumbotron
   position: relative
   width: 100%
-  min-height: 27.5vh
+  min-height: 16.67rem
   background-size: cover
   background-repeat: no-repeat
   background-position: center
@@ -22,7 +22,7 @@
     background: rgba(black, .3)
 
   &.small
-    min-height: 12.5vh
+    min-height: 7.78rem
 
     &:before
       display: none
@@ -80,8 +80,18 @@
       +display(flex)
 
       .spacer
-        width: 0.83rem
+        position: relative
+        width: 1rem
+        margin: auto 0
         height: 40px
+
+        &.striped
+          &:after
+            content: ''
+            +position(absolute, 5px 0 5px 50%)
+            width: 1px
+            margin-left: -0.5px
+            background: white
 
       p
         margin: auto 0px
@@ -90,3 +100,10 @@
         display: inline-block
         color: white
         font-weight: bolder
+
+        a
+          &.text-balanced
+            color: $p_balanced
+          &.text-calm
+            color: $p_calm
+

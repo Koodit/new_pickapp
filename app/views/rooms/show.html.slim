@@ -1,7 +1,19 @@
 .jumbotron style="background-image: url(#{@room.background_image.url});"
   .j_content
     h1 = @room.name
-  .j_footer
+  .j-footer
+    .jf-content
+      p 
+        | CERCHI UN PASSAGGIO? 
+        a.text-balanced href=search_room_path(@room) FAI UNA RICERCA
+      .spacer.striped
+      p
+        | STAI ANDANDO QUI? 
+        - if current_user.is_driver 
+          a.text-calm href=new_room_travel_path(@room) OFFRI
+          = " O "
+        a.text-balanced href=new_room_travel_request_path(@room) RICHIEDI
+        = " UN PASSAGGIO"
 
 .back_button_container
   a.back_button href=room_category_path(@room.room_category) Torna a #{@room.room_category.name}
