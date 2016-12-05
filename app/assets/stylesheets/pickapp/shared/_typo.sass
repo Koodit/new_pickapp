@@ -10,3 +10,32 @@ p
     background: tint($p_light, 80%)
     border: 1px solid darken($p_light, 10%)
     padding: 10px
+
+h2.striped-title
+  position: relative
+  padding: 0px
+  margin: 0px
+  width: 100%
+  min-height: 2.77rem
+  line-height: 2.77rem
+  color: $p_balanced
+  background: $p_light
+  font-weight: 800
+  font-size: 1.55em
+  text-transform: uppercase
+  z-index: 10
+
+  +borderbox
+  +display( flex )
+  +flex(1)
+
+  &:after
+    position: relative
+    z-index: 0
+    content: ""
+    height: 1px
+    margin-top: 1.27rem
+    border-bottom: 0.17rem dashed lighten($p_stable, 15%)
+    margin-left: 0.65rem
+
+    @include flex(1)

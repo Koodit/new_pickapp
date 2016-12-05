@@ -1,0 +1,118 @@
+.home-text-box
+  margin: auto
+  padding: 0px 10px
+  margin-bottom: 20px
+
+  @include display ( flex )
+  @include flex-direction ( row )
+  @include flex-wrap ( no-wrap )
+  @include align-items ( flex-start )
+  @include flex ( 1 1 275px )
+  @include borderbox
+  
+
+  .icon-container
+    margin: 0px
+    display: block
+    // width: 75px
+    width: 4.17rem
+    min-width: 4.17rem
+    // height: 75px
+    height: 4.17rem
+    min-height: 4.17rem
+    line-height: 4.17rem
+    text-align: center
+
+    @include display ( flex )
+
+    i
+      margin: auto
+      width: 3.33rem
+      min-width: 3.33rem
+      height: 3.33rem
+      min-height: 3.33rem
+      line-height: 3.33rem
+      text-align: center
+      border: 2px solid $p_balanced
+      border-radius: 50%
+      color: $p_balanced
+      font-size: 1.75em
+
+  .text
+    margin: 0px
+    padding: 7.5px
+    min-height: 75px
+
+    @include flex( 1 0 150px )
+
+    h4
+      margin: 0px
+      margin-bottom: 0.55rem
+      font-size: 1em
+      color: darken($p_dark, 10%)
+      text-align: left
+
+    p
+      margin: 0px
+      font-size: 0.9em
+      color: $p_dark
+      text-align: justify
+
+.home-sections
+  position: relative
+  
+  .section
+    margin: 0 !important
+    min-height: 20rem
+    +display( flex )
+
+    +xs
+      min-height: 16rem
+
+    &.car
+      background: url(https://s3-eu-west-1.amazonaws.com/koodit/pickapp/shared/pickapp_in_car.jpg) center no-repeat
+      background-size: cover !important
+
+    &.driver
+      background: url(https://s3-eu-west-1.amazonaws.com/koodit/pickapp/shared/pickapp_driver.jpg) center no-repeat
+      background-size: cover !important
+
+    &.road
+      background: url(https://s3-eu-west-1.amazonaws.com/koodit/pickapp/shared/pickapp_road.jpg) center no-repeat
+      background-size: cover !important
+
+    &:after
+      content: ''
+      background: rgba(#000, .45)
+      z-index: 9
+      +fillthebox
+      +transition( all .25s ease-in-out )
+
+    &:hover
+      &:after
+        content: ''
+        background: rgba(#000, .75)
+        +transition( all .25s ease-in-out )
+
+      .content
+        h2
+          color: $p_balanced
+          +transition( all .25s ease-in-out )
+
+    .content
+      position: relative
+      padding: 0px 30px
+      margin: auto
+      z-index: 99
+
+      h2
+        color: white
+        text-align: center
+        font-size: 3em
+        margin: 0px
+        +transition( all .25s ease-in-out )
+
+      p
+        color: white
+        text-align: center
+        font-size: 1em

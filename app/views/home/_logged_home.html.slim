@@ -1,0 +1,56 @@
+.grid
+  .row
+    .col.x4
+      .latest_room_card style="background-image: url(#{@latest_room.background_image.url})"
+        .lrc_info
+          .flag
+          .content
+            .text
+              h4 = @latest_room.name
+              p = @latest_room.address
+            
+            a.icon href=room_path(@latest_room) 
+              i.fa.fa-arrow-right
+
+    .col
+      .user_card
+        .uc_notifications = current_user.unread_notifications
+        .uc_messages = current_user.unread_messages
+        
+        .uc_badges
+          .ucb_row
+            .ucb_col
+              .badge
+                = render "shared/badges/ecoking"
+                .badge_label EcoKing
+            .ucb_col
+              .badge
+                = render "shared/badges/social_master"
+                .badge_label Social Master
+          .ucb_row
+            .ucb_col
+              .badge
+                = render "shared/badges/nerd"
+                .badge_label Nerd
+            .ucb_col
+              .badge
+                = render "shared/badges/citizen"
+                .badge_label Citizen
+
+- if @preferred_rooms.any?
+  .grid
+    .col
+      h2.striped-title
+        | le tue mete preferite
+
+.grid
+  - @preferred_rooms.each_slice(3) do |rooms_row|
+    .row
+      - rooms_row.each do |r|
+        .col
+          a.room_card href=room_path(r) style="background-image: url(#{r.image_url(:medium)})"
+            .rc_content
+              - if current_user.preferred_room_ids.include? (r.id)
+                .is_favourite
+                  i.fa.fa-heart 
+              .rc_title = r.name
