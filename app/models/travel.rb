@@ -118,6 +118,10 @@ class Travel < ApplicationRecord
     backwards_too == true
   end
 
+  def available
+    departure_datetime > Time.now
+  end
+
   private
 
   def set_address
