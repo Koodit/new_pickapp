@@ -6,6 +6,8 @@ class TravelReview < ApplicationRecord
 
   scope :already_written, -> { where(to_be_written: false) }
   scope :to_be_written, -> { where(to_be_written: true) }
+  scope :made_by_driver, -> { where(made_by_driver: true) }
+  scope :made_by_passenger, -> { where(made_by_driver: false) }
 
   after_save :notification_for_reminder
 

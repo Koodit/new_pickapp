@@ -28,7 +28,7 @@ class Travel < ApplicationRecord
                         :desired_address,
                         :city,
                         :zip_code,
-                        :departure_datetime
+                        :departure_datetime, on: :create
 
   validates_presence_of :repetions_amount, if: :is_recursive?
   validates_presence_of :back_departure_datetime, if: :is_backwards_too?
@@ -40,9 +40,9 @@ class Travel < ApplicationRecord
   scope :not_completed, -> { where(completed: false) }
   scope :recursive, -> { where(is_recursive: true) }
 
-  before_save :set_address
-  before_save :set_coordinates
-  before_save :set_completion_token
+  before_create :set_address
+  before_create :set_coordinates
+  before_create :set_completion_token
   after_save :fire_notification_for_completion
 
   attr_writer :city
@@ -155,7 +155,7 @@ class Travel < ApplicationRecord
 
   def fire_notification_for_completion
     unless self.waiting_for_confirm || self.completed
-      NotificationWorker.perform_at(self.departure_datetime + 30.minutes, "travel_expired_for_driver", nil, self.driver_id, options = { travel_expired_for_driver: true, travel_id: self.id, completion_token: self.completion_token })
+      NotificationWorker.perform_at(self.departure_datetime + 30.seconds, "travel_expired_for_driver", nil, self.driver_id, options = { travel_expired_for_driver: true, travel_id: self.id, completion_token: self.completion_token })
     end
   end
 end

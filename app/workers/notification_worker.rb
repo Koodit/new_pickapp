@@ -46,7 +46,7 @@ class NotificationWorker
     puts "TRAVEL PASSENGERS: #{travel.passenger_travels.inspect}"
 
     if travel.approved_users.count == 0
-      # travel.destroy
+      travel.destroy
       puts "DESTROYYYY"
     else
       if options["is_passenger"]
@@ -63,7 +63,13 @@ class NotificationWorker
         puts "Travel needs to be marked as completed, notification for driver"
         if options["completion_token"] == travel.completion_token
           travel.waiting_for_confirm = true
-          travel.save
+          if travel.save
+            puts "Travel aggiornato"
+          else
+            travel.errors.full_messages.each do |msg|
+              puts msg
+            end
+          end
           if travel.approved_users.count > 0
             @notification = Notification.new
             @notification.receiver_id = receiver_id

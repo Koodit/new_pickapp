@@ -22,7 +22,9 @@ Rails.application.routes.draw do
         post 'cancel_application/:user_id', to: "travels#cancel_application", as: "cancel_application"
         post 'approve_user/:user_id', to: "travels#approve_user", as: "approve_user"
         post 'cancel_approval/:user_id', to: "travels#cancel_approval", as: "cancel_approval"
+        post '/mark_as_completed', to: "travels#mark_travel_as_completed"
       end
+      resources :travel_reviews, only: [:update]
     end
     resources :travel_requests
     member do

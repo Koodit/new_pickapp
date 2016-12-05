@@ -64,7 +64,7 @@ class TravelsController < ApplicationController
 
   def destroy
     room = Room.find params[:room_id]
-    if current_user.id == @travel.driver_id
+    if current_user.id == @travel_offer.driver_id
       if @travel_offer
         @travel_offer.destroy
         redirect_to room_path(room)
@@ -77,7 +77,7 @@ class TravelsController < ApplicationController
   def apply_user
     @travel_offer.applied_users.create user_id: current_user.id
     NotificationWorker.perform_async("user_applied_to_travel", current_user.id, @travel_offer.driver_id, options = { user_applied_to_travel: true, travel_id: @travel_offer.id })
-    redirect_to room_travel_path(@travel_offer)
+    redirect_to room_travel_path(@travel_offer.room, @travel_offer)
   end
 
   def cancel_application
@@ -88,7 +88,7 @@ class TravelsController < ApplicationController
     unless notification.nil?
       notification.destroy
     end
-    redirect_to room_travel_path(@travel_offer)
+    redirect_to room_travel_path(@travel_offer.room, @travel_offer)
   end
 
   def approve_user
@@ -96,14 +96,33 @@ class TravelsController < ApplicationController
     applied.destroy
     approved = @travel_offer.approved_users.create user_id: params[:user_id]
     NotificationWorker.perform_async("user_approved_by_driver", current_user.id, params[:user_id], options = { user_approved_by_driver: true, travel_id: @travel_offer.id })
-    redirect_to room_travel_path(@travel_offer)
+    redirect_to room_travel_path(@travel_offer.room, @travel_offer)
   end
 
   def cancel_approval
     @travel_offer.applied_users.create user_id: params[:user_id]
     approved = @travel_offer.approved_users.where(user_id: params[:user_id]).first
     approved.destroy
-    redirect_to room_travel_path(@travel_offer)
+    redirect_to room_travel_path(@travel_offer.room, @travel_offer)
+  end
+
+  def mark_travel_as_completed
+    @travel_offer.waiting_for_confirm = false
+    @travel_offer.completed = true
+    if @travel_offer.save
+      @travel_offer.approved_users.each do |approved_user|
+        @travel_offer.passenger_travels.create user_id: approved_user.user_id
+        review_for_passenger = @travel_offer.travel_reviews.create  user_id: @travel_offer.driver_id, target_id: approved_user.user_id, room_id: @travel_offer.room.id, made_by_driver: true, to_be_written: true
+        review_for_passenger.save
+        review_for_driver = @travel_offer.travel_reviews.create  user_id: approved_user.user_id, target_id: @travel_offer.driver_id, room_id: @travel_offer.room.id, made_by_driver: false, to_be_written: true
+        review_for_driver.save
+        # BadgeWorker.perform_async(approved_user.user_id, "CitizenBadge")
+        # BadgeWorker.perform_async(nil, "SocialMasterBadge", options = {driver_id: current_user.id, passenger_id: approved_user.user_id})
+        # NotificationWorker.perform_async("travel_confirmed_for_passenger", @travel_offer.driver_id, approved_user.user_id, options = { travel_expired_for_driver: true, is_passenger: true, travel_id: @travel_offer.id })
+        approved_user.destroy
+      end
+      redirect_to room_travel_path(@travel_offer.room, @travel_offer)
+    end
   end
 
   private

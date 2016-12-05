@@ -14,10 +14,6 @@
       .card
         .room_map#room_map
         .card_content
-          / .button.block.orange Cerca nella Vroom
-          / .button.block.red Rimuovi Preferito
-          / .button.block.green Offri Passaggio
-          / a.button.block href=new_room_travel_request_path(@room) Richiedi Passaggio
           - if @travel_offer.driver_id != current_user.id
             - if @travel_offer.applied_users.where(user_id: current_user.id).present?
               = form_for @travel_offer, url: cancel_application_room_travel_path(@travel_offer.room, @travel_offer, current_user), method: :post do |f|
@@ -27,6 +23,12 @@
               = form_for @travel_offer, url: apply_user_room_travel_path(@travel_offer.room, @travel_offer, current_user), method: :post do |f|
                 = f.submit "Candidati"
               br
+            p
+              - @travel_offer.travel_reviews.made_by_driver.each do |review|
+                = form_for review, url: room_travel_travel_review_path(@travel_offer.room, @travel_offer, review), method: :put do |f|
+                  = f.text_area :content, placeholder: "Inserisci qui la tua recensione per #{review.target.name}"
+                  br
+                  = f.submit "Invia"
           - else
             - @travel_offer.applied_users.each do |user|
               = form_for @travel_offer, url: approve_user_room_travel_path(@travel_offer.room, @travel_offer, user.user_id), method: :post do |f|
@@ -35,6 +37,17 @@
             - @travel_offer.approved_users.each do |user|
               = form_for @travel_offer, url: cancel_approval_room_travel_path(@travel_offer.room, @travel_offer, user.user_id), method: :post do |f|
                 = f.submit "Disapprova"
+            p
+              - if @travel_offer.waiting_for_confirm && !@travel_offer.completed && @travel_offer.driver_id == current_user.id
+                = form_for @travel_offer, url: mark_as_completed_room_travel_path(@travel_offer.room, @travel_offer), method: :post do |f|
+                  = f.submit "Completa Viaggio"
+
+            p
+              - @travel_offer.travel_reviews.made_by_driver.each do |review|
+                = form_for review, url: room_travel_travel_review_path(@travel_offer.room, @travel_offer, review), method: :put do |f|
+                  = f.text_area :content, placeholder: "Inserisci qui la tua recensione per #{review.target.name}"
+                  br
+                  = f.submit "Invia"
 
     .col
       .card
