@@ -33,11 +33,168 @@
             - else
               = form_for @travel_offer, url: apply_user_room_travel_path(@travel_offer.room, @travel_offer, current_user), method: :post do |f|
                 button.t-button type="submit" Candidati
+          - else
+            - if !@travel_offer.waiting_for_confirm && !@travel_offer.completed
+              = form_for @travel_offer, url: mark_as_completed_room_travel_path(@travel_offer.room, @travel_offer), method: :post do |f|
+                button.t-button.assertive Elimina Viaggio
+            - if @travel_offer.waiting_for_confirm && !@travel_offer.completed
+              = form_for @travel_offer, url: mark_as_completed_room_travel_path(@travel_offer.room, @travel_offer), method: :post do |f|
+                button.t-button.balanced Completa Viaggio
+        
+        - if @travel_offer.driver_id != current_user.id
+          - if @travel_offer.applied_users.where(user_id: current_user.id).present?
+            .t-notice.red Sei candidato a questo viaggio
+          - if @travel_offer.approved_users.where(user_id: current_user.id).present?
+            .t-notice.green Sei confermato per questo viaggio
 
-          / .t-button.visible_small ng-click="applyForTravel()" ng-if="!travel.is_applied && !travel.is_approved && !travel.is_owner" Candidati
-          / .t-button.assertive.hide_small ng-click="cancelApplicationForTravel()" ng-if="travel.is_applied && !travel.is_approved && !travel.is_owner" Annulla Candidatura
-          / .t-button.assertive.hide_small ng-click="destroyTravel($event)" ng-if="travel.is_owner && !travel.waiting_for_confirm && !travel.completed" Elimina Viaggio
-          / .t-button.balanced.hide_small ng-click="markTravelAsCompleted()" ng-if="travel.waiting_for_confirm && !travel.completed && travel.is_owner" Completa Viaggio
+        .t-details
+          .block
+            ul.meta_list
+              - if @travel_offer.driver_id == current_user.id
+                li ng-if="travel.is_owner" ng-cloak="travel.is_owner"
+                  i.fa.fa-user
+                  span
+                    | Pubblicato da 
+                    strong te
+              - else
+                li.action ng-if="!travel.is_owner" ng-cloak="!travel.is_owner" ng-click="showProfileDialog(travel.driver.id)"
+                  i.fa.fa-user
+                  span Pubblicato da <strong>#{@travel_offer.driver.full_name}</strong>
+
+              li
+                i.fa.fa-calendar
+                span <strong>Partenza:</strong> #{l(@travel_offer.departure_datetime, format: '%d %B alle %H:%M')}
+
+              li
+                i.fa.fa-flag-o.bg-balanced
+                span
+                  - if @travel_offer.towards_room
+                    strong Da: 
+                    = " #{@travel_offer.starting_address}"
+                  - else
+                    strong Da: 
+                    = " #{@travel_offer.room.name}"
+
+              li
+                i.fa.fa-flag-checkered.bg-assertive
+                span
+                  - if @travel_offer.towards_room
+                    strong A: 
+                    = " #{@travel_offer.room.name}"
+                  - else
+                    strong A: 
+                    = " #{@travel_offer.starting_address}"
+
+              li
+                i.fa.fa-car
+                span
+                  strong Posti disponibili: 
+                  = " #{@travel_offer.car.sits - @travel_offer.approved_users.count}"
+              
+              - if @travel_offer.driver_id != current_user.id
+                - if @travel_offer.private_chats.where(driver_id: current_user.id).present?
+                  // Link to privatechat show
+                  a href="#"
+                    li
+                      i.fa.fa-comment
+                      span 
+                        strong Contatta il guidatore
+                -else
+                  // create new privatechat & redirect to privatechat show
+                  li.action
+                    i.fa.fa-comment
+                    span 
+                      strong Contatta il guidatore
+              
+              
+          .block
+            ul.meta_list
+              li
+                i.fa.fa-car
+                span <strong>Auto:</strong> #{@travel_offer.car.model} (#{@travel_offer.car.plate})
+
+              li
+                - if @travel_offer.car.can_smoke
+                  i.fa.fa-check.bg-balanced
+                - else
+                  i.fa.fa-check.bg-assertive
+                span Accetta fumatori
+
+              li
+                - if @travel_offer.car.animals_allowed
+                  i.fa.fa-check.bg-balanced
+                - else
+                  i.fa.fa-check.bg-assertive
+                span Accetta animali
+
+              li
+                - if @travel_offer.flexible_departure
+                  i.fa.fa-check.bg-balanced
+                - else
+                  i.fa.fa-check.bg-assertive
+                span Orario flessibile
+
+              li
+                - if @travel_offer.can_repay
+                  i.fa.fa-check.bg-balanced
+                - else
+                  i.fa.fa-check.bg-assertive
+                span Richiede rimborso
+        
+        - if @travel_offer.travel_stops.any?
+          .t-details
+            .block
+              h3 Fermate Intermedie
+              p.t-stops
+                span 
+                  - @travel_offer.travel_stops.each do |ts|
+                    = "#{ts.address}, "
+
+        - if @travel_offer.driver_id == current_user.id
+          .t-details
+            .block
+              h3 Utenti Approvati
+              - if !@travel_offer.completed
+                ul.meta_list
+                  - if @travel_offer.approved_users.any?
+                    - @travel_offer.approved_users.each do |app_user|
+                      = form_for @travel_offer, url: cancel_approval_room_travel_path(@travel_offer.room, @travel_offer, app_user.user_id), method: :post do |f|
+                        li
+                          .user_image style="background-image: url(#{app_user.user.profile_image_url})" ng-click="showProfileDialog(applied_user.user.id)"
+                          span ng-click="showProfileDialog(applied_user.id)"
+                            | #{app_user.user.full_name}
+                          button.fa.fa-close.action.bg-assertive ng-if="(travel.available_sits - travel.approved_count) > 0 && !travel.waiting_for_confirm && !travel.completed" ng-click="approveForTravel(applied_user.user.id)"
+                  - else
+                    li
+                      span Non ci sono utenti approvati.
+              - else
+                ul.meta_list
+                  - if @travel_offer.travel_passengers.any?
+                    - @travel_offer.travel_passengers.each do |app_user|
+                      = form_for @travel_offer, url: cancel_approval_room_travel_path(@travel_offer.room, @travel_offer, app_user.user_id), method: :post do |f|
+                        li
+                          .user_image style="background-image: url(#{app_user.user.profile_image_url})" ng-click="showProfileDialog(applied_user.user.id)"
+                          span ng-click="showProfileDialog(applied_user.id)"
+                            | #{app_user.user.full_name}
+                  - else
+                    li
+                      span Non ci sono utenti approvati.
+
+            .block
+              h3 Utenti in attesa
+              ul.meta_list
+                - if @travel_offer.applied_users.any?
+                  - @travel_offer.applied_users.each do |app_user|
+                    = form_for @travel_offer, url: approve_user_room_travel_path(@travel_offer.room, @travel_offer, app_user.user_id), method: :post do |f|
+                      li
+                        .user_image style="background-image: url(#{app_user.user.profile_image_url})" ng-click="showProfileDialog(applied_user.user.id)"
+                        span ng-click="showProfileDialog(applied_user.id)"
+                          | #{app_user.user.full_name}
+                        button.fa.fa-check.action.bg-balanced ng-if="(travel.available_sits - travel.approved_count) > 0 && !travel.waiting_for_confirm && !travel.completed" ng-click="approveForTravel(applied_user.user.id)"
+                - else
+                  li
+                    span Non ci sono utenti in attesa.
+
 
           / .text ng-if="!travel.waiting_for_confirm && travel.completed && travel.is_owner"
           /   i.fa.fa-check
@@ -45,15 +202,6 @@
 
         / .card_content
         /   - if @travel_offer.driver_id != current_user.id
-        /     / - if @travel_offer.applied_users.where(user_id: current_user.id).present?
-        /     /   = form_for @travel_offer, url: cancel_application_room_travel_path(@travel_offer.room, @travel_offer, current_user), method: :post do |f|
-        /     /     = f.submit "Annulla candidatura"
-        /     /   br
-        /     / - else
-        /     /   = form_for @travel_offer, url: apply_user_room_travel_path(@travel_offer.room, @travel_offer, current_user), method: :post do |f|
-        /     /     = f.submit "Candidati"
-        /     /   br
-        /     p
         /       - @travel_offer.travel_reviews.made_by_driver.each do |review|
         /         = form_for review, url: room_travel_travel_review_path(@travel_offer.room, @travel_offer, review), method: :put do |f|
         /           = f.text_area :content, placeholder: "Inserisci qui la tua recensione per #{review.target.name}"
