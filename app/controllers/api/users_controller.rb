@@ -7,10 +7,10 @@ class Api::UsersController < Api::ApiController
   before_filter :authenticate_owner_user!, only: [:create, :update, :show, :is_driver, :car_count, :pending_driver_verification, :travels_count, :reviews_count, :set_profile_image]
   before_filter :authenticate_admin_user!, only: [:pending_drivers, :pending_driver_verification_count, :auth_pending_driver]
 
-  skip_before_filter :authenticate_cors_user, only: [:sign_for_school, :profile]
+  # skip_before_filter :authenticate_cors_user, only: [:sign_for_school, :profile]
   skip_before_filter :authenticate_user!, only: [:sign_for_school, :profile]
 
-  api :GET, "/users/:id", "Get all user available data."
+  # api :GET, "/users/:id", "Get all user available data."
   def show
     render :json => @user, serializer: UserSerializer, root: false, status: 200
   end
@@ -61,24 +61,24 @@ class Api::UsersController < Api::ApiController
     end
   end
 
-  api :GET, "/users/pending_driver_verification_count", "Return how many pending driver verifications there are."
+  # api :GET, "/users/pending_driver_verification_count", "Return how many pending driver verifications there are."
   def pending_driver_verification_count
     count = User.needing_driver_verification.count
     render :json => count, root: false, status: 200
   end
 
-  api :GET, "/users/pending_drivers", "Returns all the users who have a pending driver verification, in slim format."
+  # api :GET, "/users/pending_drivers", "Returns all the users who have a pending driver verification, in slim format."
   def pending_drivers
     users = User.needing_driver_verification
     render :json => users, each_serializer: SlimPendingDriverSerializer, root: false, status: 200
   end
 
-  api :GET, "/users/pending_drivers/:id", "Returns a user with the given ID with all of its driver verification data."
+  # api :GET, "/users/pending_drivers/:id", "Returns a user with the given ID with all of its driver verification data."
   def pending_driver
     render :json => @user, serializer: PendingDriverSerializer, root: false, status: 200
   end
 
-  api :POST, "/users/pending_drivers/auth/:id", "Confirm a user with pending driver verification as driver."
+  # api :POST, "/users/pending_drivers/auth/:id", "Confirm a user with pending driver verification as driver."
   def auth_pending_driver
     @user.is_driver = true
     @user.pending_driver_verification = false

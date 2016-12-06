@@ -5,6 +5,15 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  # do not use CSRF for CORS options
+  skip_before_filter :verify_authenticity_token, only: [:options]
+
+  def options
+    render :text => '', :content_type => 'text/plain'
+  end
+
+  serialization_scope :view_context
+
   private
 
   def check_for_mobile
@@ -18,5 +27,16 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :surname, :birth_date, :nickname, :address, :comune, :prov, :zip_code])
+  end
+
+  def paperclip_object_from_base64(base64_data, filename, filetype)
+    paperclip_object = StringIO.open(Base64.strict_decode64(base64_data))
+    paperclip_object.class_eval do
+      attr_accessor :content_type, :original_filename
+    end
+    paperclip_object.original_filename = filename
+    paperclip_object.content_type = filetype
+
+    paperclip_object
   end
 end
