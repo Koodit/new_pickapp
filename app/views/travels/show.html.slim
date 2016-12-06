@@ -169,8 +169,8 @@
                       span Non ci sono utenti approvati.
               - else
                 ul.meta_list
-                  - if @travel_offer.travel_passengers.any?
-                    - @travel_offer.travel_passengers.each do |app_user|
+                  - if @travel_offer.passenger_travels.any?
+                    - @travel_offer.passenger_travels.each do |app_user|
                       = form_for @travel_offer, url: cancel_approval_room_travel_path(@travel_offer.room, @travel_offer, app_user.user_id), method: :post do |f|
                         li
                           .user_image style="background-image: url(#{app_user.user.profile_image_url})" ng-click="showProfileDialog(applied_user.user.id)"
