@@ -54,7 +54,7 @@
 
         .travels_list.travel_requests.active
           - if @travel_requests.any?
-            - @travel_requests.each do |tr|
+            - @travel_requests.order(:one_way_datetime).each do |tr|
               .t_item
                 .ti_user
                   .profile_picture
@@ -79,7 +79,7 @@
 
         .travels_list.travel_offers
           - if @travel_offers.any?
-            - @travel_offers.each do |to|
+            - @travel_offers.order(:departure_datetime).each do |to|
               a.t_item href=room_travel_path(@room, to)
                 .ti_user
                   .profile_picture

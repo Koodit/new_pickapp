@@ -39,7 +39,11 @@
               = link_to 'Elimina Viaggio', room_travel_path(@travel_offer.room, @travel_offer), data: { confirm: "Sei sicuro?" }, method: :delete, class:'t-button assertive'
             - if @travel_offer.waiting_for_confirm && !@travel_offer.completed
               = form_for @travel_offer, url: mark_as_completed_room_travel_path(@travel_offer.room, @travel_offer), method: :post do |f|
-                button.t-button.balanced Completa Viaggio
+                button.t-button.balanced type="submit" Completa Viaggio
+            - if !@travel_offer.waiting_for_confirm && @travel_offer.completed
+              .t-meta
+                i.fa.fa-check.text-calm
+                | VIAGGIO COMPLETATO!
         
         - if @travel_offer.driver_id != current_user.id
           - if @travel_offer.applied_users.where(user_id: current_user.id).present?
@@ -92,19 +96,19 @@
                   = " #{@travel_offer.car.sits - @travel_offer.approved_users.count}"
               
               - if @travel_offer.driver_id != current_user.id
-                - if @travel_offer.private_chats.where(driver_id: current_user.id).present?
-                  // Link to privatechat show
-                  a href="#"
+                - private_chat = @travel_offer.private_chats.where(passenger_id: current_user.id).first
+                - if private_chat.present?
+                  a href=room_travel_private_chat_path(@travel_offer.room, @travel_offer, private_chat)
                     li
                       i.fa.fa-comment
                       span 
                         strong Contatta il guidatore
-                -else
-                  // create new privatechat & redirect to privatechat show
-                  li.action
-                    i.fa.fa-comment
-                    span 
-                      strong Contatta il guidatore
+                - else
+                  = form_for :tpc, url: room_travel_private_chats_path(@travel_offer.room, @travel_offer), method: :post do |f|
+                    button type="submit"
+                      i.fa.fa-comment
+                      span
+                        strong Contatta il guidatore
               
               
           .block
@@ -163,7 +167,8 @@
                           .user_image style="background-image: url(#{app_user.user.profile_image_url})" ng-click="showProfileDialog(applied_user.user.id)"
                           span ng-click="showProfileDialog(applied_user.id)"
                             | #{app_user.user.full_name}
-                          button.fa.fa-close.action.bg-assertive ng-if="(travel.available_sits - travel.approved_count) > 0 && !travel.waiting_for_confirm && !travel.completed" ng-click="approveForTravel(applied_user.user.id)"
+                          - if !@travel_offer.waiting_for_confirm && !@travel_offer.completed
+                            button.fa.fa-close.action.bg-assertive
                   - else
                     li
                       span Non ci sono utenti approvati.
@@ -190,43 +195,56 @@
                         .user_image style="background-image: url(#{app_user.user.profile_image_url})" ng-click="showProfileDialog(applied_user.user.id)"
                         span ng-click="showProfileDialog(applied_user.id)"
                           | #{app_user.user.full_name}
-                        button.fa.fa-check.action.bg-balanced ng-if="(travel.available_sits - travel.approved_count) > 0 && !travel.waiting_for_confirm && !travel.completed" ng-click="approveForTravel(applied_user.user.id)"
+                        - if (@travel_offer.car.sits - @travel_offer.approved_users.count) > 0 && !@travel_offer.waiting_for_confirm && !@travel_offer.completed && Time.now < @travel_offer.departure_datetime
+                          button.fa.fa-check.action.bg-balanced
                 - else
                   li
                     span Non ci sono utenti in attesa.
+          
+          - if @travel_offer.driver_id == current_user.id && @travel_offer.private_chats.any?
+            .t-details
+              .block
+                h3 Chat Private
+                .t-private-chats
+                  - @travel_offer.private_chats.each do |pc|
+                    a.chat-user href=room_travel_private_chat_path(@travel_offer.room, @travel_offer, pc)
+                      .user_photo style="background-image: url(#{pc.passenger.profile_image_url})"
+                      .user_name #{pc.passenger.full_name}
+    
+    - if !@travel_offer.completed
+      .col
+        .card
+          .card_title
+            .ct_icon.fa.fa-comments
+            .ct_title CHAT PUBBLICA
 
+          .chat#public_chat data-travel-id="#{@travel_offer.id}"
+            .chat_messages#chat_messages
+              .iscroll-scroller
+                = render @travel_offer.public_messages, {user_requester_id: current_user.id, use_requester_id: true}
 
-          / .text ng-if="!travel.waiting_for_confirm && travel.completed && travel.is_owner"
-          /   i.fa.fa-check
-          /   | Viaggio completato!
+            = form_for @public_message, url: '#', authenticity_token: true do |f|
+              = f.text_field :content, placeholder: 'Scrivi un messaggio...', autocomplete: :off
+              = f.hidden_field :travel_id, class:'chat_input', value: @travel_offer.id
+              button.chat_submit data-send="public_message"
+                i.fa.fa-paper-plane
+    - else
+      .col
+        .card
+          .card_title.red
+            .ct_icon.fa.fa-star
+            .ct_title RECENSIONI DA FARE
 
-        / .card_content
-        /   - if @travel_offer.driver_id != current_user.id
-        /       - @travel_offer.travel_reviews.made_by_driver.each do |review|
-        /         = form_for review, url: room_travel_travel_review_path(@travel_offer.room, @travel_offer, review), method: :put do |f|
-        /           = f.text_area :content, placeholder: "Inserisci qui la tua recensione per #{review.target.name}"
-        /           br
-        /           = f.submit "Invia"
-        /     - else
-        /       - @travel_offer.travel_reviews.made_by_driver.each do |review|
-        /         = form_for review, url: room_travel_travel_review_path(@travel_offer.room, @travel_offer, review), method: :put do |f|
-        /           = f.text_area :content, placeholder: "Inserisci qui la tua recensione per #{review.target.name}"
-        /           br
-        /           = f.submit "Invia"
-
-    .col
-      .card
-        .card_title
-          .ct_icon.fa.fa-comments
-          .ct_title CHAT PUBBLICA
-
-        .chat#chat data-travel-id="#{@travel_offer.id}"
-          .chat_messages#chat_messages
-            .iscroll-scroller
-              = render @travel_offer.public_messages, {user_requester_id: current_user.id, use_requester_id: true}
-
-          = form_for @public_message, url: '#', authenticity_token: true do |f|
-            = f.text_field :content, placeholder: 'Scrivi un messaggio...', autocomplete: :off
-            = f.hidden_field :travel_id, class:'chat_input', value: @travel_offer.id
-            button.chat_submit data-send="public_message"
-              i.fa.fa-paper-plane
+          .card_content
+            - if @travel_offer.driver_id != current_user.id
+                - @travel_offer.travel_reviews.made_by_driver.each do |review|
+                  = form_for review, url: room_travel_travel_review_path(@travel_offer.room, @travel_offer, review), method: :put do |f|
+                    = f.text_area :content, placeholder: "Inserisci qui la tua recensione per #{review.target.name}"
+                    br
+                    = f.submit "Invia"
+            - else
+              - @travel_offer.travel_reviews.made_by_driver.each do |review|
+                = form_for review, url: room_travel_travel_review_path(@travel_offer.room, @travel_offer, review), method: :put do |f|
+                  = f.text_area :content, placeholder: "Inserisci qui la tua recensione per #{review.target.name}"
+                  br
+                  = f.submit "Invia"

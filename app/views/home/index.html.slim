@@ -14,6 +14,15 @@
         .spacer
         a.button.green href=new_user_registration_path ISCRIVITI ADESSO
 
+.grid
+  .row
+    .col style="text-align:center;"
+      h2 style="color: #444; margin:0px; margin-bottom: 10px;" 
+        | Sei una scuola, un'azienda o un gruppo di persone?
+      h4 style="color: #666; margin:0px;"
+        a href="mailto:info@pick-app.it"
+          | Contattaci per avere la tua Vroom!
+
 - if current_user
   = render partial: 'logged_home'
 - else

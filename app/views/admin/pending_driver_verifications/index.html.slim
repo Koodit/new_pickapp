@@ -1,4 +1,14 @@
-- @pending_drivers.each do |driver|
-  = link_to driver.name, admin_pending_driver_verification_path(current_user)
-  br
-  = driver.email
+.jumbotron.small.red
+  .j_content
+    h1 AUTORIZZAZIONI DRIVER
+
+.grid
+  .row
+    .col.single-page.smaller
+      .card
+        .card_title.red
+          .ct_title AUTORIZZAZIONI DRIVER
+        .card_content
+
+          - @pending_drivers.each do |driver|
+            = link_to "#{driver.full_name} (#{driver.email})", admin_pending_driver_verification_path(current_user), class:'button block'

@@ -67,8 +67,7 @@ class User < ApplicationRecord
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\Z/
 
-  validates_presence_of :name, :surname, :birth_date, :nickname,
-                        :address, :comune, :prov, :zip_code
+  validates_presence_of :name, :birth_date, :address, :comune, :prov, :zip_code
 
   validate :user_is_of_minimum_age, on: :create
 

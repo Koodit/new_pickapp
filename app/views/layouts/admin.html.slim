@@ -1,11 +1,25 @@
 doctype html
 html
   head
-    title Pickapp
+    title Pickapp ADMIN
     = csrf_meta_tags
 
-    = stylesheet_link_tag 'admin', media: 'all'
-    = javascript_include_tag 'admin'
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application'
+
+    script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0LrBYjd0qiHN4NuKC0g_3ETBtJCEvZEc"
+    link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet"
 
   body
+    = render 'shared/header'
     = yield
+
+    - if current_user.role == 'administrator'
+      a.admin-link.button.red href='/admin' AMMINISTRAZIONE (#{User.needing_driver_verification.count} DA VERIFICARE)
+
+    = render 'shared/footer'
+    
+    - if current_user
+      script type="text/javascript"
+        | CURRENT_USER_ID = #{current_user.id};
+

@@ -2,7 +2,7 @@ document.addEventListener "DOMContentLoaded", ->
 
   domParser = new DOMParser()
 
-  chat = document.querySelector('#chat')
+  chat = document.querySelector('#public_chat')
 
   new_public_message_form = document.querySelector('#new_public_message')
 

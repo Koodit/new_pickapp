@@ -37,11 +37,12 @@
             .input_container
               = f.label :zip_code
               = f.text_field :zip_code, autocomplete: "off"
-
-            .input_container.picture
-              = f.label :profile_image
-              #profile_picture_image
-              = f.file_field :profile_image, id: 'profile_picture_input'
+            
+            - if current_user.provider != 'facebook'
+              .input_container.picture
+                = f.label :profile_image
+                #profile_picture_image
+                = f.file_field :profile_image, id: 'profile_picture_input'
                     
             br
 

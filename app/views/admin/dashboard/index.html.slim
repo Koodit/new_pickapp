@@ -1,6 +1,19 @@
-p
-  = link_to "STANZE", admin_rooms_path
-p
-  = link_to "CATEGORIE", admin_room_categories_path
-p
-  = link_to "RICHIESTE GUIDATORE", admin_pending_driver_verifications_path
+.jumbotron.small.red
+  .j_content
+    h1 AMMINISTRAZIONE
+
+.grid
+  .row
+    .col.single-page.smaller
+      .card
+        .card_title.red
+          .ct_title AMMINISTRAZIONE
+        .card_content
+          p
+            = link_to "RICHIESTE GUIDATORE", admin_pending_driver_verifications_path, class:'button block green'
+          br
+          p
+            = link_to "STANZE", admin_rooms_path, class:'button block'
+          p
+            = link_to "CATEGORIE STANZE", admin_room_categories_path, class:'button block'
+          

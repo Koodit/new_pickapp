@@ -1,4 +1,12 @@
+// require_tree .
+//= require helpers
 //= require jquery
 //= require jquery_ujs
 //= require cocoon
-//= require_tree .
+//= require iscroll/build/iscroll
+//= require flatpickr-calendar/dist/flatpickr.min
+//= require flatpickr-calendar/dist/l10n/it
+//= require ./pickapp/_init
+//= require_tree ./pickapp/components
+//= require ./pickapp
+//= require_tree ./paloma

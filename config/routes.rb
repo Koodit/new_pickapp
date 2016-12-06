@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         post '/mark_as_completed', to: "travels#mark_travel_as_completed"
       end
       resources :travel_reviews, only: [:update]
+      resources :private_chats, only: [:create, :show]
     end
     resources :travel_requests
     member do

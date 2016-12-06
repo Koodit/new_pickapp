@@ -1,0 +1,28 @@
+.jumbotron.blue.small
+  .j_content
+    - if current_user.id == @travel_offer.driver_id 
+      h1 = "Chat con #{@private_chat.passenger.full_name}"
+    - else
+      h1 = "Chat con #{@private_chat.driver.full_name}"
+
+.back_button_container
+  a.back_button href=room_travel_path(@travel_offer.room, @travel_offer) Torna al viaggio
+
+.grid
+  .row
+    .col.single-page
+      .card
+        .card_title
+          .ct_icon.fa.fa-comments
+          .ct_title CHAT PRIVATA
+
+        .chat#private_chat data-private-chat-id="#{@private_chat.id}"
+          .chat_messages#chat_messages
+            .iscroll-scroller
+              = render @private_chat.private_messages, {user_requester_id: current_user.id, use_requester_id: true}
+
+          = form_for @private_message, url: '#', authenticity_token: true do |f|
+            = f.text_field :content, placeholder: 'Scrivi un messaggio...', autocomplete: :off
+            = f.hidden_field :private_chat_id, class:'chat_input', value: @private_chat.id
+            button.chat_submit data-send="private_message"
+              i.fa.fa-paper-plane
