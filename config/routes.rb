@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :cars, except: [:show, :update]
     end
   end
+  resources :notifications, only: [:index]
   resources :room_categories
   resources :rooms do
     resources :travels do
@@ -33,6 +34,8 @@ Rails.application.routes.draw do
       post "/unset_favourite", to: "rooms#unset_favourite"
     end
   end
+
+  resource :search
 
   namespace :admin do
     root "dashboard#index"

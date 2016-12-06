@@ -1,4 +1,6 @@
 class Room < ApplicationRecord
+  searchkick
+
   belongs_to :room_category
 
   has_one :school_room_setting, dependent: :destroy

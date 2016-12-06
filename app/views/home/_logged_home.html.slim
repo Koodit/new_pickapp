@@ -1,3 +1,7 @@
+= form_for :q, url: search_path, method: :get do |f|
+  = f.text_field :room_name
+  br
+  = f.submit "Cerca"
 .grid
   .row
     .col.x4
