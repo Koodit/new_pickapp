@@ -1,25 +1,74 @@
-= form_for current_user, url: update_profile_path, method: :put do |f|
-  - if current_user.errors.any?
-    h2
-      = pluralize(current_user.errors.count, "error") 
-      = " prevented this record from being saved:"
-  - current_user.errors.full_messages.each do |msg|
-    = msg
-    br
-  = f.label :birth_date
-  = f.text_field :birth_date
-  br
-  = f.label :address
-  = f.text_field :address
-  br
-  = f.label :comune
-  = f.text_field :comune
-  br
-  = f.label :zip_code
-  = f.text_field :zip_code
-  br
-  = f.label :prov
-  = f.text_field :prov
-  br
-  br
-  = f.submit "Conferma"
+.jumbotron.small.green
+  .j_content
+    h1 MODIFICA PROFILO
+
+.grid#edit_profile_form
+  .row
+    .col.single-page.smaller
+      .card
+        .card_title.green
+          .ct_title MODIFICA PROFILO
+        .card_content
+          = form_for current_user, url: update_profile_path, method: :put do |f|
+            - if current_user.errors.any?
+              h2
+                = pluralize(current_user.errors.count, "error") 
+                = " prevented this record from being saved:"
+            - current_user.errors.full_messages.each do |msg|
+              = msg
+              br
+
+            .input_container
+              = f.label :birth_date
+              = f.text_field :birth_date, id:'birth_date'
+
+            .input_container
+              = f.label :address
+              = f.text_field :address, autocomplete: "off"
+
+            .input_container
+              = f.label :comune
+              = f.text_field :comune, autocomplete: "off"
+
+            .input_container
+              = f.label :prov
+              = f.text_field :prov, autocomplete: "off"
+
+            .input_container
+              = f.label :zip_code
+              = f.text_field :zip_code, autocomplete: "off"
+
+            .input_container.picture
+              = f.label :profile_image
+              #profile_picture_image
+              = f.file_field :profile_image, id: 'profile_picture_input'
+                    
+            br
+
+            = f.submit "Salva Modifiche", class:'button green w100 block'
+
+coffee:
+  current_date = new Date()
+
+  max_birth_date = new Date(
+    current_date.getFullYear() - 13,
+    current_date.getMonth(),
+    current_date.getDate());
+
+  flatpickr_config = {
+    altFormat: "j F Y",
+    maxDate: max_birth_date,
+    locale:'it'
+  }
+  document.getElementById("birth_date").flatpickr(flatpickr_config)
+
+
+  document.getElementById("profile_picture_input").onchange = ->
+    # image preview
+    reader = new FileReader()
+    reader.onload = (e) ->
+      # get loaded data and render thumbnail.
+      document.getElementById("profile_picture_image").classList.add('has_image')
+      document.getElementById("profile_picture_image").style.backgroundImage = "url(#{e.target.result})"
+    # read the image file as a data URL.
+    reader.readAsDataURL(this.files[0])
