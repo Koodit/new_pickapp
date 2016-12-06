@@ -164,7 +164,8 @@ class TravelsController < ApplicationController
         only_with_feedback: @travel_offer.only_with_feedback,
         desired_address: travel_offer.desired_address,
         city: travel_offer.city,
-        zip_code: travel_offer.zip_code
+        zip_code: travel_offer.zip_code,
+        repetions_amount: 0
       )
 
       if travel_offer.travel_stops.any?
@@ -194,7 +195,8 @@ class TravelsController < ApplicationController
             only_with_feedback: @travel_offer.only_with_feedback,
             desired_address: travel.desired_address,
             city: travel.city,
-            zip_code: travel.zip_code
+            zip_code: travel.zip_code,
+            repetions_amount: 0
           )
 
           if travel.travel_stops.any?
@@ -210,7 +212,10 @@ class TravelsController < ApplicationController
           if travel_backwards.save
             travel_backwards.public_chat_partecipants.create user_id: current_user.id, travel_id: travel.id
           end
-
+        end
+      else
+        travel.errors.full_messages.each do |msg|
+          puts msg
         end
       end
     end
