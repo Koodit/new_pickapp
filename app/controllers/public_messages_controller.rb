@@ -1,4 +1,2 @@
-class PublicMessagesController < ApplicationController
-
-  
+class PublicMessagesController < ApplicationController  
 end
