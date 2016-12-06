@@ -35,8 +35,7 @@
                 button.t-button type="submit" Candidati
           - else
             - if !@travel_offer.waiting_for_confirm && !@travel_offer.completed
-              = form_for @travel_offer, url: mark_as_completed_room_travel_path(@travel_offer.room, @travel_offer), method: :post do |f|
-                button.t-button.assertive Elimina Viaggio
+              = link_to 'Elimina Viaggio', room_travel_path(@travel_offer.room, @travel_offer), data: { confirm: "Sei sicuro?" }, method: :delete, class:'t-button assertive'
             - if @travel_offer.waiting_for_confirm && !@travel_offer.completed
               = form_for @travel_offer, url: mark_as_completed_room_travel_path(@travel_offer.room, @travel_offer), method: :post do |f|
                 button.t-button.balanced Completa Viaggio
