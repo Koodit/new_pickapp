@@ -70,8 +70,6 @@ class TravelsController < ApplicationController
         @travel_offer.destroy
         redirect_to room_path(room)
       end
-    else
-      render json: {error: "Verifica di essere il proprietario dell'offerta' e riprova."}, root: false, status: 513
     end
   end
 
@@ -117,8 +115,8 @@ class TravelsController < ApplicationController
         review_for_passenger.save
         review_for_driver = @travel_offer.travel_reviews.create  user_id: approved_user.user_id, target_id: @travel_offer.driver_id, room_id: @travel_offer.room.id, made_by_driver: false, to_be_written: true
         review_for_driver.save
-        # BadgeWorker.perform_async(approved_user.user_id, "CitizenBadge")
-        # BadgeWorker.perform_async(nil, "SocialMasterBadge", options = {driver_id: current_user.id, passenger_id: approved_user.user_id})
+        BadgeWorker.perform_async(approved_user.user_id, "CitizenBadge")
+        BadgeWorker.perform_async(nil, "SocialMasterBadge", options = { driver_id: current_user.id, passenger_id: approved_user.user_id })
         # NotificationWorker.perform_async("travel_confirmed_for_passenger", @travel_offer.driver_id, approved_user.user_id, options = { travel_expired_for_driver: true, is_passenger: true, travel_id: @travel_offer.id })
         approved_user.destroy
       end

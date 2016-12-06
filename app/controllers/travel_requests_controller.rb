@@ -18,6 +18,17 @@ class TravelRequestsController < ApplicationController
     end
   end
 
+  def destroy
+    @travel_request = TravelRequest.find params[:id]
+    @room = Room.find params[:room_id]
+    if @travel_request
+      if current_user.id == @travel_request.passenger_id
+        @travel_request.destroy
+        redirect_to room_path(@room)
+      end
+    end
+  end
+
   private
 
   def travel_request_params
