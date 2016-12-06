@@ -159,7 +159,7 @@ class Travel < ApplicationRecord
 
   def fire_notification_for_completion
     unless self.waiting_for_confirm || self.completed
-      NotificationWorker.perform_at(self.departure_datetime + 30.seconds, "travel_expired_for_driver", nil, self.driver_id, options = { travel_expired_for_driver: true, travel_id: self.id, completion_token: self.completion_token })
+      NotificationWorker.perform_at(self.departure_datetime + 30.minutes, "travel_expired_for_driver", nil, self.driver_id, options = { travel_expired_for_driver: true, travel_id: self.id, completion_token: self.completion_token })
     end
   end
 end

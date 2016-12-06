@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+########## SERIALIZER
+gem 'active_model_serializers'
+
 ########## AWS e Paperclip
 gem 'aws-sdk', '~> 2'
 gem 'paperclip'
@@ -99,3 +102,5 @@ gem "bourbon"
 gem "bower-rails"
 gem "font-awesome-rails"
 gem "paloma"
+
+gem 'rack-cors', :require => 'rack/cors'

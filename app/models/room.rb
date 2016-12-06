@@ -44,6 +44,8 @@ class Room < ApplicationRecord
 
   validates_presence_of :school_room_setting, if: :is_school?
 
+  validates_presence_of :room_category
+
   before_save :set_coordinates
 
   def is_active?

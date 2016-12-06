@@ -20,5 +20,19 @@ module Pickapp
 
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff)$)
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
+    # cors
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+          :headers => :any,
+          :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+          :methods => [:get, :post, :options, :delete, :put, :head],
+          :max_age => 0
+      end
+    end
+
   end
 end
