@@ -34,7 +34,7 @@ class DriverDetailsController < ApplicationController
 
   def driver_detail_params
     params.require(:driver_detail).permit(
-      :user_id, :patente, :assicurazione,:license_type,
+      :user_id, :patente, :assicurazione, :license_type,
       :license_number, :license_release_date,:license_expire_date,
       :license_release_city, :license_release_city_common
     )

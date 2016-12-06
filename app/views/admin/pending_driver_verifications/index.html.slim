@@ -2,6 +2,9 @@
   .j_content
     h1 AUTORIZZAZIONI DRIVER
 
+.back_button_container
+  a.back_button href='/admin' Torna ad Amministrazione
+
 .grid
   .row
     .col.single-page.smaller
@@ -11,4 +14,7 @@
         .card_content
 
           - @pending_drivers.each do |driver|
-            = link_to "#{driver.full_name} (#{driver.email})", admin_pending_driver_verification_path(current_user), class:'button block'
+            = link_to "#{driver.full_name} (#{driver.email})", admin_pending_driver_verification_path(driver), class:'button block'
+
+          - unless @pending_drivers.any?
+            p.text-center Nessuno da autorizzare.

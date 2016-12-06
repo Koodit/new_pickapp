@@ -1,5 +1,12 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
+
+Devise.mailchimp_api_key = 'ccf4eba394114e52aa32d1fb8906feec-us7'
+Devise.mailing_list_name = 'PickApp'
+# Devise.double_opt_in = false  
+# Devise.send_welcome_email = false
+# Devise::Mailer.layout "mailer"
+
 Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing

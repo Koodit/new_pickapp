@@ -14,6 +14,8 @@ class DriverDetail < ApplicationRecord
                     url: ":s3_domain_url",
                     s3_region: "eu-west-1"
 
+  attr_accessor :accept_terms, :accept_terms_2
+
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :patente, :content_type => /\Aimage\/.*\Z/
 

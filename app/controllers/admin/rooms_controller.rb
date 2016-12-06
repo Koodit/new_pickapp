@@ -2,7 +2,7 @@ class Admin::RoomsController < AdminController
   before_action :set_room, except: [:index, :new, :create]
 
   def index
-    @rooms = Room.all
+    @rooms = Room.all.order(:name)
   end
 
   def show

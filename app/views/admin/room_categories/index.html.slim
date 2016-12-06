@@ -1,3 +1,15 @@
-- @room_categories.each do |category|
-  = category.name
-  br
+.jumbotron.small.red
+  .j_content
+    h1 AMMINISTRAZIONE CATEGORIE STANZE
+
+.back_button_container
+  a.back_button href='/admin' Torna ad Amministrazione
+
+.grid
+  - @room_categories.order(:name).each_slice(3) do |rc|
+    .row
+      - rc.each do |c|
+        .col
+          a.room_card href=edit_admin_room_category_path(c) style="background-image: url(#{c.image.url(:medium)})"
+            .rc_content
+              .rc_title = c.name

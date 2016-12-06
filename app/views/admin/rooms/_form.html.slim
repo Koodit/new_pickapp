@@ -1,47 +1,100 @@
-= form_for room, url: url do |f|
-  = f.label :name
-  = f.text_field :name
-  br
-  = f.label :room_category
-  = f.select :room_category_id, RoomCategory.all.collect { |rc| [rc.name, rc.id] }
-  br
-  = f.label :address
-  = f.text_field :address
-  br
-  = f.label :description
-  = f.text_area :description
-  br
-  = f.label :price
-  = f.number_field :price, min: 0
-  br
-  = f.label :phone
-  = f.text_field :phone
-  br
-  = f.label :website
-  = f.text_field :website
-  br
-  = f.label :facebook
-  = f.text_field :facebook
-  br
-  = f.label :twitter
-  = f.text_field :twitter
-  br
-  = f.label :intagram
-  = f.text_field :instagram
-  br
-  = f.label :trip_advisor
-  = f.text_field :trip_advisor
-  br
-  = f.label :is_school
-  = f.check_box :is_school
-  br
-  #school_room_setting
-    = f.fields_for :school_room_setting do |setting|
-      = render 'school_room_setting_fields', f: setting
-    = link_to_add_association 'add settings', f, :school_room_setting, force_non_association_create: true
-  br
-  = f.label :background_image
-  = f.file_field :background_image
-  br
+.jumbotron.small.red
+  .j_content
+    - if room.name
+      h1 MODIFICA DI #{room.name}
+    - else
+      h1 NUOVA STANZA
 
-  = f.submit submit
+.back_button_container
+  a.back_button href=admin_rooms_path Torna alle Stanze
+
+
+.grid
+  .row
+    .col.single-page
+      .card
+        .card_title.red
+          - if room.name
+            .ct_title MODIFICA DI #{room.name}
+          - else
+            .ct_title NUOVA CATEGORIA STANZA
+        .card_content
+          = form_for room, url: url do |f|
+
+            .flex
+              .input_container.flex-item
+                label NOME STANZA
+                = f.text_field :name
+              .input_container.flex-item
+                label CATEGORIA STANZA
+                .select-wrapper
+                  = f.select :room_category_id, RoomCategory.all.collect { |rc| [rc.name, rc.id] }, {}, { :class => 'select-dropdown' }
+
+            .input_container
+              label INDIRIZZO STANZA
+              = f.text_field :address
+
+            .input_container
+              label DESCRIZIONE STANZA
+              = f.text_area :description
+
+            .input_container
+              label PREZZO
+              = f.number_field :price, min: 0
+
+            .flex
+              .input_container.flex-item
+                label NUMERO DI TELEFONO
+                = f.text_field :phone
+              .input_container.flex-item
+                label SITO INTERNET
+                = f.text_field :website
+
+            .flex
+              .input_container.flex-item
+                label PAGINA FACEBOOK  (url)
+                = f.text_field :facebook
+              .input_container.flex-item
+                label PROFILO TWITTER  (url)
+                = f.text_field :twitter
+
+            .flex
+              .input_container.flex-item
+                label PROFILO INSTAGRAM (url)
+                = f.text_field :instagram
+              .input_container.flex-item
+                label PAGINA TRIPADVISOR (url)
+                = f.text_field :trip_advisor
+
+            .input_container
+              label È UNA SCUOLA?
+              .checkbox
+                .check_text È UNA SCUOLA
+                = f.check_box :is_school
+                = f.label :is_school
+                  .pin
+            
+            #school_room_setting
+              = f.fields_for :school_room_setting do |setting|
+                = render 'school_room_setting_fields', f: setting
+              = link_to_add_association 'add settings', f, :school_room_setting, force_non_association_create: true
+
+            .input_container
+              label FOTO COPERTINA
+              #cover-image.uploaded-image
+              = f.file_field :background_image, id: 'cover-image-input'
+
+            br
+
+            = f.submit 'SALVA STANZA', class: 'button block red'
+
+coffee:
+  document.getElementById("cover-image-input").onchange = ->
+    # image preview
+    reader = new FileReader()
+    reader.onload = (e) ->
+      # get loaded data and render thumbnail.
+      document.getElementById("cover-image").classList.add('has_image')
+      document.getElementById("cover-image").style.backgroundImage = "url(#{e.target.result})"
+    # read the image file as a data URL.
+    reader.readAsDataURL(this.files[0])

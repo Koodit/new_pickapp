@@ -1,14 +1,34 @@
-= "#{@pending_driver.name} #{@pending_driver.surname}"
-br
-= @pending_driver.email
-br
-= image_tag @driver_detail.patente.url
-br
-= @driver_detail.license_number
+.jumbotron.red.small
+  .j_content
+    h1 AUTORIZZAZIONE #{@pending_driver.full_name}
 
-= form_for @pending_driver, url: become_driver_admin_pending_driver_verification_path, method: :put do |f|
-  = f.submit "Autorizza driver"
-br
-br
-= form_for @pending_driver, url: deny_driver_admin_pending_driver_verification_path, method: :put do |f|
-  = f.submit "Rifiuta driver"
+.back_button_container
+  a.back_button href=admin_pending_driver_verifications_path Torna alle Richieste
+
+.grid
+  .row
+    .col.single-page.smaller
+      .card
+        .card_title.red
+          .ct_title AUTORIZZAZIONE DI #{@pending_driver.full_name} (#{@pending_driver.email})
+        .card_content
+          form
+            .uploaded-image.has_image style="background-image: url(#{@driver_detail.patente.url})"
+
+          hr
+          
+          p.text-center <b>TIPOLOGIA PATENTE:</b> #{@driver_detail.license_type}
+          p.text-center <b>NUMERO PATENTE:</b> #{@driver_detail.license_number}
+          p.text-center <b>PROVINCIA RILASCIO:</b> #{@driver_detail.license_release_city_common}
+          p.text-center <b>COMUNE RILASCIO:</b> #{@driver_detail.license_release_city}
+          p.text-center <b>DATA DI RILASCIO:</b> #{@driver_detail.license_release_date}
+          p.text-center <b>DATA DI SCADENZA:</b> #{@driver_detail.license_expire_date}
+          
+          hr
+
+          br
+          = form_for @pending_driver, url: become_driver_admin_pending_driver_verification_path, method: :put do |f|
+            = f.submit "AUTORIZZA", class:'button block w100 green'
+          br
+          = form_for @pending_driver, url: deny_driver_admin_pending_driver_verification_path, method: :put do |f|
+            = f.submit "RIFIUTA", class:'button block w100 red'

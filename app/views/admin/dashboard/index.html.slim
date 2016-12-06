@@ -10,7 +10,7 @@
           .ct_title AMMINISTRAZIONE
         .card_content
           p
-            = link_to "RICHIESTE GUIDATORE", admin_pending_driver_verifications_path, class:'button block green'
+            = link_to "RICHIESTE GUIDATORE (#{User.needing_driver_verification.count} DA VERIFICARE)", admin_pending_driver_verifications_path, class:'button block red'
           br
           p
             = link_to "STANZE", admin_rooms_path, class:'button block'

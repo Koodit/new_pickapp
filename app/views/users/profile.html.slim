@@ -49,7 +49,7 @@
           - if current_user.is_driver
             a.button.block.blue href=new_car_path(@user) Aggiungi Auto
             a.button.block.red href=cars_path(@user) Gestisci Auto
-          - if !current_user.is_driver
+          - if !current_user.is_driver && !current_user.pending_driver_verification
             a.button.block.green href=new_driver_details_path Diventa Guidatore
           / a.button.block href=new_room_travel_request_path(@room) Richiedi Passaggio
 

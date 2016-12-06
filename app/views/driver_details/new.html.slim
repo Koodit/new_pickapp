@@ -7,37 +7,39 @@
 
 .grid
   .row
-    .col
+    .col.single-page.smaller
       .card
         .card_content
           = form_for @driver_detail, url: driver_details_path do |f|
             .input_container
-              = f.label :patente
-              = f.file_field :patente
+              label FOTO PATENTE
+              #license_photo.uploaded-image
+              = f.file_field :patente, id:'license-photo-input'
 
-            .input-container
-              = f.label :license_type
-              = f.select :license_type, [nil, "B","C"]
+            .input_container
+              label TIPOLOGIA PATENTE
+              .select-wrapper
+                = f.select :license_type, [nil, "B","C"], {}, { :class => 'select-dropdown' }
 
-            .input-container
+            .input_container
               = f.label :license_number
               = f.text_field :license_number
 
-            .input-container
-              = f.label :license_release_city_common
-              = f.text_field :license_release_city_common
-
-            .input-container
-              = f.label :license_release_city
+            .input_container
+              label PROVINCIA DI RILASCIO
               = f.text_field :license_release_city
 
             .input_container
+              label COMUNE DI RILASCIO
+              = f.text_field :license_release_city_common
+
+            .input_container
               = f.label 'Data di rilascio *'
-              = f.text_field :license_release_date, id:'one_way_datetime'
+              = f.text_field :license_release_date, id:'release_date'
 
             .input_container
               = f.label 'Data di scadenza *'
-              = f.text_field :license_expire_date, id:'one_way_datetime'
+              = f.text_field :license_expire_date, id:'expire_date'
 
             .input_container
               .checkbox
@@ -47,11 +49,57 @@
                   .pin
 
             .input_container
+              p.small Dichiarazione dati autentici / Responsabilità penale / Manlevo la società dal verificare la congruità e autorizzo a rendere visibile il mio documento a chi si prenota per annuncio passaggio
               .checkbox
-                .check_text Dichiarazione dati autentici / Responsabilità penale / Manlevo la società dal verificare la congruità e autorizzo a rendere visibile il mio documento a chi si prenota per annuncio passaggio
+                .check_text Dichiarazione dati autentici
                 = f.check_box :accept_terms_2
                 = f.label :accept_terms_2, class: 'check_toggle'
                   .pin
 
             .input-container
-              = f.submit "Invia", class:'button red'
+              = f.submit "RICHIEDI AUTORIZZAZIONE", class:'button red'
+
+coffee:
+  document.getElementById("license-photo-input").onchange = ->
+    # image preview
+    reader = new FileReader()
+    reader.onload = (e) ->
+      # get loaded data and render thumbnail.
+      document.getElementById("license_photo").classList.add('has_image')
+      document.getElementById("license_photo").style.backgroundImage = "url(#{e.target.result})"
+    # read the image file as a data URL.
+    reader.readAsDataURL(this.files[0])
+
+  current_date = new Date().timeNow()
+
+  flatpickr_config = {
+    dateFormat: "j F Y",
+    altFormat: "j F Y",
+    enableTime: false,
+    locale:'it',
+    onChange: (selectedDates, dateStr, instance) ->
+      setBackDepartureDatetimePicker(selectedDates[0])
+  }
+  document.getElementById("release_date").flatpickr(flatpickr_config)
+
+  # back_departure_datetime
+  back_departure_datetime_picker = null
+
+  setBackDepartureDatetimePicker = (departure_datetime) ->
+    back_departure_datetime_picker.destroy() if back_departure_datetime_picker
+
+    if departure_datetime
+      min_date = departure_datetime
+    else
+      min_date = current_date
+
+    flatpickr_config = {
+      dateFormat: "j F Y",
+      altFormat: "j F Y",
+      minDate: new Date(min_date - 60000),
+      enableTime: false,
+      locale:'it'
+    }
+    back_departure_datetime_picker = document.getElementById("expire_date").flatpickr(flatpickr_config)
+
+  setBackDepartureDatetimePicker()

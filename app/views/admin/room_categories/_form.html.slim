@@ -1,9 +1,44 @@
-= form_for room_category, url: url do |f|
-  = f.label :name
-  = f.text_field :name
-  br
-  = f.label :image
-  = f.file_field :image
-  br
-  br
-  = f.submit submit
+.jumbotron.small.red
+  .j_content
+    - if room_category.name
+      h1 MODIFICA DI #{room_category.name}
+    - else
+      h1 NUOVA CATEGORIA STANZA
+
+.back_button_container
+  a.back_button href=admin_room_categories_path Torna alle Categorie Stanze
+
+.grid
+  .row
+    .col.single-page.smaller
+      .card
+        .card_title.red
+          - if room_category.name
+            .ct_title MODIFICA DI #{room_category.name}
+          - else
+            .ct_title NUOVA CATEGORIA STANZA
+        .card_content
+          = form_for room_category, url: url do |f|
+            .input_container
+              label NOME CATEGORIA STANZA
+              = f.text_field :name
+
+            .input_container
+              label FOTO COPERTINA
+              #cover-image.uploaded-image
+              = f.file_field :image, id: 'cover-image-input'
+            
+            .input_container
+              button.block.w100.red type="submit" SALVA CATEGORIA
+
+
+coffee:
+  document.getElementById("cover-image-input").onchange = ->
+    # image preview
+    reader = new FileReader()
+    reader.onload = (e) ->
+      # get loaded data and render thumbnail.
+      document.getElementById("cover-image").classList.add('has_image')
+      document.getElementById("cover-image").style.backgroundImage = "url(#{e.target.result})"
+    # read the image file as a data URL.
+    reader.readAsDataURL(this.files[0])
