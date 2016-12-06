@@ -26,7 +26,7 @@
                 label DIREZIONE DEL VIAGGIO
                 .checkbox
                   .check_text <e class="towards_room_label_text">Verso</e>: #{@room.name}
-                  = f.check_box :towards_room, class: 'towards_room_check'
+                  = f.check_box :towards_room, class: 'towards_room_check', checked: true
                   = f.label :towards_room, class: 'check_toggle'
                     .pin
 

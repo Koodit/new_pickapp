@@ -31,8 +31,9 @@
               = form_for @travel_offer, url: cancel_application_room_travel_path(@travel_offer.room, @travel_offer, current_user), method: :post do |f|
                 button.t-button.assertive type="submit" Annulla Candidatura
             - else
-              = form_for @travel_offer, url: apply_user_room_travel_path(@travel_offer.room, @travel_offer, current_user), method: :post do |f|
-                button.t-button type="submit" Candidati
+              - if !@travel_offer.approved_users.where(user_id: current_user.id).present?
+                = form_for @travel_offer, url: apply_user_room_travel_path(@travel_offer.room, @travel_offer, current_user), method: :post do |f|
+                  button.t-button type="submit" Candidati
           - else
             - if !@travel_offer.waiting_for_confirm && !@travel_offer.completed
               = link_to 'Elimina Viaggio', room_travel_path(@travel_offer.room, @travel_offer), data: { confirm: "Sei sicuro?" }, method: :delete, class:'t-button assertive'

@@ -34,7 +34,8 @@ class TravelsController < ApplicationController
           is_recursive: @travel_offer.is_recursive,
           desired_address: @travel_offer.desired_address,
           city: @travel_offer.city,
-          zip_code: @travel_offer.zip_code
+          zip_code: @travel_offer.zip_code,
+          repetions_amount: 0
         )
 
         if @travel_offer.travel_stops.any?

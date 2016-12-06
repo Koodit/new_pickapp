@@ -1,5 +1,5 @@
 class Room < ApplicationRecord
-  searchkick
+  # searchkick
 
   belongs_to :room_category
 
