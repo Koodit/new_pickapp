@@ -38,3 +38,16 @@ $p_calm: #29ABDF
 
 $p_royal: #FF8A02
 
+=create-color-class($name, $color)
+  .text-#{$name}
+    color: $color !important
+  .bg-#{$name}
+    background-color: $color !important
+
++create-color-class('light', $p_light)
++create-color-class('stable', $p_stable)
++create-color-class('dark', $p_dark)
++create-color-class('assertive', $p_assertive)
++create-color-class('calm', $p_calm)
++create-color-class('balanced', $p_balanced)
++create-color-class('royal', $p_royal)

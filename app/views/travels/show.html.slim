@@ -8,48 +8,63 @@
 .back_button_container
   a.back_button href=room_path(@travel_offer.room) Torna a #{@travel_offer.room.name}
 
-.grid.room_page
+.grid.travel-page
   .row
-    .col.x3
+    .col.x4
       .card
-        .room_map#room_map
-        .card_content
-          - if @travel_offer.available
-            - if @travel_offer.driver_id != current_user.id
-              - if @travel_offer.applied_users.where(user_id: current_user.id).present?
-                = form_for @travel_offer, url: cancel_application_room_travel_path(@travel_offer.room, @travel_offer, current_user), method: :post do |f|
-                  = f.submit "Annulla candidatura"
-                br
-              - else
-                = form_for @travel_offer, url: apply_user_room_travel_path(@travel_offer.room, @travel_offer, current_user), method: :post do |f|
-                  = f.submit "Candidati"
-                br
-            - else
-              - @travel_offer.applied_users.each do |user|
-                = form_for @travel_offer, url: approve_user_room_travel_path(@travel_offer.room, @travel_offer, user.user_id), method: :post do |f|
-                  = f.submit "Approva"
-              br
-              - @travel_offer.approved_users.each do |user|
-                = form_for @travel_offer, url: cancel_approval_room_travel_path(@travel_offer.room, @travel_offer, user.user_id), method: :post do |f|
-                  = f.submit "Disapprova"
-              p
-                - if @travel_offer.waiting_for_confirm && !@travel_offer.completed && @travel_offer.driver_id == current_user.id
-                  = form_for @travel_offer, url: mark_as_completed_room_travel_path(@travel_offer.room, @travel_offer), method: :post do |f|
-                    = f.submit "Completa Viaggio"
+        .travel-map#travel-map
+        .travel-meta
+          .t-meta
+            i.fa.fa-group.text-calm
+            span #{@travel_offer.applied_users.count} UTENTI CANDIDATI
+          .t-meta
+            i.fa.fa-group.text-balanced
+            span #{@travel_offer.approved_users.count} UTENTI APPROVATI
+          .t-meta
+            i.fa.fa-car.text-assertive
+            span #{@travel_offer.car.sits - @travel_offer.approved_users.count} POSTI DISPONIBILI
 
-          p
-            - if @travel_offer.driver_id = current_user.id
-              - @travel_offer.travel_reviews.made_by_driver.each do |review|
-                = form_for review, url: room_travel_travel_review_path(@travel_offer.room, @travel_offer, review), method: :put do |f|
-                  = f.text_area :content, placeholder: "Inserisci qui la tua recensione per #{review.target.name}"
-                  br
-                  = f.submit "Invia"
+          .spacer
+            
+          - if @travel_offer.driver_id != current_user.id
+            - if @travel_offer.applied_users.where(user_id: current_user.id).present?
+              = form_for @travel_offer, url: cancel_application_room_travel_path(@travel_offer.room, @travel_offer, current_user), method: :post do |f|
+                button.t-button.assertive type="submit" Annulla Candidatura
             - else
-              - @travel_offer.travel_reviews.made_by_driver.each do |review|
-                = form_for review, url: room_travel_travel_review_path(@travel_offer.room, @travel_offer, review), method: :put do |f|
-                  = f.text_area :content, placeholder: "Inserisci qui la tua recensione per #{review.target.name}"
-                  br
-                  = f.submit "Invia"
+              = form_for @travel_offer, url: apply_user_room_travel_path(@travel_offer.room, @travel_offer, current_user), method: :post do |f|
+                button.t-button type="submit" Candidati
+
+          / .t-button.visible_small ng-click="applyForTravel()" ng-if="!travel.is_applied && !travel.is_approved && !travel.is_owner" Candidati
+          / .t-button.assertive.hide_small ng-click="cancelApplicationForTravel()" ng-if="travel.is_applied && !travel.is_approved && !travel.is_owner" Annulla Candidatura
+          / .t-button.assertive.hide_small ng-click="destroyTravel($event)" ng-if="travel.is_owner && !travel.waiting_for_confirm && !travel.completed" Elimina Viaggio
+          / .t-button.balanced.hide_small ng-click="markTravelAsCompleted()" ng-if="travel.waiting_for_confirm && !travel.completed && travel.is_owner" Completa Viaggio
+
+          / .text ng-if="!travel.waiting_for_confirm && travel.completed && travel.is_owner"
+          /   i.fa.fa-check
+          /   | Viaggio completato!
+
+        / .card_content
+        /   - if @travel_offer.driver_id != current_user.id
+        /     / - if @travel_offer.applied_users.where(user_id: current_user.id).present?
+        /     /   = form_for @travel_offer, url: cancel_application_room_travel_path(@travel_offer.room, @travel_offer, current_user), method: :post do |f|
+        /     /     = f.submit "Annulla candidatura"
+        /     /   br
+        /     / - else
+        /     /   = form_for @travel_offer, url: apply_user_room_travel_path(@travel_offer.room, @travel_offer, current_user), method: :post do |f|
+        /     /     = f.submit "Candidati"
+        /     /   br
+        /     p
+        /       - @travel_offer.travel_reviews.made_by_driver.each do |review|
+        /         = form_for review, url: room_travel_travel_review_path(@travel_offer.room, @travel_offer, review), method: :put do |f|
+        /           = f.text_area :content, placeholder: "Inserisci qui la tua recensione per #{review.target.name}"
+        /           br
+        /           = f.submit "Invia"
+        /     - else
+        /       - @travel_offer.travel_reviews.made_by_driver.each do |review|
+        /         = form_for review, url: room_travel_travel_review_path(@travel_offer.room, @travel_offer, review), method: :put do |f|
+        /           = f.text_area :content, placeholder: "Inserisci qui la tua recensione per #{review.target.name}"
+        /           br
+        /           = f.submit "Invia"
 
     .col
       .card

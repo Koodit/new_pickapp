@@ -5,6 +5,7 @@ class TravelsController < ApplicationController
 
   def show
     @public_message = PublicMessage.new
+    js travel_offer: { lat: @travel_offer.starting_lat, lng: @travel_offer.starting_lng }
   end
 
   def new

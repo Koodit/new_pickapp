@@ -18,6 +18,6 @@
           .ti_label.orange ALLE
           .ti_text #{t.departure_datetime.strftime('%d/%m %H:%M')}
         .ti_status.orange DA SVOLGERE
-  / - else
-  /   .no_travels
-  /     p Nessuno richiede passaggi da/verso questa destinazione.<br/><a href="#{href=new_room_travel_request_path(@room)}">Sarai tu il primo?</a>
+  - else
+    .no_travels
+      p Non sono presenti viaggi in questa lista.

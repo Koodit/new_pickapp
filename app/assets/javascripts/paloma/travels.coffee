@@ -1,5 +1,21 @@
 Paloma.controller('Travels', {
 
+
+  show: ->
+    # Room Map
+
+    travel_map = new Pickapp.map({
+      element: 'travel-map'
+      zoom: 15
+      minZoom: 15
+      maxZoom: 20
+      center: {lat: this.params.travel_offer.lat, lng: this.params.travel_offer.lng}
+      disableUI: true
+      draggable: false
+    })
+
+    travel_map.add_marker({id:'travel', choords: {lat: this.params.travel_offer.lat, lng: this.params.travel_offer.lng} })
+
   new: ->
     # departure datetime
 
