@@ -82,9 +82,9 @@ class TravelsController < ApplicationController
 
   def cancel_application
     applied = @travel_offer.applied_users.where(user_id: current_user.id).first
-    applied.destroy
     notification_id = applied.notification_id
     notification = Notification.find notification_id
+    applied.destroy
     unless notification.nil?
       notification.destroy
     end
