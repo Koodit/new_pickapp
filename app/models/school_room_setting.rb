@@ -1,5 +1,7 @@
 class SchoolRoomSetting < ApplicationRecord
-  belongs_to :room
+  belongs_to :room, optional: true
+
+  validates_presence_of :school_representative, :non_partecipant_message, :email_domain
 
   before_create :set_share_link
 

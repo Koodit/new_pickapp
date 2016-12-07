@@ -17,10 +17,16 @@
           - if room.name
             .ct_title MODIFICA DI #{room.name}
           - else
-            .ct_title NUOVA CATEGORIA STANZA
+            .ct_title NUOVA STANZA
         .card_content
           = form_for room, url: url do |f|
-
+            - if room.errors.any?
+              h2
+                = pluralize(room.errors.count, "error") 
+                = " prevented this record from being saved:"
+            - room.errors.full_messages.each do |msg|
+              = msg
+              br
             .flex
               .input_container.flex-item
                 label NOME STANZA
@@ -90,7 +96,6 @@
             #school_room_setting style="display: #{should_disply_srs}"
               = f.fields_for :school_room_setting do |setting|
                 = render 'school_room_setting_fields', f: setting
-              / = link_to_add_association 'add settings', f, :school_room_setting, force_non_association_create: true
 
             .input_container
               label FOTO COPERTINA

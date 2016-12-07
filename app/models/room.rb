@@ -21,9 +21,6 @@ class Room < ApplicationRecord
   has_many :school_room_partecipants
   has_many :users, through: :school_room_partecipants
 
-  # has_many :selected_room_categories
-  # has_many :room_categories, through: :selected_room_categories
-
   has_attached_file :background_image,
                     styles: {
                       thumb: '200x200>',
@@ -41,6 +38,11 @@ class Room < ApplicationRecord
 
   accepts_nested_attributes_for :room_images, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :school_room_setting, reject_if: :all_blank, allow_destroy: true
+
+  validates_presence_of :name, :room_category, :address,
+                        :start_date, :end_date
+
+  validates_presence_of :school_room_setting, if: :is_school?
 
   before_save :set_coordinates
 
@@ -72,6 +74,10 @@ class Room < ApplicationRecord
         room_category.image.url(size)
       end
     end
+  end
+
+  def is_school?
+    is_school == true
   end
 
   private

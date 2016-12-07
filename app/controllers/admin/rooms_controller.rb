@@ -10,7 +10,9 @@ class Admin::RoomsController < AdminController
 
   def new
     @room = Room.new
-    @room.school_room_setting = SchoolRoomSetting.new
+    unless @room.school_room_setting.present?
+      @room.school_room_setting = SchoolRoomSetting.new
+    end
   end
 
   def create
@@ -55,7 +57,7 @@ class Admin::RoomsController < AdminController
       :start_date, :end_date, :is_private, :website, :facebook, :twitter, :instagram,
       :trip_advisor, :phone, :address, :lat, :long, :room_category_id, :background_image,
       :description, :is_school, room_images_attributes: [:id, :image],
-      room_school_setting_attributes: [:id, :school_representative, :non_partecipant_message, :referral_link, :share_link, :code, :email_domain]
+      school_room_setting_attributes: [:id, :school_representative, :non_partecipant_message, :referral_link, :share_link, :code, :email_domain]
     )
   end
 end
