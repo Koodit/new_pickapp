@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   root "home#index"
 
+  get "/progetto", to: 'home#progetto'
+  get "/regolamento", to: 'home#regolamento'
+  get "/contatti", to: 'home#contatti'
+
   get "/profile", to: "users#profile"
   resource :profile, only: [] do
     collection do

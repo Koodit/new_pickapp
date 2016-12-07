@@ -7,4 +7,13 @@ class HomeController < ApplicationController
       @preferred_rooms = current_user.preferred_rooms.active.map(&:room)
     end
   end
+
+  def progetto
+  end
+
+  def regolamento
+  end
+
+  def contatti
+  end
 end
