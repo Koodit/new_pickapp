@@ -7,7 +7,7 @@
 
 .page_content
   .grid
-    - @room_category.rooms.each_slice(3) do |rooms_row|
+    - @room_category.rooms.active.each_slice(3) do |rooms_row|
       .row
         - rooms_row.each do |r|
           .col
