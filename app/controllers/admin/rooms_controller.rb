@@ -10,6 +10,7 @@ class Admin::RoomsController < AdminController
 
   def new
     @room = Room.new
+    @room.school_room_setting = SchoolRoomSetting.new
   end
 
   def create
@@ -22,6 +23,9 @@ class Admin::RoomsController < AdminController
   end
 
   def edit
+    unless @room.school_room_setting.present?
+      @room.school_room_setting = SchoolRoomSetting.new
+    end
   end
 
   def update

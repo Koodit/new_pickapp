@@ -1,12 +1,16 @@
-.nested-fields
-  = f.label :school_representative
-  = f.text_field :school_representative
-  br
-  = f.label :referral_link
-  = f.text_field :referral_link
-  br
-  = f.label :email_domain
-  = f.text_field :email_domain
-  br
-  = f.label :non_partecipant_message
+.flex
+  .input_container.flex-item
+    label Referente della Scuola
+    = f.text_field :school_representative
+  .input_container.flex-item
+    label Link Referral Scuola
+    = f.text_field :referral_link
+.flex
+  .input_container.flex-item
+    label Dominio email scuola (senza @)
+    = f.text_field :email_domain
+  .flex-item
+
+.input_container
+  label Messaggio per i non iscritti alla stanza
   = f.text_area :non_partecipant_message

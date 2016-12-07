@@ -78,14 +78,19 @@
               label È UNA SCUOLA?
               .checkbox
                 .check_text È UNA SCUOLA
-                = f.check_box :is_school
-                = f.label :is_school
+                = f.check_box :is_school, class: 'is_school_check'
+                = f.label :is_school, class: 'check_toggle'
                   .pin
             
-            #school_room_setting
+            - if room.is_school
+              - should_disply_srs = 'block'
+            - else
+              - should_disply_srs = 'none'
+
+            #school_room_setting style="display: #{should_disply_srs}"
               = f.fields_for :school_room_setting do |setting|
                 = render 'school_room_setting_fields', f: setting
-              = link_to_add_association 'add settings', f, :school_room_setting, force_non_association_create: true
+              / = link_to_add_association 'add settings', f, :school_room_setting, force_non_association_create: true
 
             .input_container
               label FOTO COPERTINA
@@ -97,6 +102,15 @@
             = f.submit 'SALVA STANZA', class: 'button block red'
 
 coffee:
+  # school_room_settings
+  towards_room_check = document.querySelector('.is_school_check')
+
+  towards_room_check.addEventListener 'change', (ev) ->
+    if ev.srcElement.checked
+      document.querySelector('#school_room_setting').style.display = 'block'
+    else
+      document.querySelector('#school_room_setting').style.display = 'none'
+
   # departure datetime
 
   current_date = new Date().timeNow()

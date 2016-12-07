@@ -43,6 +43,10 @@
 
           p.inset = @room.description
 
+          - if current_user.role == 'administrator' && @room.is_school
+            h5 Link di Condivisione
+            p.inset = @room.school_room_setting.share_link
+
 
     .col.x4
       .card
