@@ -1,4 +1,75 @@
 it:
+  notification:
+    became_authorized_driver:
+      title: "Sei diventato un driver!"
+      body: "Congratulazioni! Da ora sei ufficialmente un driver di Pick APP!"
+
+    add_a_car:
+      # SE CAMBI QUESTO PARLA CON MACCHIE
+      title: "Aggiungi un'auto!"
+      body: "Ti serve un'auto per offrire passaggi! Aggiungine una ora."
+      link: "/profile/cars/new"
+
+    received_a_private_message_as_driver:
+      title: "Hai ricevuto un messaggio!"
+      body: "<strong>%{name} %{surname}</strong> ti ha inviato un messaggio relativo al tuo viaggio verso <strong>%{room_name}</strong>."
+      link: "/rooms/%{room_id}/travels/%{travel_id}/private_chats/%{private_chat_id}"
+
+    received_a_private_message_as_passenger:
+      title: "Hai ricevuto un messaggio!"
+      body: "<strong>%{name} %{surname}</strong> ti ha inviato un messaggio relativo al suo viaggio verso <strong>%{room_name}</strong>."
+      link: "/rooms/%{room_id}/travels/%{travel_id}/private_chats/%{private_chat_id}"
+
+    received_a_public_message_as_driver:
+      title: "Hai ricevuto un messaggio pubblico!"
+      body: "<strong>%{name} %{surname}</strong> ti ha inviato un messaggio nella chat pubblica del tuo viaggio verso <strong>%{room_name}</strong>."
+      link: "/rooms/%{room_id}/travels/%{travel_id}"
+
+    received_a_public_message_as_non_driver:
+      title: "Hai ricevuto un messaggio pubblico!"
+      body: "<strong>%{name} %{surname}</strong> ha scritto un messaggio in una chat pubblica a cui stai partecipando!"
+      link: "/rooms/%{room_id}/travels/%{travel_id}"
+
+    received_a_travel_request_message_is_owner:
+      title: "Hai ricevuto una risposta a una richiesta!"
+      body: "<strong>%{name} %{surname}</strong> ha scritto una risposta a una tua richiesta per <strong>%{room_name}</strong>!"
+      link: "/rooms/%{room_id}/travel_requests/%{travel_request_id}"
+
+    received_a_travel_request_message_not_owner:
+      title: "Hai ricevuto un messaggio!"
+      body: "<strong>%{name} %{surname}</strong> ha scritto in una chat relativa ad una richiesta di viaggio per <strong>%{room_name}</strong> a cui stai partecipando!"
+      link: "/rooms/%{room_id}/travel_requests/%{travel_request_id}"
+
+    user_applied_to_travel:
+      title: "Hai un nuovo candidato"
+      body: "<strong>%{name} %{surname}</strong> si è candidato per il tuo viaggio %{to_room} <strong>%{room_name}</strong>!"
+      link: "/rooms/%{room_id}/travels/%{travel_id}"
+
+    user_approved_by_driver:
+      title: "%{name} %{surname} ti ha scelto come passeggero!"
+      body: "<strong>%{name} %{surname}</strong> ti ha scelto come passeggero per il suo viaggio %{to_room} <strong>%{room_name}</strong>!"
+      link: "/rooms/%{room_id}/travels/%{travel_id}"
+
+    travel_expired:
+      title: "Come è andato il viaggio?"
+      body: "Hai completato il viaggio verso <strong>%{room_name}</strong>? Dì al popolo di Pick App cosa pensi dei passeggeri!"
+      link: "/profile/travels/%{travel_id}"
+
+    travel_expired_for_passenger:
+      title: "Come è andato il viaggio?"
+      body: "Hai completato il viaggio verso <strong>%{room_name}</strong>? Dì al popolo di Pick App cosa pensi del guidatore!"
+      link: "/profile/travels/%{travel_id}"
+
+    user_received_review:
+      title: "Hai ricevuto una recensione!"
+      body: "%{name} %{surname} ha scritto una recensione su di te!"
+      link: "/profile/reviews/received/%{review_id}"
+
+    remind_to_review:
+      title: "Hai dimenticato una recensione?"
+      body: "%{name} %{surname} non ha ancora ricevuto una tua recensione dopo il viaggio fatto insieme!"
+      link: "/profile/reviews/own/%{review_id}/edit"
+
   date:
     abbr_day_names:
     - Dom
