@@ -96,7 +96,7 @@ class User < ApplicationRecord
 
   def profile_image_url
     if profile_image.present?
-      profile_image.url
+      profile_image.url(:medium)
     else
       "https://s3-eu-west-1.amazonaws.com/koodit/pickapp/shared/missing_user_photo.jpg"
     end

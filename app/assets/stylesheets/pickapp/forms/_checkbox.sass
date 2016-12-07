@@ -93,3 +93,22 @@ form, .form
         .pin
           // background-color: tint($p_balanced, 15%)
           +transform( translate3D(30px, 0, 0) )
+
+
+      &.direction
+        .check_toggle
+          background: $p_calm !important
+
+          &:before
+            content: '\f061'
+            color: rgba(white, .9)
+
+          &:after
+            content: '\f060'
+            color: rgba(white, .9)
+
+        input[type=checkbox]:checked + .check_toggle
+          +box-shadow( none )
+
+          .pin
+            +transform( translate3D(30px, 0, 0) )

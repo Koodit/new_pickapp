@@ -9,16 +9,21 @@
               = t.passenger_name
 
           .ti_meta
-            .ti_label.red PER
+            .ti_label.bg-assertive PER
             - if t.towards_room
               .ti_text = t.room.name
             - else
               .ti_text.capitalize = t.starting_address
 
           .ti_meta
-            .ti_label.orange ALLE
+            .ti_label.bg-calm ALLE
             .ti_text #{t.departure_datetime.strftime('%d/%m %H:%M')}
-          .ti_status.orange DA SVOLGERE
+          - if !t.waiting_for_confirm && !t.completed
+            .ti_status.bg-royal DA SVOLGERE
+          - if t.waiting_for_confirm && !t.completed
+            .ti_status.bg-assertive DA COMPLETARE
+          - if !t.waiting_for_confirm && t.completed
+            .ti_status.bg-balanced COMPLETATO
   - else
     .no_travels
       p Non sono presenti viaggi in questa lista.

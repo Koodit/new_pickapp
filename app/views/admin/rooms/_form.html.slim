@@ -103,9 +103,9 @@
 
 coffee:
   # school_room_settings
-  towards_room_check = document.querySelector('.is_school_check')
+  is_school_check = document.querySelector('.is_school_check')
 
-  towards_room_check.addEventListener 'change', (ev) ->
+  is_school_check.addEventListener 'change', (ev) ->
     if ev.srcElement.checked
       document.querySelector('#school_room_setting').style.display = 'block'
     else

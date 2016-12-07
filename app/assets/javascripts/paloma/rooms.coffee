@@ -29,12 +29,20 @@ Paloma.controller('Rooms', {
   
   search: ->
 
+    # towards_room
+    towards_room_check = document.querySelector('.towards_room_check')
+
+    towards_room_check.addEventListener 'change', (ev) ->
+      if ev.srcElement.checked
+        document.querySelector('#towards_room_check_text').innerHTML = 'PER:'
+      else
+        document.querySelector('#towards_room_check_text').innerHTML = 'DA:'
+
     current_date = new Date().timeNow()
     min_departure_datetime = this.params.min_departure_datetime
     max_departure_datetime = this.params.max_departure_datetime
 
     flatpickr_config = {
-      # dateFormat: "j F Y - H:i",
       altFormat: "j F Y - H:i",
       altInput: true,
       minDate: current_date,
@@ -59,7 +67,6 @@ Paloma.controller('Rooms', {
         min_date = current_date
 
       flatpickr_config = {
-        # dateFormat: "j F Y - H:i",
         altFormat: "j F Y - H:i",
         altInput: true,
         minDate: new Date(min_date - 60000),

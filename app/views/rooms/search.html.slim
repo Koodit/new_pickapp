@@ -16,23 +16,24 @@
         .card_content
           = form_for :q, url: search_room_path(@room), method: :get do |f|
             .input_container
-              .checkbox
-                .check_text Towards room
+              label DIREZIONE DEL VIAGGIO
+              .checkbox.direction
+                .check_text <span id="towards_room_check_text">ARRIVO:</span> #{@room.name}
                 - if @filter.towards_room == "1"
                   = f.check_box :towards_room, checked: true
                 - else
-                  = f.check_box :towards_room
+                  = f.check_box :towards_room, class: 'towards_room_check'
                 = f.label :towards_room, class: 'check_toggle'
                   .pin
 
             .flex
               .input_container.flex-item
-                = f.label 'Min:'
+                label DAL
                 = f.text_field :min_departure_datetime, id: "start_datetime_picker"
 
             .flex
               .input_container.flex-item
-                = f.label 'Max:'
+                label AL
                 = f.text_field :max_departure_datetime, id: "end_datetime_picker"
 
             .input_container
