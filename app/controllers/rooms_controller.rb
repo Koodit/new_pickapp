@@ -3,8 +3,10 @@ class RoomsController < ApplicationController
 
   def show
     if @room.is_school
-      if @room.school_room_partecipants.any? { |srp| srp.user_id != current_user.id } || current_user.role != "administrator"
-        redirect_to room_category_path(@room.room_category), notice: "Non puoi accedere a questa stanza"
+      if current_user.role != "administrator"
+        if @room.school_room_partecipants.any? { |srp| srp.user_id != current_user.id }
+          redirect_to room_category_path(@room.room_category), notice: "Non puoi accedere a questa stanza"
+        end
       end
     end
 
