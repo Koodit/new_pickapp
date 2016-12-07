@@ -5,9 +5,9 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-  get "/progetto", to: 'home#progetto'
-  get "/regolamento", to: 'home#regolamento'
-  get "/contatti", to: 'home#contatti'
+  get "/progetto", to: 'home#progetto', as: 'progetto'
+  get "/regolamento", to: 'home#regolamento', as: 'regolamento'
+  get "/contatti", to: 'home#contatti', as: 'contatti'
 
   get "/profile", to: "users#profile"
   resource :profile, only: [] do

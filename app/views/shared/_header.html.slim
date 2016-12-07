@@ -4,6 +4,10 @@
 
   .header_menu
     a href=root_path Home
+    
+    - unless current_user
+      a href=progetto_path Progetto
+
     - if current_user
       a href=room_categories_path Vrooms!
     - else
