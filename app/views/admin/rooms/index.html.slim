@@ -6,6 +6,12 @@
   a.back_button href='/admin' Torna ad Amministrazione
 
 .grid
+  .row
+    .col.text-center
+      a.button.red href=new_admin_room_path() NUOVA STANZA
+
+
+.grid
   - @rooms.order(:name).each_slice(3) do |rr|
     .row
       - rr.each do |r|

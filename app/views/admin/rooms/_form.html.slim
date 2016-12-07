@@ -34,6 +34,14 @@
               label INDIRIZZO STANZA
               = f.text_field :address
 
+            .flex
+              .input_container.flex-item
+                label DATA DI APERTURA
+                = f.text_field :start_date
+              .input_container.flex-item
+                label DATA DI CHIUSURA
+                = f.text_field :end_date
+
             .input_container
               label DESCRIZIONE STANZA
               = f.text_area :description
@@ -89,6 +97,45 @@
             = f.submit 'SALVA STANZA', class: 'button block red'
 
 coffee:
+  # departure datetime
+
+  current_date = new Date().timeNow()
+
+  flatpickr_config = {
+    altFormat: "j F Y",
+    altInput: true,
+    minDate: current_date,
+    enableTime: false,
+    locale:'it',
+    onChange: (selectedDates, dateStr, instance) ->
+      setEndDatePicker(selectedDates[0])
+  }
+  document.getElementById("room_start_date").flatpickr(flatpickr_config)
+
+  # back_departure_datetime
+  back_departure_datetime_picker = null
+
+  setEndDatePicker = (end_date) ->
+    back_departure_datetime_picker.destroy() if back_departure_datetime_picker
+
+    if end_date
+      min_date = end_date
+    else
+      min_date = current_date
+
+    flatpickr_config = {
+      altFormat: "j F Y",
+      altInput: true,
+      minDate: new Date(min_date - 60000),
+      enableTime: false,
+      locale:'it'
+    }
+    end_date_picker = document.getElementById("room_end_date").flatpickr(flatpickr_config)
+
+  setEndDatePicker()
+
+  # cover-image-input
+   
   document.getElementById("cover-image-input").onchange = ->
     # image preview
     reader = new FileReader()
