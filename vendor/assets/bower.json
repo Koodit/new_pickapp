@@ -3,6 +3,7 @@
   "dependencies": {
     "normalize.css": "latest",
     "flatpickr-calendar": "latest",
-    "iscroll": "latest"
+    "iscroll": "latest",
+    "notie": "latest"
   }
 }

@@ -1,0 +1,17 @@
+
+- if notice
+  script type="text/javascript"
+    | window.PA_NOTICE = "
+    = notice
+    | ";
+
+- if alert
+  script type="text/javascript"
+    | window.PA_ALERT = "
+    = alert
+    | ";
+
+coffee:
+  document.addEventListener "DOMContentLoaded", ->
+    notie.alert('info', window.PA_NOTICE, 2) if window.PA_NOTICE # Hides after 2 seconds
+    notie.alert('warning', window.PA_ALERT, 2) if window.PA_ALERT # Hides after 2 seconds
