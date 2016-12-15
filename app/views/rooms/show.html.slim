@@ -1,4 +1,5 @@
-.jumbotron style="background-image: url(#{@room.background_image.url});"
+- cover_image = @room.background_image.present? ? @room.background_image.url : @room.room_category.image.url
+.jumbotron style="background-image: url(#{cover_image});"
   .j_content
     h1 = @room.name
   .j-footer
@@ -66,16 +67,16 @@
                     = tr.passenger_name
 
                 .ti_meta
-                  .ti_label.red PER
+                  .ti_label.bg-assertive PER
                   - if tr.towards_room
                     .ti_text = @room.name
                   - else
                     .ti_text.capitalize = tr.destination_address
 
                 .ti_meta
-                  .ti_label.orange ALLE
+                  .ti_label.bg-calm ALLE
                   .ti_text #{tr.one_way_datetime.strftime('%d/%m %H:%M')}
-                .ti_status.orange DA SVOLGERE
+                .ti_status.bg-royal DA SVOLGERE
           - else
             .no_travels
               p Nessuno richiede passaggi da/verso questa destinazione.<br/><a href="#{href=new_room_travel_request_path(@room)}">Sarai tu il primo?</a>
@@ -91,16 +92,16 @@
                     = to.passenger_name
 
                 .ti_meta
-                  .ti_label.red PER
+                  .ti_label.bg-assertive PER
                   - if to.towards_room
                     .ti_text = @room.name
                   - else
                     .ti_text.capitalize = to.destination_address
 
                 .ti_meta
-                  .ti_label.orange ALLE
+                  .ti_label.bg-calm ALLE
                   .ti_text #{to.departure_datetime.strftime('%d/%m %H:%M')}
-                .ti_status.orange DA SVOLGERE
+                .ti_status.bg-royal DA SVOLGERE
           - else
             .no_travels
               p Nessuno offre passaggi da/verso questa destinazione.<br/><a href="#{href=new_room_travel_path(@room)}">Sarai tu il primo?</a>
