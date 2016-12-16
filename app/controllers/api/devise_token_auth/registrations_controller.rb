@@ -1,6 +1,7 @@
-class Api::V1::DeviseTokenAuth::RegistrationsController < DeviseTokenAuth::RegistrationsController
+class Api::DeviseTokenAuth::RegistrationsController < DeviseTokenAuth::RegistrationsController
   before_action :configure_permitted_parameters
   skip_before_action :verify_authenticity_token
+  skip_before_action :authenticate_user!
 
   protected
 

@@ -1,4 +1,4 @@
-require_relative 'boot'
+require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
@@ -23,14 +23,13 @@ module Pickapp
 
     # cors
 
-    config.middleware.insert_before 0, Rack::Cors do
+    config.middleware.use Rack::Cors do
       allow do
         origins '*'
         resource '*',
           :headers => :any,
-          :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
-          :methods => [:get, :post, :options, :delete, :put, :head],
-          :max_age => 0
+          :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client', 'X-CSRF-Token'],
+          :methods => [:get, :post, :options, :delete, :put]
       end
     end
 

@@ -40,9 +40,9 @@ gem 'paperclip'
 
 gem "devise", git: "https://github.com/plataformatec/devise.git"
 gem "devise-i18n"
-gem 'omniauth-facebook',      :git => 'git://github.com/mkdynamic/omniauth-facebook.git'
-gem 'devise_mailchimp', :git => 'https://github.com/rentziass/devise_mailchimp.git'
-gem 'devise_token_auth'
+gem 'omniauth-facebook', git: 'git://github.com/mkdynamic/omniauth-facebook.git'
+gem 'devise_mailchimp', git: 'https://github.com/rentziass/devise_mailchimp.git'
+gem "devise_token_auth", git: "https://github.com/lynndylanhurley/devise_token_auth.git"
 
 ########## SIDEKIQ
 gem "sidekiq"
@@ -103,4 +103,4 @@ gem "bower-rails"
 gem "font-awesome-rails"
 gem "paloma"
 
-gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cors', require: 'rack/cors'

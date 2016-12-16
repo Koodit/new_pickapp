@@ -56,9 +56,9 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     mount_devise_token_auth_for "User", at: "auth", controllers: {
-      registrations: 'api/v1/devise_token_auth/registrations',
-      sessions: 'api/v1/devise_token_auth/sessions',
-      omniauth_callbacks:  'api/v1/devise_token_auth/omniauth_callbacks'
+      registrations: 'api/devise_token_auth/registrations',
+      sessions: 'api/devise_token_auth/sessions',
+      omniauth_callbacks:  'api/devise_token_auth/omniauth_callbacks'
     }, skip: [:omniauth_callbacks]
     post "auth/facebook_login", to: "users/custom_omniauth_callbacks#omniauth_success"
 

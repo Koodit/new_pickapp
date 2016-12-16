@@ -18,6 +18,14 @@ GIT
       tilt (~> 2.0)
 
 GIT
+  remote: https://github.com/lynndylanhurley/devise_token_auth.git
+  revision: 865679daa2e2cb7de1a7b969da5521bca57e936d
+  specs:
+    devise_token_auth (0.1.39)
+      devise (> 3.5.2, <= 4.2)
+      rails (< 6)
+
+GIT
   remote: https://github.com/plataformatec/devise.git
   revision: d2ea28b3dbbf3e11dc9e800179fb89c53d61fc71
   specs:
@@ -153,9 +161,6 @@ GEM
     connection_pool (2.2.1)
     debug_inspector (0.0.2)
     devise-i18n (1.1.1)
-    devise_token_auth (0.1.39)
-      devise (> 3.5.2, <= 4.2)
-      rails (< 6)
     diff-lcs (1.2.5)
     elasticsearch (2.0.0)
       elasticsearch-api (= 2.0.0)
@@ -418,7 +423,7 @@ DEPENDENCIES
   devise!
   devise-i18n
   devise_mailchimp!
-  devise_token_auth
+  devise_token_auth!
   font-awesome-rails
   geocoder
   guard

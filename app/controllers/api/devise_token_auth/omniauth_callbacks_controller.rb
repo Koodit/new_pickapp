@@ -1,5 +1,6 @@
-class Api::V1::DeviseTokenAuth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksController
+class Api::DeviseTokenAuth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token
+  skip_before_action :authenticate_user!
   
   def assign_provider_attrs(user, auth_hash)
     user.assign_attributes({

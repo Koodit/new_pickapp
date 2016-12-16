@@ -1,3 +1,4 @@
-class Api::V1::DeviseTokenAuth::SessionsController < DeviseTokenAuth::SessionsController
+class Api::DeviseTokenAuth::SessionsController < DeviseTokenAuth::SessionsController
   skip_before_action :verify_authenticity_token
+  skip_before_action :authenticate_user!
 end

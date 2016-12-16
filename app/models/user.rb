@@ -3,8 +3,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :trackable, :validatable, :mailchimp,
-          :confirmable, :omniauthable, :omniauth_providers => [:facebook]
+         :recoverable, :rememberable, :trackable, :validatable, :mailchimp,
+         :confirmable, :omniauthable, :omniauth_providers => [:facebook]
 
   has_one :social_master_badge
   has_one :citizen_badge
@@ -64,10 +64,14 @@ class User < ApplicationRecord
                     url: ":s3_domain_url",
                     s3_region: "eu-west-1"
 
+  def token_validation_response
+    UserSerializer.new(self, root: false)
+  end
+
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :profile_image, content_type: /\Aimage\/.*\Z/
 
-  validates_presence_of :name, :birth_date, :address, :comune, :prov, :zip_code
+  validates_presence_of :name
 
   validate :user_is_of_minimum_age, on: :create
 

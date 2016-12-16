@@ -446,7 +446,7 @@ ActiveRecord::Schema.define(version: 20161114110553) do
     t.string   "nickname"
     t.string   "image"
     t.string   "email"
-    t.text     "tokens"
+    t.json     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "role"
