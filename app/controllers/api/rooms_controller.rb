@@ -1,11 +1,6 @@
 class Api::RoomsController < Api::ApiController
+  skip_before_action :verify_authenticity_token
   before_action :set_room, only: [:show, :edit, :update]
-  before_filter :authenticate_admin_user!, only: [:create, :update]
-
-  def index
-    @rooms = Room.all
-    render :json => @rooms, each_serializer: SlimRoomSerializer, root: false, status: 200
-  end
 
   def search_rooms
     # @rooms = Room.search(params[:q])
@@ -27,11 +22,6 @@ class Api::RoomsController < Api::ApiController
     else
       render :json => @room, serializer: RoomSerializer, root: false
     end
-  end
-
-  def new
-    @room = Room.new
-    2.times { @room.room_images.build }
   end
 
   def search
@@ -101,58 +91,9 @@ class Api::RoomsController < Api::ApiController
     end
   end
 
-  def create
-    puts params.except!(:background_image).inspect
-    room = Room.new(room_params)
-
-    unless params[:background_image].nil?
-      bg_image = paperclip_object_from_base64(params[:background_image][:base64], params[:background_image][:filename], params[:background_image][:filetype])
-      room.background_image = bg_image
-    end
-
-    if room.save
-      ######### SCHOOL ROOM #########
-      if params[:is_school]
-        SchoolRoomSetting.create! email_domain: params[:email_domain], school_representative: params[:school_representative], non_partecipant_message: params[:non_partecipant_message], referral_link: params[:referral_link], room_id: room.id
-      end
-      ######### END SCHOOL ROOM #########
-      render json: room, serializer:RoomIdSerializer, root: "room", status: 201
-    else
-      render :json => {:error => "Non è stato possibile creare la stanza"}.to_json, :status => 500
-    end
-  end
-
-  def update
-    if @room.update(room_params)
-      unless params[:background_image].nil?
-        bg_image = paperclip_object_from_base64(params[:background_image][:base64], params[:background_image][:filename], params[:background_image][:filetype])
-        @room.background_image = bg_image
-      end
-
-      ### Doggy modifica scuola
-      if params[:is_school]
-        @room.school_room_setting.update email_domain: params[:email_domain], school_representative: params[:school_representative], non_partecipant_message: params[:non_partecipant_message], referral_link: params[:referral_link]
-      end
-
-      @room.save
-
-      render json: @room, serializer:RoomIdSerializer, root: "room", status: 201
-    else
-      render :json => {:error => "Non è stato possibile aggiornare la stanza"}.to_json, :status => 500
-    end
-  end
-
   private
 
   def set_room
     @room = Room.includes(:private_room_setting).find(params[:id])
-  end
-
-  def room_params
-    params.require(:room).permit(:name, :address, :lat, :long, :admin_editable,
-     :start_date, :end_date, :facebook, :instagram, :is_private,
-     :phone, :price, :total_rating, :number_of_ratings, :description, :is_school,
-     :rating, :trip_advisor, :twitter, :website, :room_category_id,
-     room_images_attributes: [:image])
   end
 end

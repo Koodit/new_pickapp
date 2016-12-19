@@ -104,3 +104,6 @@ gem "font-awesome-rails"
 gem "paloma"
 
 gem 'rack-cors', require: 'rack/cors'
+
+##### Porcata vecchia per la ricerca
+gem 'textacular'

@@ -62,8 +62,8 @@ Rails.application.routes.draw do
     }, skip: [:omniauth_callbacks]
     post "auth/facebook_login", to: "users/custom_omniauth_callbacks#omniauth_success"
 
-    resources :room_categories
-    resources :rooms do
+    resources :room_categories, only: [:index, :show]
+    resources :rooms, only: [:show] do
       post '/search', to: "rooms#search"
       post '/set_favourite', to: "rooms#set_favourite"
       post '/unset_favourite', to: "rooms#unset_favourite"

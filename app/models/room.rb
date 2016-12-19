@@ -1,5 +1,5 @@
 class Room < ApplicationRecord
-  # searchkick
+  searchkick
 
   belongs_to :room_category
 
@@ -47,6 +47,9 @@ class Room < ApplicationRecord
   validates_presence_of :room_category
 
   before_save :set_coordinates
+
+  require 'textacular'
+  ActiveRecord::Base.extend(Textacular)
 
   def is_active?
     end_date >= Time.now
