@@ -1,7 +1,9 @@
 .header#main_header
   .logo_container 
     = render "shared/logo"
-
+    
+  // desktop
+  
   .header_menu
     a href=root_path Home
     
@@ -24,3 +26,36 @@
           a href=destroy_user_session_path Logout
       .profile_picture style=("background-image: url(#{current_user.profile_image_url})" if current_user.profile_image_url)
         .notifications = current_user.unread_notifications + current_user.unread_messages
+  
+  // mobile
+  
+  #mobile_menu_toggle.mobile_menu_toggle.fa.fa-bars
+  
+  #mobile_menu
+    .mobile_menu_content
+      - if current_user
+        a.mobile_user_menu href=profile_path 
+          .profile_picture style=("background-image: url(#{current_user.profile_image_url})" if current_user.profile_image_url)
+          p.user_name = current_user.full_name
+        
+        a.mobile_notifications_menu href=notifications_path 
+          i.fa.fa-bell
+          = "#{current_user.unread_notifications + current_user.unread_messages} NOTIFICHE"          
+
+      .mobile_menu_list
+        a.button.block href=root_path Home
+        
+        - unless current_user
+          a.button.block href=progetto_path Progetto
+        
+        - if current_user
+          a.button.green.block href=room_categories_path Vrooms!
+          br
+          a.button.red.block href=destroy_user_session_path Logout
+        - else
+          a.button.blue.block href=new_user_session_path Accedi
+          a.button.red.block href=new_user_registration_path Registrati
+        
+        
+
+        
