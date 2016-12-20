@@ -1,7 +1,5 @@
 class Api::TravelRequestsController < Api::ApiController
-
-  before_filter :set_travel_request, only: [:show, :destroy]
-  #before_filter :set_travel_for_update, only: [:approve_user, :apply_user, :cancel_approval]
+  before_action :set_travel_request, only: [:show, :destroy]
 
   def create
     travel_request = TravelRequest.new(travel_request_params)
@@ -12,8 +10,8 @@ class Api::TravelRequestsController < Api::ApiController
       travel_request.starting_address = travel_request.room.address
     end
     if travel_request.save
-      travel_request.travel_request_chat_partecipants.create user_id:current_user.id, travel_request_id:travel_request.id
-      render nothing:true, status: 201
+      travel_request.travel_request_chat_partecipants.create user_id: current_user.id, travel_request_id: travel_request.id
+      render nothing: true, status: 201
     else
       render :json => {:error => "Non è stato possibile creare la richiesta."}.to_json, :status => 500
     end
@@ -51,12 +49,8 @@ class Api::TravelRequestsController < Api::ApiController
     @travel_request = TravelRequest.find(params[:id])
   end
 
-  # def set_travel_for_update
-  #   @travel = Travel.find(params[:travel_id])
-  # end
-
   def authenticate_owner_user!
-    unless current_user.id == params[:user_id].to_i
+    unless current_user
       render :json => {:error => "Owner user only."}.to_json, :status => 403
     end
   end
@@ -65,5 +59,4 @@ class Api::TravelRequestsController < Api::ApiController
     params.require(:travel_request).permit(:back_datetime, :is_one_way, :one_way_datetime,
       :starting_address, :passenger_id, :room_id, :towards_room, :can_repay, :note, :only_with_feedback, :flexible_departure)
   end
-
 end

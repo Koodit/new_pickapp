@@ -51,6 +51,11 @@ class Api::TravelsController < Api::ApiController
       end
       render nothing:true, status: 201
     else
+      if travel.errors.any?
+        travel.errors.full_messages.each do |msg|
+          puts msg
+        end
+      end
       render :json => {:error => "Non è stato possibile creare il viaggio."}.to_json, :status => 500
     end
   end
@@ -95,7 +100,7 @@ class Api::TravelsController < Api::ApiController
   end
 
   def apply_user
-    @travel.applied_users.create user_id:current_user.id, travel_id:@travel.id
+    @travel.applied_users.create user_id: current_user.id, travel_id: @travel.id
     @travel.save
     NotificationWorker.perform_async("user_applied_to_travel", current_user.id, @travel.driver.id, options = {user_applied_to_travel: true, travel_id: @travel.id})
     render json: @travel, serializer:TravelSerializer, root: false, status: 200
@@ -135,7 +140,11 @@ class Api::TravelsController < Api::ApiController
     approved_users.each do |au|
       travels << au.travel
     end
-    render json: travels, each_serializer: SlimUserTravelSerializer, root: false, status: 200
+    unless travels.any?
+      puts travels
+    else
+      render json: travels, each_serializer: SlimUserTravelSerializer, root: false, status: 200
+    end
   end
 
   def travels_for_user_as_passenger
@@ -222,7 +231,7 @@ class Api::TravelsController < Api::ApiController
   end
 
   def authenticate_owner_user!
-    unless current_user.id == params[:user_id].to_i
+    unless current_user
       render :json => {:error => "Owner user only."}.to_json, :status => 403
     end
   end

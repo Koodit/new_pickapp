@@ -1,4 +1,5 @@
 class Api::PrivateChatsController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def create
     private_chat = PrivateChat.new travel_id:params[:travel_id]
@@ -17,6 +18,7 @@ class Api::PrivateChatsController < ApplicationController
   end
 
   private
+
   def is_driver
     Travel.find(params[:travel_id]).driver_id == current_user.id
   end

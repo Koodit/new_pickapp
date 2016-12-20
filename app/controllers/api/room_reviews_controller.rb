@@ -1,5 +1,4 @@
 class Api::RoomReviewsController < Api::ApiController
-
   def create
     review = RoomReview.new(room_review_params)
     if review.save
@@ -15,6 +14,7 @@ class Api::RoomReviewsController < Api::ApiController
   end
 
   private
+
   def room_review_params
     params.require(:room_review).permit(:content, :rating, :author_id, :room_id)
   end

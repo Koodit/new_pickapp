@@ -10,8 +10,6 @@ class TravelRequest < ApplicationRecord
   before_save :set_address
   before_save :set_coordinates
 
-  validates_presence_of :desired_address, :city, :zip_code, :one_way_datetime
-
   scope :available_now, -> { where("one_way_datetime > ?", Time.now) }
   scope :next_24_hours, -> { where(one_way_datetime: Time.now..(Time.now + 60.day)) }
   scope :by_imminence, -> { order(one_way_datetime: :asc) }

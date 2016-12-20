@@ -1,6 +1,7 @@
 class Api::CarsController < Api::ApiController
-  before_filter :authenticate_owner_user!
-  before_filter :set_car, only: [:show, :update, :destroy]
+  before_action :authenticate_owner_user!
+  before_action :set_car, only: [:show, :update, :destroy]
+
   def index
     cars = current_user.cars
     render json: cars, root: false, status: 200
@@ -48,7 +49,7 @@ class Api::CarsController < Api::ApiController
   private
 
   def authenticate_owner_user!
-    unless current_user.id == params[:user_id].to_i
+    unless current_user
       render :json => {:error => "Owner user only."}.to_json, :status => 403
     end
   end

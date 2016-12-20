@@ -25,9 +25,6 @@ class Travel < ApplicationRecord
                                 allow_destroy: true
 
   validates_presence_of :car_id,
-                        :desired_address,
-                        :city,
-                        :zip_code,
                         :departure_datetime, on: :create
 
   validates_presence_of :repetions_amount, if: :is_recursive?

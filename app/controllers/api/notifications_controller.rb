@@ -32,12 +32,13 @@ class Api::NotificationsController < Api::ApiController
   end
 
   private
+
   def set_notification
     @notification = Notification.find(params[:id])
   end
 
   def authenticate_owner_user!
-    unless current_user.id == params[:user_id].to_i
+    unless current_user
       render :json => {:error => "Owner user only."}.to_json, :status => 403
     end
   end

@@ -49,7 +49,7 @@ class Api::DriverDetailsController < Api::ApiController
   end
 
   def authenticate_owner_user!
-    unless current_user.id == params[:user_id].to_i
+    unless current_user
       render :json => {:error => "Owner user only."}.to_json, :status => 404
     end
   end

@@ -23,6 +23,7 @@ class Api::PublicMessagesController < Api::ApiController
   end
 
   private
+
   def public_message_params
     params.require(:public_message).permit(:content, :author_id, :travel_id, :is_travel_owner)
   end

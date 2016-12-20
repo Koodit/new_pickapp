@@ -1,5 +1,4 @@
 class Api::RoomsController < Api::ApiController
-  skip_before_action :verify_authenticity_token
   before_action :set_room, only: [:show, :edit, :update]
 
   def search_rooms

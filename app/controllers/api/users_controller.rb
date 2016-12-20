@@ -16,7 +16,6 @@ class Api::UsersController < Api::ApiController
   end
 
   def update
-
   end
 
   def profile
@@ -140,7 +139,7 @@ class Api::UsersController < Api::ApiController
   private
 
   def authenticate_owner_user!
-    unless current_user.id == params[:id].to_i
+    unless current_user
       render :json => {:error => "Owner user only."}.to_json, :status => 403
     end
   end
