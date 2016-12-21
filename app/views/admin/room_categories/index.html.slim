@@ -6,6 +6,11 @@
   a.back_button href='/admin' Torna ad Amministrazione
 
 .grid
+  .row
+    .col.text-center
+      a.button.red href=new_admin_room_category_path() NUOVA CATEGORIA STANZA
+
+.grid
   - @room_categories.order(:name).each_slice(3) do |rc|
     .row
       - rc.each do |c|
