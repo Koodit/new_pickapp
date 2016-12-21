@@ -4,15 +4,15 @@ class Api::UsersController < Api::ApiController
     :show, :update, :pending_driver, :auth_pending_driver, :is_driver, :car_count,
     :pending_driver_verification, :set_profile_image, :sign_for_school, :profile, :update_device_tokens, :clear_device_tokens
   ]
-  before_filter :authenticate_owner_user!, only: [:create, :update, :show, :is_driver, :car_count, :pending_driver_verification, :travels_count, :reviews_count, :set_profile_image]
-  before_filter :authenticate_admin_user!, only: [:pending_drivers, :pending_driver_verification_count, :auth_pending_driver]
+  before_action :authenticate_owner_user!, only: [:create, :update, :show, :is_driver, :car_count, :pending_driver_verification, :travels_count, :reviews_count, :set_profile_image]
+  before_action :authenticate_admin_user!, only: [:pending_drivers, :pending_driver_verification_count, :auth_pending_driver]
 
   # skip_before_filter :authenticate_cors_user, only: [:sign_for_school, :profile]
   skip_before_action :authenticate_user!, only: [:sign_for_school, :profile]
 
   # api :GET, "/users/:id", "Get all user available data."
   def show
-    render :json => @user, serializer: UserSerializer, root: false, status: 200
+    render json: @user, serializer: UserSerializer, root: false, status: 200
   end
 
   def update

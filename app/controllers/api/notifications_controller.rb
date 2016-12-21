@@ -1,6 +1,6 @@
 class Api::NotificationsController < Api::ApiController
   before_action :set_notification, only: [:show]
-  before_filter :authenticate_owner_user!
+  before_action :authenticate_owner_user!
 
   def index
     notifications = current_user.notifications_as_receiver.order(created_at: :desc)

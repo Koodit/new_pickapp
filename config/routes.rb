@@ -97,39 +97,31 @@ Rails.application.routes.draw do
       get '/preferred_rooms', to: "users#preferred_rooms"
       collection do
         get ':id/profile', to: "users#profile"
-        post ':id/sign_for_school/:school_code', to: "users#sign_for_school"
+        # post ':id/sign_for_school/:school_code', to: "users#sign_for_school"
         post ':id/update_device_tokens', to: "users#update_device_tokens"
         post ':id/clear_device_tokens', to: "users#clear_device_tokens"
-        # DA GUARDARE SU PAW
-        # post ':id/set_profile_image', to: "users#set_profile_image"
+        post ':id/set_profile_image', to: "users#set_profile_image"
         get ':id/travels_count', to: "users#travels_count"
         get ':id/reviews_count', to: "users#reviews_count"
         get ':id/is_driver', to: "users#is_driver"
         get ':id/car_count', to: "users#car_count"
         get ':id/pending_driver_verification', to: "users#pending_driver_verification"
-        # DA GUARDARE SU PAW
-        # get '/pending_driver_verification_count', to: "users#pending_driver_verification_count"
-        # get '/pending_drivers', to: "users#pending_drivers"
-        # get '/pending_drivers/:id', to: "users#pending_driver"
-        # post 'pending_drivers/auth/:id', to: "users#auth_pending_driver"
       end
       get 'travels_as_driver', to: "travels#travels_for_user_as_driver"
       get 'travels_as_applied', to: "travels#travels_for_user_as_applied"
       get 'travels_as_approved', to: "travels#travels_for_user_as_approved"
       get 'travels_as_passenger', to: "travels#travels_for_user_as_passenger"
       get 'travels/:id', to: "travels#show_travel_for_user"
-      # DA GUARDARE SU PAW
-      # put 'travels/:travel_id/travel_reviews/:id', to: "travel_reviews#update"
+      put 'travels/:travel_id/travel_reviews/:id', to: "travel_reviews#update"
       post 'travels/:id/mark_as_completed', to: "travels#mark_travel_as_completed"
-      # DA GUARDARE SU PAW
-      # resources :travel_reviews do
-      #   collection do
-      #     get 'as_target', to: 'travel_reviews#as_target'
-      #     get 'as_target/latest', to: 'travel_reviews#latest_as_target'
-      #     get 'as_author', to: 'travel_reviews#as_author'
-      #   end
-      # end
-      # resources :driver_details
+      resources :travel_reviews, only: [:show] do
+        collection do
+          get 'as_target', to: 'travel_reviews#as_target'
+          get 'as_target/latest', to: 'travel_reviews#latest_as_target'
+          get 'as_author', to: 'travel_reviews#as_author'
+        end
+      end
+      resources :driver_details
       resources :notifications do
         collection do
           get 'latest', to: "notifications#latest"

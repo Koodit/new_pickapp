@@ -1,8 +1,8 @@
 class Api::TravelsController < Api::ApiController
-  before_filter :set_travel, only: [:show, :mark_travel_as_completed, :destroy]
-  before_filter :set_travel_for_update, only: [:approve_user, :apply_user, :cancel_approval, :cancel_application]
-  before_filter :authenticate_owner_user!, only: [:travels_for_user_as_driver]
-  before_filter :authenticate_user_travel_member!, only: [:show_travel_for_user]
+  before_action :set_travel, only: [:show, :mark_travel_as_completed, :destroy]
+  before_action :set_travel_for_update, only: [:approve_user, :apply_user, :cancel_approval, :cancel_application]
+  before_action :authenticate_owner_user!, only: [:travels_for_user_as_driver]
+  before_action :authenticate_user_travel_member!, only: [:show_travel_for_user]
 
   def destroy
     if current_user.id == @travel.driver_id

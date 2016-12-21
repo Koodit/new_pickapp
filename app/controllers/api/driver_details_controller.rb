@@ -1,9 +1,9 @@
 class Api::DriverDetailsController < Api::ApiController
   before_action :set_driver_detail, only: [:show, :update, :destroy]
-  before_filter :authenticate_owner_user!, only: [:create, :update]
+  before_action :authenticate_owner_user!, only: [:create, :update]
 
   def show
-    render :json => @driver_detail, root: false
+    render json: @driver_detail, root: false
   end
 
   def create
@@ -34,7 +34,7 @@ class Api::DriverDetailsController < Api::ApiController
 
   def update
     if @driver_detail.update(driver_detail_params)
-      render json: @driver_detail, serializer:RoomIdSerializer, root: "driver_detail", status: 201
+      render json: @driver_detail, serializer: RoomIdSerializer, root: "driver_detail", status: 201
     else
       render :json => {:error => "Non è stato possibile aggiornare la stanza"}.to_json, :status => 500
     end
