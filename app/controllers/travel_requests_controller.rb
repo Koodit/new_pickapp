@@ -1,4 +1,9 @@
 class TravelRequestsController < ApplicationController
+  before_action :set_travel_request, only: [:show, :destroy]
+
+  def show  
+  end
+
   def new
     @travel_request = TravelRequest.new
     @room = Room.find(params[:room_id])
@@ -19,7 +24,6 @@ class TravelRequestsController < ApplicationController
   end
 
   def destroy
-    @travel_request = TravelRequest.find params[:id]
     @room = Room.find params[:room_id]
     if @travel_request
       if current_user.id == @travel_request.passenger_id
@@ -30,6 +34,10 @@ class TravelRequestsController < ApplicationController
   end
 
   private
+
+  def set_travel_request
+    @travel_request = TravelRequest.find params[:id]
+  end
 
   def travel_request_params
     params.require(:travel_request).permit(
