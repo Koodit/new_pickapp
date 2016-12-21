@@ -25,7 +25,7 @@
           a href=cars_path(current_user) Le Tue Auto
           a href=destroy_user_session_path Logout
       .profile_picture style=("background-image: url(#{current_user.profile_image_url})" if current_user.profile_image_url)
-        .notifications = current_user.unread_notifications + current_user.unread_messages
+        a.notifications href=notifications_path = current_user.unread_notifications + current_user.unread_messages
   
   // mobile
   

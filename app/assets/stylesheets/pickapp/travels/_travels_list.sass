@@ -27,13 +27,16 @@
         &:hover
           opacity: 1
 
+  +xs
+    padding-bottom: 0.83rem
+
   .t_item
     width: 100%
-    height: 50px
+    min-height: 50px
     border-bottom: 1px solid rgba($p_stable, .35)
     cursor: pointer
     text-decoration: none !important
-    
+
     +display(flex)
     +transition(all .2s)
 
@@ -46,9 +49,22 @@
     &:hover
       background: rgba($p_stable, .1)
 
+    +xs
+      +flex-direction(column)
+      background: #f4f4f4
+      margin: 0.83rem
+      width: auto
+      border-bottom: none
+      +borderbox
+
     .ti_user
       +display(flex)
       margin-right: auto
+
+      +xs
+        margin: 0px auto
+        padding: 0.56rem 0px
+        background: #e8e8e8
 
       .profile_picture
         position: relative
@@ -62,6 +78,9 @@
         border-radius: 50%
         +box-shadow(0px 1px 3px rgba(black, .15))
 
+        +xs
+          margin: auto 10px auto auto
+
       .user_name
         margin: auto 10px
         line-height: 30px
@@ -72,11 +91,19 @@
         font-weight: 500
         text-decoration: none
 
+        +xs
+          font-size: 0.85em
+          margin: auto auto auto 0px
+
     .ti_meta
       +display(flex)
       margin: auto 0px
-      // padding: 0px 5px
       padding: 0px 0.278rem
+
+      +xs
+        margin: 0.55rem auto
+        +flex-wrap ( wrap )
+        +borderbox
 
       .ti_label
         height: 20px
@@ -89,6 +116,9 @@
         text-transform: uppercase
         border-radius: 3px
 
+        +xs
+          margin: auto 5px auto auto
+
       .ti_text
         height: 20px
         line-height: 20px
@@ -99,11 +129,15 @@
         color: $p_dark
         font-weight: 600
 
+        +xs
+          font-size: 0.85em
+          margin: auto auto auto 0px
+
     .ti_status
       margin: auto 10px auto 0px
       height: 20px
       line-height: 20px
-      text-align: 20px
+      text-align: center
       padding: 0px 5px
       // font-size: 12px
       font-size: 0.66em
@@ -112,11 +146,15 @@
       text-transform: uppercase
       border-radius: 3px
 
+      +xs
+        margin: 0px 10px 10px 10px
+        line-height: 35px
+        height: 35px
+        display: inline-block
+        font-size: 0.85em
+
       &.red
         background: $p_assertive
+
       &.orange
         background: $p_royal
-
-
-  
-      
