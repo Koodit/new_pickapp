@@ -1,0 +1,27 @@
+.jumbotron.small.red
+  .j_content
+    h1 NOTIFICHE
+
+.grid
+  .row
+    .col.single-page
+      .card
+        #notifications_center
+          .nc-section-toggle
+            .ncs-toggle.active data-type="notifications" onclick="setNotificationsListType('notifications')" <span>#{@notifications.count}</span> NUOVE NOTIFICHE
+            .ncs-toggle data-type="messages" onclick="setNotificationsListType('messages')" <span>#{@messages.count}</span> NUOVI MESSAGGI
+          
+          .nc-section.active data-type="notifications"
+            - @notifications.each do |n|
+              a.nc-notification href=n.link class=('read' if n.clicked)
+                .fa.fa-bell
+                .n-content
+                  h4 = n.title
+                  p = n.body.html_safe
+          .nc-section data-type="messages"
+            - @messages.each do |m|
+              a.nc-notification href=m.link class=('read' if m.clicked)
+                .fa.fa-bell
+                .n-content
+                  h4 = m.title
+                  p = m.body.html_safe

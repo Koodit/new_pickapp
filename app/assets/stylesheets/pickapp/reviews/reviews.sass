@@ -1,0 +1,75 @@
+.reviews_pane
+	position: relative
+	margin: 0px !important
+	padding: 0px !important
+	padding-top: 10px !important
+
+.reviews_title
+	padding: 10px 15px
+	margin: 0px
+	margin-bottom: 15px
+	font-size: 15px
+	line-height: 20px
+	color: white
+	background: $p_assertive
+	font-weight: 800
+
+.reviews
+	padding-bottom: 15px
+
+	.review
+		margin: 0px 15px
+		margin-bottom: 15px
+		padding: 15px
+		background: #f8f8f8
+		border-radius: 10px
+		+borderbox
+
+		p
+			margin: 0px
+			margin-bottom: 10px
+			padding: 0px
+			font-size: 13px
+			line-height: 16px
+			color: $p_calm
+			font-weight: 700
+
+		textarea, .content
+			background: white
+			border: none
+			padding: 10px
+			margin-bottom: 10px
+			display: block
+			width: 100%
+			font-size: 13px
+			color: #666
+			border-radius: 5px
+			outline: none
+			+borderbox
+
+
+
+		.meta
+			+display ( flex )
+			height: 30px
+
+			.send
+				border: none
+				background: $p_assertive
+				padding: 0px 15px
+				height: 30px
+				line-height: 30px
+				font-weight: 800
+				text-transform: uppercase
+				color: white
+				font-size: 13px
+				cursor: pointer
+
+			.stars
+				margin: 0px
+				height: 30px !important
+				line-height: 30px !important
+				margin-right: auto
+
+				&.disabled > input:hover ~ label
+					background-position: 0 -30px !important

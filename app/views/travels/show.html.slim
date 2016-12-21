@@ -233,18 +233,80 @@
         .card
           .card_title.red
             .ct_icon.fa.fa-star
-            .ct_title RECENSIONI DA FARE
+            .ct_title RECENSIONI
 
-          .card_content
-            - if @travel_offer.driver_id != current_user.id
+          .card_content.reviews_pane
+            .reviews
+              - if @travel_offer.driver_id != current_user.id
                 - @travel_offer.travel_reviews.made_by_driver.each do |review|
-                  = form_for review, url: room_travel_travel_review_path(@travel_offer.room, @travel_offer, review), method: :put do |f|
-                    = f.text_area :content, placeholder: "Inserisci qui la tua recensione per #{review.target.name}"
-                    br
-                    = f.submit "Invia"
-            - else
-              - @travel_offer.travel_reviews.made_by_driver.each do |review|
-                = form_for review, url: room_travel_travel_review_path(@travel_offer.room, @travel_offer, review), method: :put do |f|
-                  = f.text_area :content, placeholder: "Inserisci qui la tua recensione per #{review.target.name}"
-                  br
-                  = f.submit "Invia"
+                  - if review.to_be_written
+                    .review
+                      = form_for review, url: room_travel_travel_review_path(@travel_offer.room, @travel_offer, review), method: :put do |f|
+                        p Recensione per #{review.target.full_name}
+                        = f.text_area :content, placeholder: "Inserisci qui la tua recensione per #{review.target.name}"
+                        .meta
+                          fieldset.starability-basic.stars
+                            input#first-rate5 name="rating" type="radio" value="10"
+                            label for="first-rate5" title="Amazing" 5 stars
+                            input#first-rate4 name="rating" type="radio" value="8"
+                            label for="first-rate4" title="Very good" 4 stars
+                            input#first-rate3 name="rating" type="radio" value="6"
+                            label for="first-rate3" title="Average" 3 stars
+                            input#first-rate2 name="rating" type="radio" value="4"
+                            label for="first-rate2" title="Not good" 2 stars
+                            input#first-rate1 name="rating" type="radio" value="2"
+                            label for="first-rate1" title="Terrible" 1 star
+                          = f.submit "Invia", class:'send'
+                  - else
+                    .review
+                      p Recensione per #{review.target.full_name}
+                      .content = review.content
+                      .meta
+                        fieldset.starability-basic.stars.disabled
+                          input#first-rate5 name="rating" type="radio" value="10" disabled="true" checked=(true if review.rating == 10)
+                          label for="first-rate5" title="Amazing" 5 stars
+                          input#first-rate4 name="rating" type="radio" value="8" disabled="true" checked=(true if review.rating == 8)
+                          label for="first-rate4" title="Very good" 4 stars
+                          input#first-rate3 name="rating" type="radio" value="6" disabled="true" checked=(true if review.rating == 6)
+                          label for="first-rate3" title="Average" 3 stars
+                          input#first-rate2 name="rating" type="radio" value="4" disabled="true" checked=(true if review.rating == 4)
+                          label for="first-rate2" title="Not good" 2 stars
+                          input#first-rate1 name="rating" type="radio" value="2" disabled="true" checked=(true if review.rating == 2)
+                          label for="first-rate1" title="Terrible" 1 star
+
+              - else
+                - @travel_offer.travel_reviews.made_by_driver.each do |review|
+                  - if review.to_be_written
+                    .review
+                      = form_for review, url: room_travel_travel_review_path(@travel_offer.room, @travel_offer, review), method: :put do |f|
+                        p Recensione per #{review.target.full_name}
+                        = f.text_area :content, placeholder: "Inserisci qui la tua recensione per #{review.target.name}"
+                        .meta
+                          fieldset.starability-basic.stars
+                            input#first-rate5 name="rating" type="radio" value="10"
+                            label for="first-rate5" title="Amazing" 5 stars
+                            input#first-rate4 name="rating" type="radio" value="8"
+                            label for="first-rate4" title="Very good" 4 stars
+                            input#first-rate3 name="rating" type="radio" value="6"
+                            label for="first-rate3" title="Average" 3 stars
+                            input#first-rate2 name="rating" type="radio" value="4"
+                            label for="first-rate2" title="Not good" 2 stars
+                            input#first-rate1 name="rating" type="radio" value="2"
+                            label for="first-rate1" title="Terrible" 1 star
+                          = f.submit "Invia", class:'send'
+                  - else
+                    .review
+                      p Recensione per #{review.target.full_name}
+                      .content = review.content
+                      .meta
+                        fieldset.starability-basic.stars.disabled
+                          input#first-rate5 name="rating" type="radio" value="10" disabled="true" checked=(true if review.rating == 10)
+                          label for="first-rate5" title="Amazing" 5 stars
+                          input#first-rate4 name="rating" type="radio" value="8" disabled="true" checked=(true if review.rating == 8)
+                          label for="first-rate4" title="Very good" 4 stars
+                          input#first-rate3 name="rating" type="radio" value="6" disabled="true" checked=(true if review.rating == 6)
+                          label for="first-rate3" title="Average" 3 stars
+                          input#first-rate2 name="rating" type="radio" value="4" disabled="true" checked=(true if review.rating == 4)
+                          label for="first-rate2" title="Not good" 2 stars
+                          input#first-rate1 name="rating" type="radio" value="2" disabled="true" checked=(true if review.rating == 2)
+                          label for="first-rate1" title="Terrible" 1 star
