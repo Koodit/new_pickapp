@@ -121,28 +121,28 @@
                 - if @travel_offer.car.can_smoke
                   i.fa.fa-check.bg-balanced
                 - else
-                  i.fa.fa-check.bg-assertive
+                  i.fa.fa-close.bg-assertive
                 span Accetta fumatori
 
               li
                 - if @travel_offer.car.animals_allowed
                   i.fa.fa-check.bg-balanced
                 - else
-                  i.fa.fa-check.bg-assertive
+                  i.fa.fa-close.bg-assertive
                 span Accetta animali
 
               li
                 - if @travel_offer.flexible_departure
                   i.fa.fa-check.bg-balanced
                 - else
-                  i.fa.fa-check.bg-assertive
+                  i.fa.fa-close.bg-assertive
                 span Orario flessibile
 
               li
                 - if @travel_offer.can_repay
                   i.fa.fa-check.bg-balanced
                 - else
-                  i.fa.fa-check.bg-assertive
+                  i.fa.fa-close.bg-assertive
                 span Richiede rimborso
         
         - if @travel_offer.travel_stops.any?

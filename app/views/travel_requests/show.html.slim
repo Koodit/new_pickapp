@@ -1,0 +1,91 @@
+.jumbotron.blue.small
+  .j_content
+    - if @travel_request.towards_room
+      h1 = "Richiesta per #{@travel_request.room.name}"
+    - else
+      h1 = "Richiesta da #{@travel_request.room.name}"
+
+.back_button_container
+  a.back_button href=room_path(@travel_request.room) Torna a #{@travel_request.room.name}
+
+.grid.travel-page
+  .row
+    .col.x4
+      .card
+        .travel-map#travel-map
+        .travel-meta
+          .spacer
+          - if @travel_request.passenger_id == current_user.id
+            = link_to 'Elimina Viaggio', room_travel_request_path(@travel_request.room, @travel_request), data: { confirm: "Sei sicuro?" }, method: :delete, class:'t-button assertive'
+
+        .t-details
+          .block
+            ul.meta_list
+              - if @travel_request.passenger_id == current_user.id
+                li
+                  i.fa.fa-user
+                  span
+                    | Pubblicato da 
+                    strong te
+              - else
+                li.action ng-click="showProfileDialog(travel.driver.id)"
+                  i.fa.fa-user
+                  span Pubblicato da <strong>#{@travel_request.passenger.full_name}</strong>
+
+              li
+                i.fa.fa-calendar
+                span <strong>Partenza:</strong> #{l(@travel_request.one_way_datetime, format: '%d %B alle %H:%M')}
+
+              li
+                i.fa.fa-flag-o.bg-balanced
+                span
+                  - if @travel_request.towards_room
+                    strong Da: 
+                    = " #{@travel_request.starting_address}"
+                  - else
+                    strong Da: 
+                    = " #{@travel_request.room.name}"
+
+              li
+                i.fa.fa-flag-checkered.bg-assertive
+                span
+                  - if @travel_request.towards_room
+                    strong A: 
+                    = " #{@travel_request.room.name}"
+                  - else
+                    strong A: 
+                    = " #{@travel_offer.starting_address}"
+      
+          .block
+            ul.meta_list
+              li
+                - if @travel_request.flexible_departure
+                  i.fa.fa-check.bg-balanced
+                - else
+                  i.fa.fa-close.bg-assertive
+                span Orario flessibile
+
+              li
+                - if @travel_request.can_repay
+                  i.fa.fa-check.bg-balanced
+                - else
+                  i.fa.fa-close.bg-assertive
+                span Richiede rimborso
+
+
+    .col
+      .card
+        .card_title
+          .ct_icon.fa.fa-comments
+          .ct_title CHAT PUBBLICA
+
+        .chat#travel_request_chat data-travel-request-id="#{@travel_request.id}"
+          .chat_messages#chat_messages
+            .iscroll-scroller
+              = render @travel_request.travel_request_messages, {user_requester_id: current_user.id, use_requester_id: true}
+
+          = form_for @travel_request_message, url: '#', authenticity_token: true do |f|
+            = f.text_field :content, placeholder: 'Scrivi un messaggio...', autocomplete: :off
+            = f.hidden_field :travel_id, class:'chat_input', value: @travel_request.id
+            button.chat_submit data-send="travel_request_message"
+              i.fa.fa-paper-plane

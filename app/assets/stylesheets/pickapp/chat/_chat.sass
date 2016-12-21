@@ -3,7 +3,7 @@
   min-height: 400px
   height: 50vh
 
-  .iScrollVerticalScrollbar 
+  .iScrollVerticalScrollbar
     position: absolute !important
     z-index: 99 !important
     width: 7px !important
@@ -95,7 +95,7 @@
         span
           font-size: 10px
 
-  #new_public_message, #new_private_message
+  #new_public_message, #new_private_message, #new_travel_request_message
     position: absolute
     width: 100%
     left: 0px
@@ -104,7 +104,7 @@
 
     +display(flex)
 
-    #public_message_content, #private_message_content
+    #public_message_content, #private_message_content, #travel_request_message_content
       +flex(1)
       border: none
       padding: 0px
@@ -127,5 +127,3 @@
       width: 45px
       font-size: 22px
       background: darken($p_calm, 15%)
-
-

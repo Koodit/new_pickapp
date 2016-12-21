@@ -1,5 +1,20 @@
 Paloma.controller('TravelRequests', {
 
+  show: ->
+    # Room Map
+
+    travel_map = new Pickapp.map({
+      element: 'travel-map'
+      zoom: 15
+      minZoom: 15
+      maxZoom: 20
+      center: {lat: this.params.travel_request.lat, lng: this.params.travel_request.lng}
+      disableUI: true
+      draggable: false
+    })
+
+    travel_map.add_marker({id:'travel', choords: {lat: this.params.travel_request.lat, lng: this.params.travel_request.lng} })
+
   new: ->
     current_date = new Date().timeNow()
     flatpickr_config = {
@@ -23,7 +38,7 @@ Paloma.controller('TravelRequests', {
         document.querySelector('.towards_room_label_text').innerHTML = 'Da'
         document.querySelector('.desired_address_label_text').innerHTML = 'Indirizzo di Destinazione'
 
-    
-      
+
+
 
 })

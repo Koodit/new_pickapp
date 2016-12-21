@@ -1,7 +1,9 @@
 class TravelRequestsController < ApplicationController
   before_action :set_travel_request, only: [:show, :destroy]
 
-  def show  
+  def show
+    @travel_request_message = TravelRequestMessage.new
+    js travel_request: { lat: @travel_request.lat, lng: @travel_request.lng }
   end
 
   def new
