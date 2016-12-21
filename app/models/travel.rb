@@ -27,7 +27,7 @@ class Travel < ApplicationRecord
   validates_presence_of :car_id,
                         :departure_datetime, on: :create
 
-  validates_presence_of :repetions_amount, if: :is_recursive?
+  validates_presence_of :repetions_amount, if: :is_recursive?, on: :create
   validates_presence_of :back_departure_datetime, if: :is_backwards_too?
 
   scope :available_now, -> { where("departure_datetime > ?", Time.now) }

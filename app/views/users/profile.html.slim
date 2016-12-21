@@ -6,8 +6,8 @@
   .row
     .col.profile-sidebar
       .card
-        .uc_notifications = current_user.unread_notifications
-        .uc_messages = current_user.unread_messages
+        a.uc_notifications href=notifications_path = current_user.unread_notifications
+        a.uc_messages href=notifications_path = current_user.unread_messages
 
         .card_content
           .profile-picture-container

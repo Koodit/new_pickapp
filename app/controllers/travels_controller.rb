@@ -123,6 +123,11 @@ class TravelsController < ApplicationController
       end
       redirect_to room_travel_path(@travel_offer.room, @travel_offer)
     end
+    if @travel_offer.errors.any?
+      @travel_offer.errors.full_messages.each do |msg|
+        puts msg
+      end
+    end
   end
 
   private
