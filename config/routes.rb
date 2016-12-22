@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   root "home#index"
 
+  ## TEMPORARY FIX FOR API
+  match "/auth" => "/api/auth"
+
   get "/progetto", to: 'home#progetto', as: 'progetto'
   get "/regolamento", to: 'home#regolamento', as: 'regolamento'
   get "/contatti", to: 'home#contatti', as: 'contatti'
