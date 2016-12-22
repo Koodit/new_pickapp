@@ -20,6 +20,23 @@ Rails.application.configure do
     }
   }
 
+  ##### ACTIONMAILER
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    address: "smtp.mandrillapp.com",
+    port: 587,
+    #domain: "koodit.it",
+    #authentication: "plain",
+    #enable_starttls_auto: true,
+    user_name: "a.macchieraldo@koodit.it",
+    password: "8TGbblcuNApLQRAw4FQ4Jw"
+  }
+
+  config.action_mailer.default_url_options = {
+    host: "pick-app.it"
+  }
+
   ##### ACTIONCABLE
   config.action_cable.url = "ws://www.pick-app.it/cable"
   config.action_cable.allowed_request_origins = ['http://www.pick-app.it']
