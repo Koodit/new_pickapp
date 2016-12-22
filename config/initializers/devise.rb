@@ -3,7 +3,7 @@
 
 Devise.mailchimp_api_key = 'ccf4eba394114e52aa32d1fb8906feec-us7'
 Devise.mailing_list_name = 'PickApp'
-# Devise.double_opt_in = false  
+# Devise.double_opt_in = false
 # Devise.send_welcome_email = false
 # Devise::Mailer.layout "mailer"
 
@@ -13,7 +13,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '7a2873c4b1f4ca2323f72baf063f29755df89d72994cce4671512c197411326ee4f0bbcb92bbc2b7d71b9fb8f87a728858b03318536725c05052ef712912615d'
+  config.secret_key = 'cee1d7fa61a58d535a54fb3fdc262edaaaf5e06c8c769d72a909b0d7ab6e287d8ec5b8022493e49c8656bc54dc3d8efb00972f0068367422a7e147e3d10dd0b2'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
