@@ -79,15 +79,16 @@
               .input_container.flex-item
                 label PAGINA TRIPADVISOR (url)
                 = f.text_field :trip_advisor
-
-            .input_container
-              label È UNA SCUOLA?
-              .checkbox
-                .check_text È UNA SCUOLA
-                = f.check_box :is_school, class: 'is_school_check'
-                = f.label :is_school, class: 'check_toggle'
-                  .pin
             
+            - if @can_be_school
+              .input_container
+                label È UNA SCUOLA?
+                .checkbox
+                  .check_text È UNA SCUOLA
+                  = f.check_box :is_school, class: 'is_school_check'
+                  = f.label :is_school, class: 'check_toggle'
+                    .pin
+              
             - if room.is_school
               - should_disply_srs = 'block'
             - else

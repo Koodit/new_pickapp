@@ -10,6 +10,7 @@ class Admin::RoomsController < AdminController
 
   def new
     @room = Room.new
+    @can_be_school = true
     unless @room.school_room_setting.present?
       @room.school_room_setting = SchoolRoomSetting.new
     end
@@ -26,7 +27,7 @@ class Admin::RoomsController < AdminController
 
   def edit
     unless @room.school_room_setting.present?
-      @room.school_room_setting = SchoolRoomSetting.new
+      @can_be_school = false
     end
   end
 
