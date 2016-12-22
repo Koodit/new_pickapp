@@ -43,7 +43,7 @@ document.addEventListener "DOMContentLoaded", ->
         # chat_message.classList.add('chat_message')
         # chat_message.classList.add('is_yours') if CURRENT_USER_ID == data.sender_id
         # chat_message.innerHTML = data.public_message
-        chat_message = domParser.parseFromString(data.public_message, "text/html").querySelector('.chat_message')
+        chat_message = domParser.parseFromString(data.travel_request_message, "text/html").querySelector('.chat_message')
         chat_message.classList.add('is_yours') if CURRENT_USER_ID == data.sender_id
         chat_messages_container.appendChild(chat_message)
         feed_menu_scroll.refresh()
