@@ -2,9 +2,11 @@
   +display(flex)
   margin: auto
   width: 60%
-  min-width: 200px
 
   +flex-wrap( wrap )
+
+  +xs
+    width: 80%
 
   input
     display: block
@@ -14,6 +16,26 @@
     line-height: 40px
     padding: 0px 10px
     box-sizing: border-box
+    border: 1px solid $p_stable
+    background: white
+    outline: none
+    color: $p_stable
+    font-size: 13px
+    font-weight: 700
+    border-radius: 0px
+
+    +box-shadow( inset 0px 0px 0px -3px $p_stable )
+    +transition( all .15s ease-in-out )
+
+    &:focus
+      +box-shadow( inset 0px 6px 0px -3px $p_calm)
+
+    +appearance(none)
+    -webkit-appearance: none
+    -moz-appearance: none
+    appearance: none
+
+    outline: none
 
   input[type=submit]
     +flex ( 1 0 250px )
@@ -29,6 +51,8 @@
     background: $p_balanced
     box-sizing: border-box
 
+
+
 .home-text-box
   margin: auto
   padding: 0px 10px
@@ -40,7 +64,7 @@
   @include align-items ( flex-start )
   @include flex ( 1 1 275px )
   @include borderbox
-  
+
 
   .icon-container
     margin: 0px
@@ -91,7 +115,7 @@
 
 .home-sections
   position: relative
-  
+
   .section
     margin: 0 !important
     min-height: 20rem

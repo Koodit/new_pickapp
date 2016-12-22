@@ -32,6 +32,12 @@ button, .button
 
   font-size: 14px
   font-weight: 800
+  border-radius: 0px
+
+  +appearance(none)
+  -webkit-appearance: none
+  -moz-appearance: none
+  appearance: none
 
   &.block
     display: block
@@ -58,7 +64,7 @@ button, .button
   +create-button-colors('blue', $p_calm)
   +create-button-colors('orange', $p_royal)
   +create-button-colors('facebook', $facebook)
-  
+
   &:active
     background: shade($p_dark, 5%)
 

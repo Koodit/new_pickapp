@@ -15,7 +15,7 @@ form, .form
       color: $p_royal !important
       font-size: 12px !important
 
-  
+
     label
       display: block
       position: relative
@@ -32,7 +32,7 @@ form, .form
         float: right
         color: $p_royal
 
-    
+
     input, textarea
       position: relative
       box-sizing: border-box
@@ -45,12 +45,20 @@ form, .form
       color: $p_stable
       font-size: 13px
       font-weight: 700
+      border-radius: 0px
 
       +box-shadow( inset 0px 0px 0px -3px $p_stable )
       +transition( all .15s ease-in-out )
 
       &:focus
         +box-shadow( inset 0px 6px 0px -3px $p_calm)
+
+      +appearance(none)
+      -webkit-appearance: none
+      -moz-appearance: none
+      appearance: none
+
+      outline: none
 
     textarea
       padding: 15px
