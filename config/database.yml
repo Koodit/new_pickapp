@@ -82,4 +82,4 @@ production:
   <<: *default
   database: new_pickapp_production
   username: pickapp
-  password: <%= ENV['PICKAPP_DATABASE_PASSWORD'] %>
+  password: yW6TqyQzrZfoZfeMCZjrfDUv
