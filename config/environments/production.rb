@@ -20,6 +20,10 @@ Rails.application.configure do
     }
   }
 
+  ##### ACTIONCABLE
+  config.action_cable.url = "ws://www.pick-app.it/cable"
+  config.action_cable.allowed_request_origins = ['http://www.pick-app.it']
+
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
