@@ -85,8 +85,8 @@ class NotificationService
     I18n.t("notification.travel_expired.body", room_name: room_name)
   end
 
-  def link_for_expired_travel(travel_id)
-    I18n.t("notification.travel_expired.link", travel_id: travel_id)
+  def link_for_expired_travel(room_id, travel_id)
+    I18n.t("notification.travel_expired.link", room_id: room_id, travel_id: travel_id)
   end
 
   def title_for_expired_travel_for_passenger
@@ -97,8 +97,8 @@ class NotificationService
     I18n.t("notification.travel_expired_for_passenger.body", room_name: room_name)
   end
   
-  def link_for_expired_travel_for_passenger(travel_id)
-    I18n.t("notification.travel_expired_for_passenger.link", travel_id: travel_id)
+  def link_for_expired_travel_for_passenger(room_id, travel_id)
+    I18n.t("notification.travel_expired_for_passenger.link", room_id: room_id, travel_id: travel_id)
   end
 
   ###################### user applied for travel

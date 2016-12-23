@@ -56,7 +56,7 @@ class NotificationWorker
         ns = NotificationService.new
         @notification.title = ns.title_for_expired_travel_for_passenger
         @notification.body = ns.body_for_expired_travel_for_passenger(travel.room.name)
-        @notification.link = ns.link_for_expired_travel_for_passenger(travel.id)
+        @notification.link = ns.link_for_expired_travel_for_passenger(travel.room.id, travel.id)
         @notification.params = options
         @notification.save
       else
@@ -76,7 +76,7 @@ class NotificationWorker
             ns = NotificationService.new
             @notification.title = ns.title_for_expired_travel
             @notification.body = ns.body_for_expired_travel(travel.room.name)
-            @notification.link = ns.link_for_expired_travel(travel.id)
+            @notification.link = ns.link_for_expired_travel(travel.room.id, travel.id)
             @notification.params = options
             @notification.save
           end
