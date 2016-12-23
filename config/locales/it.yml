@@ -19,6 +19,7 @@ it:
       less_than_or_equal_to: deve essere meno o uguale a %{count}
       not_a_number: non è un numero
       not_an_integer: non è un intero
+      taken: già in uso
       odd: deve essere dispari
       password_change_needed: Per motivi di sicurezza è necessario cambiare password
         prima di accedere all'area riservata del sito
