@@ -3,6 +3,8 @@ class Api::Users::CustomOmniauthCallbacksController < DeviseTokenAuth::Applicati
   attr_reader :auth_params
   skip_before_action :set_user_by_token, raise: false
   skip_after_action :update_auth_header
+  skip_before_action :verify_authenticity_token
+  skip_before_action :authenticate_user!
 
   # intermediary route for successful omniauth authentication. omniauth does
   # not support multiple models, so we must resort to this terrible hack.
