@@ -3,7 +3,7 @@ class UserSerializer < ActiveModel::Serializer
 
   def profile_image_url
     if object.profile_image.present?
-      object.profile_image.url
+      object.profile_image.url(:medium)
     elsif object.provider == "facebook"
       "#{object.image}?width=400&height=400"
     else

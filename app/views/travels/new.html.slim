@@ -31,7 +31,7 @@
                     .pin
 
               .input_container.flex-item
-                = f.label 'SELEZIONA UN AUTO'
+                = f.label 'SELEZIONA UN\'AUTO'
                 .select-wrapper
                   = f.select :car_id, current_user.cars.collect { |c| [c.model, c.id] }, {}, { :class => 'select-dropdown' }
 
