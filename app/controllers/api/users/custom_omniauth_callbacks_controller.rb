@@ -97,8 +97,8 @@ class Api::Users::CustomOmniauthCallbacksController < DeviseTokenAuth::Applicati
   # break out provider attribute assignment for easy method extension
   def assign_provider_attrs(user, auth_hash)
     user.assign_attributes({
-      first_name: auth_hash[:first_name],
-      last_name: auth_hash[:last_name],
+      name: auth_hash[:first_name],
+      surname: auth_hash[:last_name],
       email: auth_hash[:email]
     })
   end
