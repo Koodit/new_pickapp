@@ -42,17 +42,13 @@ class Api::Users::CustomOmniauthCallbacksController < DeviseTokenAuth::Applicati
     yield @resource if block_given?
 
     new_auth_header = @resource.create_new_auth_token(@client_id)
-    if @resource.is_banned
-      render_create_error_ban(@resource.ban.reason)
-    else
-      # update response with the header that will be required by the next request
-      response.headers.merge!(new_auth_header)
-      UserVisit.create(user_id: @resource.id, user_ip: @resource.current_sign_in_ip, event_type:'app_login')
-      render json: {
-        data: resource_data(resource_json: @resource.token_validation_response)
-      }
-      # render_data_or_redirect('deliverCredentials', @auth_params.as_json, @resource.as_json)
-    end
+
+    # update response with the header that will be required by the next request
+    response.headers.merge!(new_auth_header)
+    render json: {
+      data: resource_data(resource_json: @resource.token_validation_response)
+    }
+    # render_data_or_redirect('deliverCredentials', @auth_params.as_json, @resource.as_json)
   end
 
   def omniauth_failure
@@ -61,13 +57,6 @@ class Api::Users::CustomOmniauthCallbacksController < DeviseTokenAuth::Applicati
   end
 
   protected
-
-  def render_create_error_ban(reason)
-    render json: {
-      is_banned: true,
-      errors: ["#{reason}"]
-    }, status: 401
-  end
 
   # this will be determined differently depending on the action that calls
   # it. redirect_callbacks is called upon returning from successful omniauth
