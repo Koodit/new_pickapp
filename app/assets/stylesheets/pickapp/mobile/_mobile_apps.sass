@@ -1,0 +1,42 @@
+#mobile_apps
+  +position(fixed, 0 0 0 0)
+  z-index: 9999
+  background: rgba(white, .9)
+  opacity: 0
+  visibility: hidden
+
+  +display(flex)
+
+  +xs
+    opacity: 1
+    visibility: visible
+
+  &.hide
+    +xs
+      opacity: 0 !important
+      visibility: hidden !important
+
+  #close-mobile-apps
+    +position(absolute, 20px auto auto 50%)
+    margin-left: -22.5px
+    width: 45px
+    height: 45px
+    line-height: 45px
+    font-size: 30px
+    text-align: center
+    color: $p_stable
+
+    &:active
+      color: $p_assertive
+
+  .ma-content
+    margin: auto
+    padding: 60px 20px
+    text-align: center
+
+    h2
+      color: $p_dark
+
+    h4
+      color: $p_stable
+      font-weight: 600
