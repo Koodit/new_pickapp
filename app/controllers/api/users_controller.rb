@@ -8,7 +8,7 @@ class Api::UsersController < Api::ApiController
   before_action :authenticate_admin_user!, only: [:pending_drivers, :pending_driver_verification_count, :auth_pending_driver]
 
   # skip_before_filter :authenticate_cors_user, only: [:sign_for_school, :profile]
-  skip_before_action :authenticate_user!, only: [:sign_for_school, :profile]
+  skip_before_action :authenticate_user!, only: [:sign_for_school, :profile, :check_for_available_email]
 
   # api :GET, "/users/:id", "Get all user available data."
   def show
