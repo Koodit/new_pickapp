@@ -59,6 +59,8 @@ class NotificationWorker
         @notification.link = ns.link_for_expired_travel_for_passenger(travel.room.id, travel.id)
         @notification.params = options
         @notification.save
+        approved_user = ApprovedUser.find(options["approved_user_id"])
+        approved_user.destroy
       else
         puts "Travel needs to be marked as completed, notification for driver"
         if options["completion_token"] == travel.completion_token

@@ -120,9 +120,8 @@ class TravelsController < ApplicationController
         review_for_driver.save
         BadgeWorker.perform_async(approved_user.user_id, "CitizenBadge")
         BadgeWorker.perform_async(nil, "SocialMasterBadge", options = { driver_id: current_user.id, passenger_id: approved_user.user_id })
-        # NotificationWorker.perform_async("travel_confirmed_for_passenger", @travel_offer.driver_id, approved_user.user_id, options = { travel_expired_for_driver: true, is_passenger: true, travel_id: @travel_offer.id })
-        # TravelEmailJob.perform_later(receiver_id, options={room_id: travel.room.id, travel_id: travel.id, for_travel_completion: true})
-        approved_user.destroy
+        TravelEmailJob.perform_later(approved_user.user_id, options={room_id: @travel_offer.room.id, travel_id: @travel_offer.id, for_travel_completion: true})
+        NotificationWorker.perform_async("travel_confirmed_for_passenger", @travel_offer.driver_id, nil, options = { travel_expired_for_driver: true, is_passenger: true, travel_id: @travel_offer.id, approved_user_id: approved_user.id })
       end
       redirect_to room_travel_path(@travel_offer.room, @travel_offer)
     end
