@@ -95,6 +95,7 @@ Rails.application.routes.draw do
     end
     resources :users, only: [:show, :create, :update] do
       get '/preferred_rooms', to: "users#preferred_rooms"
+      get '/check_for_available_email', to: "users#check_for_available_email"
       collection do
         get ':id/profile', to: "users#profile"
         # post ':id/sign_for_school/:school_code', to: "users#sign_for_school"
