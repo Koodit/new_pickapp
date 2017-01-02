@@ -77,6 +77,7 @@ class TravelsController < ApplicationController
   def apply_user
     @travel_offer.applied_users.create user_id: current_user.id
     NotificationWorker.perform_async("user_applied_to_travel", current_user.id, @travel_offer.driver_id, options = { user_applied_to_travel: true, travel_id: @travel_offer.id })
+    TravelEmailJob.perform_later(@travel_offer.driver_id, options={emitter_id: current_user.id, room_id: @travel_offer.room.id, travel_id: @travel_offer.id, for_applied_user: true})
     redirect_to room_travel_path(@travel_offer.room, @travel_offer)
   end
 
@@ -96,6 +97,7 @@ class TravelsController < ApplicationController
     applied.destroy
     approved = @travel_offer.approved_users.create user_id: params[:user_id]
     NotificationWorker.perform_async("user_approved_by_driver", current_user.id, params[:user_id], options = { user_approved_by_driver: true, travel_id: @travel_offer.id })
+    TravelEmailJob.perform_later(params[:user_id], options={emitter_id: current_user.id, room_id: @travel_offer.room.id, travel_id: @travel_offer.id, for_user_approved: true})
     redirect_to room_travel_path(@travel_offer.room, @travel_offer)
   end
 
@@ -119,6 +121,7 @@ class TravelsController < ApplicationController
         BadgeWorker.perform_async(approved_user.user_id, "CitizenBadge")
         BadgeWorker.perform_async(nil, "SocialMasterBadge", options = { driver_id: current_user.id, passenger_id: approved_user.user_id })
         # NotificationWorker.perform_async("travel_confirmed_for_passenger", @travel_offer.driver_id, approved_user.user_id, options = { travel_expired_for_driver: true, is_passenger: true, travel_id: @travel_offer.id })
+        # TravelEmailJob.perform_later(receiver_id, options={room_id: travel.room.id, travel_id: travel.id, for_travel_completion: true})
         approved_user.destroy
       end
       redirect_to room_travel_path(@travel_offer.room, @travel_offer)

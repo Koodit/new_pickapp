@@ -12,6 +12,7 @@ class Admin::PendingDriverVerificationsController < AdminController
   def become_driver
     @pending_driver.update is_driver: true, pending_driver_verification: false
     redirect_to admin_pending_driver_verifications_path, notice: "Aggiunto utente come driver con successo"
+    DriverJob.perform_later(@pending_driver.id, options={approve_driver: true})
   end
 
   def deny_driver
@@ -23,6 +24,7 @@ class Admin::PendingDriverVerificationsController < AdminController
       body: "I dati forniti per diventare guidatore non sono stati accettati, per favore invia di nuovo."
     )
     redirect_to admin_pending_driver_verifications_path, notice: "Rifiutato utente come driver con successo"
+    DriverJob.perform_later(@pending_driver.id, options={deny_driver: true})
   end
 
   private
