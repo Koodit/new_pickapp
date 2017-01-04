@@ -107,3 +107,6 @@ gem 'rack-cors', require: 'rack/cors'
 
 ##### Porcata vecchia per la ricerca
 gem 'textacular'
+
+##### NewRelic
+gem 'newrelic_rpm'
