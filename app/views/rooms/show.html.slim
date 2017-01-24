@@ -54,8 +54,8 @@
         .card_title
           .ct_icon.fa.fa-car
           .ct_actions
-            .action.active.toggle_travels_list.travel_requests Richieste
-            .action.toggle_travels_list.travel_offers Offerte
+            .action.active.toggle_travels_list.travel_requests Richieste (#{@travel_requests.count})
+            .action.toggle_travels_list.travel_offers Offerte (#{@travel_offers.count})
 
         .travels_list.travel_requests.active
           - if @travel_requests.any?

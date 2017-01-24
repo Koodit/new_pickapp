@@ -5,7 +5,13 @@ class TravelsController < ApplicationController
 
   def show
     @public_message = PublicMessage.new
-    js travel_offer: { lat: @travel_offer.starting_lat, lng: @travel_offer.starting_lng }
+    room = @travel_offer.room
+
+    if @travel_offer.towards_room
+      js travel_offer: { lat: room.lat, lng: room.long }
+    else
+      js travel_offer: { lat: @travel_offer.destination_lat , lng: @travel_offer.destination_lng }
+    end
   end
 
   def new

@@ -26,7 +26,9 @@ Paloma.controller('Rooms', {
 
     document.querySelector('.toggle_travels_list.travel_offers').addEventListener 'click', ->
       activateTravelsList('travel_offers', 'travel_requests')
-  
+
+    activateTravelsList('travel_offers', 'travel_requests')
+
   search: ->
 
     # towards_room

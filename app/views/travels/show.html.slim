@@ -81,13 +81,13 @@
 
               li
                 i.fa.fa-flag-checkered.bg-assertive
-                span
-                  - if @travel_offer.towards_room
+                span.capitalize
+                  - if !@travel_offer.towards_room
                     strong A: 
-                    = " #{@travel_offer.room.name}"
+                    = " #{@travel_offer.destination_address}"
                   - else
                     strong A: 
-                    = " #{@travel_offer.starting_address}"
+                    = " #{@travel_offer.room.name}"
 
               li
                 i.fa.fa-car
