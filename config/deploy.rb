@@ -35,17 +35,19 @@ namespace :deploy do
     end
   end
 
-  # after :restart, :clear_cache do
-  #   on roles(:web), in: :groups, limit: 3, wait: 10 do
-  #     execute "cd #{deploy_to}/current && ( RAILS_ENV=production ~/.rvm/bin/rvm 2.2.2 do bundle exec rake searchkick:reindex CLASS=Event)"
-  #     execute "cd #{deploy_to}/current && ( RAILS_ENV=production ~/.rvm/bin/rvm 2.2.2 do bundle exec rake searchkick:reindex CLASS=Attraction)"
-  #     execute "cd #{deploy_to}/current && ( RAILS_ENV=production ~/.rvm/bin/rvm 2.2.2 do bundle exec rake searchkick:reindex CLASS=AttractionCategory)"
-  #     execute "cd #{deploy_to}/current && ( RAILS_ENV=production ~/.rvm/bin/rvm 2.2.2 do bundle exec rake searchkick:reindex CLASS=SportCategory)"
-  #     execute "cd #{deploy_to}/current && ( RAILS_ENV=production ~/.rvm/bin/rvm 2.2.2 do bundle exec rake searchkick:reindex CLASS=SportEntity)"
-  #     execute "cd #{deploy_to}/current && ( RAILS_ENV=production ~/.rvm/bin/rvm 2.2.2 do bundle exec rake searchkick:reindex CLASS=ArtCategory)"
-  #     execute "cd #{deploy_to}/current && ( RAILS_ENV=production ~/.rvm/bin/rvm 2.2.2 do bundle exec rake searchkick:reindex CLASS=ArtEntity)"
-  #     execute "cd #{deploy_to}/current && ( RAILS_ENV=production ~/.rvm/bin/rvm 2.2.2 do bundle exec rake searchkick:reindex CLASS=OutdoorCategory)"
-  #     execute "cd #{deploy_to}/current && ( RAILS_ENV=production ~/.rvm/bin/rvm 2.2.2 do bundle exec rake searchkick:reindex CLASS=OutdoorEntity)"
-  #   end
-  # end
+  after :deploy do
+    on roles(:app), in: :groups, limit: 3, wait: 10 do
+      invoke 'rake searchkick:reindex CLASS=Room'
+      # execute "cd #{deploy_to}/current && ( RAILS_ENV=production ~/.rvm/bin/rvm 2.2.2 do bundle exec rake searchkick:reindex CLASS=OutdoorEntity)"
+    end
+  end
+end
+
+namespace :searchkick do
+  desc 'Initial Deploy'
+  task :reindex do
+    on roles(:app), in: :groups, limit: 3, wait: 10 do
+      invoke 'rake searchkick:reindex CLASS=Room'
+    end
+  end
 end
