@@ -50,12 +50,3 @@ namespace :reindex do
     end
   end
 end
-
-# namespace :searchkick do
-#   desc 'Initial Deploy'
-#   task :reindex do
-#     on roles(:app), in: :groups, limit: 3, wait: 10 do
-#       invoke 'rake searchkick:reindex CLASS=Room'
-#     end
-#   end
-# end
