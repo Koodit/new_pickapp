@@ -1,9 +1,7 @@
 class ReviewReceivedSerializer < ActiveModel::Serializer
-  attributes :id, :rating, :content
-
-  has_one :user, serializer: SlimUserSerializer
+  attributes :id, :rating, :content, :user
 
   def user
-    object.user
+    SlimUserSerializer.new(object.user, scope: scope, root: false)
   end
 end

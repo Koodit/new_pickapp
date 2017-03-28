@@ -1,10 +1,18 @@
 class UserProfileSerializer < ActiveModel::Serializer
-  attributes :id, :name, :surname, :profile_image_url
+  attributes :id, :name, :surname, :profile_image_url, :received_reviews_score
 
   has_many :received_reviews, serializer: ReviewReceivedSerializer
 
   def received_reviews
     object.travel_reviews_as_target.where(to_be_written: false)
+  end
+
+  def received_reviews_score
+    if object.travel_reviews_as_target.where(to_be_written: false).count > 0
+      object.travel_reviews_as_target.where(to_be_written: false).sum(:rating) / object.travel_reviews_as_target.where(to_be_written: false).count
+    else
+      0
+    end
   end
 
   def profile_image_url
