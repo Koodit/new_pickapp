@@ -34,13 +34,20 @@ namespace :deploy do
       execute "ln -nfs /home/#{fetch(:user)}/apps/#{fetch(:application)}/current/config/nginx.conf /etc/nginx/sites-enabled/#{fetch(:application)}"
     end
   end
+
+  after :restart, :clear_cache do
+    invoke 'reindex:all'
+  end
 end
 
-namespace :rake do
+namespace :reindex do
   desc "Invoke rake task"
-  task :invoke do
-    run "cd #{deploy_to}/current"
-    run "bundle exec rake #{ENV['task']} RAILS_ENV=#{rails_env}"
+  task :all do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      within release_path do
+         execute :rake, 'searchkick:reindex CLASS=Room RAILS_ENV=production'
+      end
+    end
   end
 end
 
