@@ -34,21 +34,21 @@ namespace :deploy do
       execute "ln -nfs /home/#{fetch(:user)}/apps/#{fetch(:application)}/current/config/nginx.conf /etc/nginx/sites-enabled/#{fetch(:application)}"
     end
   end
+end
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      within release_path do
-         execute :rake, 'searchkick:reindex CLASS=Room'
-      end
-    end
+namespace :rake do
+  desc "Invoke rake task"
+  task :invoke do
+    run "cd #{deploy_to}/current"
+    run "bundle exec rake #{ENV['task']} RAILS_ENV=#{rails_env}"
   end
 end
 
-namespace :searchkick do
-  desc 'Initial Deploy'
-  task :reindex do
-    on roles(:app), in: :groups, limit: 3, wait: 10 do
-      invoke 'rake searchkick:reindex CLASS=Room'
-    end
-  end
-end
+# namespace :searchkick do
+#   desc 'Initial Deploy'
+#   task :reindex do
+#     on roles(:app), in: :groups, limit: 3, wait: 10 do
+#       invoke 'rake searchkick:reindex CLASS=Room'
+#     end
+#   end
+# end
