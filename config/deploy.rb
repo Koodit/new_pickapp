@@ -36,9 +36,10 @@ namespace :deploy do
   end
 
   after :restart, :clear_cache do
-    on roles(:app), in: :groups, limit: 3, wait: 10 do
-      invoke 'rake searchkick:reindex CLASS=Room'
-      # execute "cd #{deploy_to}/current && ( RAILS_ENV=production ~/.rvm/bin/rvm 2.2.2 do bundle exec rake searchkick:reindex CLASS=OutdoorEntity)"
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      within release_path do
+         execute :rake, 'searchkick:reindex CLASS=Room'
+      end
     end
   end
 end
