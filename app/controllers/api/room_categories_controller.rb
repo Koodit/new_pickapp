@@ -1,6 +1,6 @@
 class Api::RoomCategoriesController < Api::ApiController
   def index
-    @room_categories = RoomCategory.all
+    @room_categories = RoomCategory.all.with_rooms
     render json: @room_categories, each_serializer: SlimRoomCategorySerializer, root: false, status: 200
   end
 

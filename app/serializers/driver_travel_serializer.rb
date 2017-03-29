@@ -8,8 +8,8 @@ class DriverTravelSerializer < ActiveModel::Serializer
   has_one :car
   has_one :room, serializer: SlimRoomSerializer
 
-  has_many :applied_users, each_serializer: AppliedUserForDriverSerializer
-  has_many :approved_users, each_serializer: AppliedUserForDriverSerializer
+  has_many :applied_users, serializer: AppliedUserForDriverSerializer
+  has_many :approved_users, serializer: AppliedUserForDriverSerializer
 
   has_many :private_chats, each_serializer: PrivateChatSerializer
 

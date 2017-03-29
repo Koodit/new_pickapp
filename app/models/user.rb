@@ -123,6 +123,10 @@ class User < ApplicationRecord
     travels.count
   end
 
+  def travels_count
+    travel_requests.count
+  end
+
   def reviews_count
     travel_reviews.count
   end

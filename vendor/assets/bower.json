@@ -4,6 +4,7 @@
     "normalize.css": "latest",
     "flatpickr-calendar": "latest",
     "iscroll": "latest",
-    "notie": "latest"
+    "notie": "latest",
+    "jquery-modal": "latest"
   }
 }

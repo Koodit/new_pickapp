@@ -15,6 +15,14 @@ Paloma.controller('TravelRequests', {
 
     travel_map.add_marker({id:'travel', choords: {lat: this.params.travel_request.lat, lng: this.params.travel_request.lng} })
 
+    window.onShowUserProfile = (elmt, user_id) ->
+      event.preventDefault();
+      $.get( "#{window.location.protocol}//#{window.location.host}/api/users/#{user_id}/profile", (resp) ->
+        $( window.generateProfileModal(resp) ).appendTo('body').modal();
+      )
+      
+    
+
   new: ->
     current_date = new Date().timeNow()
     flatpickr_config = {

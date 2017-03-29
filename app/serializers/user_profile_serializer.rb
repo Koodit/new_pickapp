@@ -1,5 +1,5 @@
 class UserProfileSerializer < ActiveModel::Serializer
-  attributes :id, :name, :surname, :profile_image_url, :received_reviews_score
+  attributes :id, :name, :surname, :profile_image_url, :received_reviews_score, :created_at, :travels_count
 
   has_many :received_reviews, serializer: ReviewReceivedSerializer
 
@@ -7,8 +7,16 @@ class UserProfileSerializer < ActiveModel::Serializer
     object.travel_reviews_as_target.where(to_be_written: false)
   end
 
+  def created_at
+    object.created_at.strftime('%d/%m/%Y')
+  end
+
+  def travels_count
+    object.travels_count
+  end
+
   def received_reviews_score
-    if object.travel_reviews_as_target.where(to_be_written: false).count > 0
+    if object.travel_reviews_as_target.where(to_be_written: false).any?
       object.travel_reviews_as_target.where(to_be_written: false).sum(:rating) / object.travel_reviews_as_target.where(to_be_written: false).count
     else
       0

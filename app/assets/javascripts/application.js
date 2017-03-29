@@ -20,8 +20,8 @@
 //= require iscroll/build/iscroll
 //= require flatpickr-calendar/dist/flatpickr.min
 //= require flatpickr-calendar/dist/l10n/it
+//= require jquery-modal/jquery.modal.min
 //= require ./pickapp/_init
 //= require_tree ./pickapp/components
 //= require ./pickapp
 //= require_tree ./paloma
-

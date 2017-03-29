@@ -61,7 +61,7 @@
                     | Pubblicato da 
                     strong te
               - else
-                li.action ng-if="!travel.is_owner" ng-cloak="!travel.is_owner" ng-click="showProfileDialog(travel.driver.id)"
+                li.action ng-if="!travel.is_owner" ng-cloak="!travel.is_owner" onclick="onShowUserProfile(this, #{@travel_offer.driver.id})"
                   i.fa.fa-user
                   span Pubblicato da <strong>#{@travel_offer.driver.full_name}</strong>
 
@@ -163,8 +163,8 @@
                   - if @travel_offer.approved_users.any?
                     - @travel_offer.approved_users.each do |app_user|
                       = form_for @travel_offer, url: cancel_approval_room_travel_path(@travel_offer.room, @travel_offer, app_user.user_id), method: :post do |f|
-                        li
-                          .user_image style="background-image: url(#{app_user.user.profile_image_url})" ng-click="showProfileDialog(applied_user.user.id)"
+                        li onclick="onShowUserProfile(this, #{app_user.user.id})"
+                          .user_image style="background-image: url(#{app_user.user.profile_image_url})"
                           span ng-click="showProfileDialog(applied_user.id)"
                             | #{app_user.user.full_name}
                           - if !@travel_offer.waiting_for_confirm && !@travel_offer.completed
@@ -177,8 +177,8 @@
                   - if @travel_offer.passenger_travels.any?
                     - @travel_offer.passenger_travels.each do |app_user|
                       = form_for @travel_offer, url: cancel_approval_room_travel_path(@travel_offer.room, @travel_offer, app_user.user_id), method: :post do |f|
-                        li
-                          .user_image style="background-image: url(#{app_user.user.profile_image_url})" ng-click="showProfileDialog(applied_user.user.id)"
+                        li onclick="onShowUserProfile(this, #{app_user.user.id})"
+                          .user_image style="background-image: url(#{app_user.user.profile_image_url})"
                           span ng-click="showProfileDialog(applied_user.id)"
                             | #{app_user.user.full_name}
                   - else
@@ -191,8 +191,8 @@
                 - if @travel_offer.applied_users.any?
                   - @travel_offer.applied_users.each do |app_user|
                     = form_for @travel_offer, url: approve_user_room_travel_path(@travel_offer.room, @travel_offer, app_user.user_id), method: :post do |f|
-                      li
-                        .user_image style="background-image: url(#{app_user.user.profile_image_url})" ng-click="showProfileDialog(applied_user.user.id)"
+                      li onclick="onShowUserProfile(this, #{app_user.user.id})"
+                        .user_image style="background-image: url(#{app_user.user.profile_image_url})"
                         span ng-click="showProfileDialog(applied_user.id)"
                           | #{app_user.user.full_name}
                         - if (@travel_offer.car.sits - @travel_offer.approved_users.count) > 0 && !@travel_offer.waiting_for_confirm && !@travel_offer.completed && Time.now < @travel_offer.departure_datetime
@@ -245,34 +245,35 @@
                         p Recensione per #{review.target.full_name}
                         = f.text_area :content, placeholder: "Inserisci qui la tua recensione per #{review.target.name}"
                         .meta
-                          fieldset.starability-basic.stars
-                            input#first-rate5 name="rating" type="radio" value="10"
-                            label for="first-rate5" title="Amazing" 5 stars
-                            input#first-rate4 name="rating" type="radio" value="8"
-                            label for="first-rate4" title="Very good" 4 stars
-                            input#first-rate3 name="rating" type="radio" value="6"
-                            label for="first-rate3" title="Average" 3 stars
-                            input#first-rate2 name="rating" type="radio" value="4"
-                            label for="first-rate2" title="Not good" 2 stars
-                            input#first-rate1 name="rating" type="radio" value="2"
-                            label for="first-rate1" title="Terrible" 1 star
+                          fieldset.starability-basic.stars name="review-#{review.id}"
+                            input id="rating-#{review.id}-5" name="rating" type="radio" value="10"
+                            label for="rating-#{review.id}-5" title="Amazing" 5 stars
+                            input id="rating-#{review.id}-4" name="rating" type="radio" value="8"
+                            label for="rating-#{review.id}-4" title="Very good" 4 stars
+                            input id="rating-#{review.id}-3" name="rating" type="radio" value="6"
+                            label for="rating-#{review.id}-3" title="Average" 3 stars
+                            input id="rating-#{review.id}-2" name="rating" type="radio" value="4"
+                            label for="rating-#{review.id}-2" title="Not good" 2 stars
+                            input id="rating-#{review.id}-1" name="rating" type="radio" value="2"
+                            label for="rating-#{review.id}-1" title="Terrible" 1 star
                           = f.submit "Invia", class:'send'
                   - else
                     .review
-                      p Recensione per #{review.target.full_name}
-                      .content = review.content
-                      .meta
-                        fieldset.starability-basic.stars.disabled
-                          input#first-rate5 name="rating" type="radio" value="10" disabled="true" checked=(true if review.rating == 10)
-                          label for="first-rate5" title="Amazing" 5 stars
-                          input#first-rate4 name="rating" type="radio" value="8" disabled="true" checked=(true if review.rating == 8)
-                          label for="first-rate4" title="Very good" 4 stars
-                          input#first-rate3 name="rating" type="radio" value="6" disabled="true" checked=(true if review.rating == 6)
-                          label for="first-rate3" title="Average" 3 stars
-                          input#first-rate2 name="rating" type="radio" value="4" disabled="true" checked=(true if review.rating == 4)
-                          label for="first-rate2" title="Not good" 2 stars
-                          input#first-rate1 name="rating" type="radio" value="2" disabled="true" checked=(true if review.rating == 2)
-                          label for="first-rate1" title="Terrible" 1 star
+                      form
+                        p Recensione per #{review.target.full_name}
+                        .content = review.content
+                        .meta
+                          fieldset.starability-basic.stars.disabled name="review-#{review.id}"
+                            input id="rating-#{review.id}-5" name="rating" type="radio" value="10" disabled="disabled" checked=(true if review.rating == 10)
+                            label for="rating-#{review.id}-5" title="Amazing" 5 stars
+                            input id="rating-#{review.id}-4" name="rating" type="radio" value="8" disabled="disabled" checked=(true if review.rating == 8)
+                            label for="rating-#{review.id}-4" title="Very good" 4 stars
+                            input id="rating-#{review.id}-3" name="rating" type="radio" value="6" disabled="disabled" checked=(true if review.rating == 6)
+                            label for="rating-#{review.id}-3" title="Average" 3 stars
+                            input id="rating-#{review.id}-2" name="rating" type="radio" value="4" disabled="disabled" checked=(true if review.rating == 4)
+                            label for="rating-#{review.id}-2" title="Not good" 2 stars
+                            input id="rating-#{review.id}-1" name="rating" type="radio" value="2" disabled="disabled" checked=(true if review.rating == 2)
+                            label for="rating-#{review.id}-1" title="Terrible" 1 star
 
               - else
                 - @travel_offer.travel_reviews.made_by_driver.each do |review|
@@ -282,31 +283,32 @@
                         p Recensione per #{review.target.full_name}
                         = f.text_area :content, placeholder: "Inserisci qui la tua recensione per #{review.target.name}"
                         .meta
-                          fieldset.starability-basic.stars
-                            input#first-rate5 name="rating" type="radio" value="10"
-                            label for="first-rate5" title="Amazing" 5 stars
-                            input#first-rate4 name="rating" type="radio" value="8"
-                            label for="first-rate4" title="Very good" 4 stars
-                            input#first-rate3 name="rating" type="radio" value="6"
-                            label for="first-rate3" title="Average" 3 stars
-                            input#first-rate2 name="rating" type="radio" value="4"
-                            label for="first-rate2" title="Not good" 2 stars
-                            input#first-rate1 name="rating" type="radio" value="2"
-                            label for="first-rate1" title="Terrible" 1 star
+                          fieldset.starability-basic.stars name="review-#{review.id}"
+                            input id="rating-#{review.id}-5" name="rating" type="radio" value="10"
+                            label for="rating-#{review.id}-5" title="Amazing" 5 stars
+                            input id="rating-#{review.id}-4" name="rating" type="radio" value="8"
+                            label for="rating-#{review.id}-4" title="Very good" 4 stars
+                            input id="rating-#{review.id}-3" name="rating" type="radio" value="6"
+                            label for="rating-#{review.id}-3" title="Average" 3 stars
+                            input id="rating-#{review.id}-2" name="rating" type="radio" value="4"
+                            label for="rating-#{review.id}-2" title="Not good" 2 stars
+                            input id="rating-#{review.id}-1" name="rating" type="radio" value="2"
+                            label for="rating-#{review.id}-1" title="Terrible" 1 star
                           = f.submit "Invia", class:'send'
                   - else
                     .review
-                      p Recensione per #{review.target.full_name}
-                      .content = review.content
-                      .meta
-                        fieldset.starability-basic.stars.disabled
-                          input#first-rate5 name="rating" type="radio" value="10" disabled="true" checked=(true if review.rating == 10)
-                          label for="first-rate5" title="Amazing" 5 stars
-                          input#first-rate4 name="rating" type="radio" value="8" disabled="true" checked=(true if review.rating == 8)
-                          label for="first-rate4" title="Very good" 4 stars
-                          input#first-rate3 name="rating" type="radio" value="6" disabled="true" checked=(true if review.rating == 6)
-                          label for="first-rate3" title="Average" 3 stars
-                          input#first-rate2 name="rating" type="radio" value="4" disabled="true" checked=(true if review.rating == 4)
-                          label for="first-rate2" title="Not good" 2 stars
-                          input#first-rate1 name="rating" type="radio" value="2" disabled="true" checked=(true if review.rating == 2)
-                          label for="first-rate1" title="Terrible" 1 star
+                      form
+                        p Recensione per #{review.target.full_name}
+                        .content = review.content
+                        .meta
+                          fieldset.starability-basic.stars.disabled name="review-#{review.id}"
+                            input id="rating-#{review.id}-5" name="rating" type="radio" value="10" disabled="disabled" checked=(true if review.rating == 10)
+                            label for="rating-#{review.id}-5" title="Amazing" 5 stars
+                            input id="rating-#{review.id}-4" name="rating" type="radio" value="8" disabled="disabled" checked=(true if review.rating == 8)
+                            label for="rating-#{review.id}-4" title="Very good" 4 stars
+                            input id="rating-#{review.id}-3" name="rating" type="radio" value="6" disabled="disabled" checked=(true if review.rating == 6)
+                            label for="rating-#{review.id}-3" title="Average" 3 stars
+                            input id="rating-#{review.id}-2" name="rating" type="radio" value="4" disabled="disabled" checked=(true if review.rating == 4)
+                            label for="rating-#{review.id}-2" title="Not good" 2 stars
+                            input id="rating-#{review.id}-1" name="rating" type="radio" value="2" disabled="disabled" checked=(true if review.rating == 2)
+                            label for="rating-#{review.id}-1" title="Terrible" 1 star

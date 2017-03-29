@@ -108,5 +108,7 @@ gem 'rack-cors', require: 'rack/cors'
 ##### Porcata vecchia per la ricerca
 gem 'textacular'
 
-##### NewRelic
-gem 'newrelic_rpm'
+group :production do
+  ##### NewRelic
+  gem 'newrelic_rpm'
+end

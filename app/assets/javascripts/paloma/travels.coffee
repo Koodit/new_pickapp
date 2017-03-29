@@ -16,6 +16,12 @@ Paloma.controller('Travels', {
 
     travel_map.add_marker({id:'travel', choords: {lat: this.params.travel_offer.lat, lng: this.params.travel_offer.lng} })
 
+    window.onShowUserProfile = (elmt, user_id) ->
+      event.preventDefault();
+      $.get( "#{window.location.protocol}//#{window.location.host}/api/users/#{user_id}/profile", (resp) ->
+        $( window.generateProfileModal(resp) ).appendTo('body').modal();
+      )
+
   new: ->
     # departure datetime
 
