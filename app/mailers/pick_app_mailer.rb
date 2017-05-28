@@ -1,6 +1,5 @@
 class PickAppMailer < ApplicationMailer
   def welcome_email
-
     mail(to: 'roberto.vergallo@gmail.com',
          subject: 'Welcome to My Awesome Site',
          body: 'ciao',
