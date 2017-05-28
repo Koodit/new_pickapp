@@ -1,5 +1,6 @@
 class NotificationWorker
   include Sidekiq::Worker
+  include
   sidekiq_options :retry => 0
 
   def perform(event, emitter_id, receiver_id, options = {})
@@ -59,6 +60,10 @@ class NotificationWorker
         @notification.link = ns.link_for_expired_travel_for_passenger(travel.room.id, travel.id)
         @notification.params = options
         @notification.save
+
+        #roberto
+        applied_user = User.find(receiver_id)
+        PickAppMailer.send_email(applied_user.email, @notification.title, @notification.body, @notification.link)
       else
         puts "Travel needs to be marked as completed, notification for driver"
         if options["completion_token"] == travel.completion_token
@@ -79,6 +84,10 @@ class NotificationWorker
             @notification.link = ns.link_for_expired_travel(travel.room.id, travel.id)
             @notification.params = options
             @notification.save
+
+            #roberto
+            applied_user = User.find(receiver_id)
+            PickAppMailer.send_email(applied_user.email, @notification.title, @notification.body, @notification.link)
           end
         end
       end
@@ -107,6 +116,10 @@ class NotificationWorker
       applied_user_for_notification.notification_id = @notification.id
       applied_user_for_notification.save
       puts "salva l'id? #{applied_user_for_notification.notification_id}"
+
+      #roberto
+      applied_user_for_email = User.find(receiver_id)
+      PickAppMailer.send_email(applied_user_for_email.email, @notification.title, @notification.body, @notification.link)
     end
   end
 
@@ -125,6 +138,10 @@ class NotificationWorker
     @notification.link = ns.link_for_user_approved_by_driver(room.id, travel.id)
     @notification.params = options
     @notification.save
+
+    #roberto
+    applied_user_for_email = User.find(receiver_id)
+    PickAppMailer.send_email(applied_user_for_email.email, @notification.title, @notification.body, @notification.link)
   end
 
   def notification_to_remind_review(event, emitter_id, receiver_id, options)
@@ -145,6 +162,9 @@ class NotificationWorker
       @notification.link = ns.link_to_remind_review(options["travel_review_id"])
       @notification.params = options
       @notification.save
+
+      #roberto
+      PickAppMailer.send_email(user_to_review.email, @notification.title, @notification.body, @notification.link)
     end
   end
 
@@ -161,6 +181,10 @@ class NotificationWorker
     @notification.link = ns.link_for_received_review(options["travel_review_id"])
     @notification.params = options
     @notification.save
+
+    #roberto
+    applied_user_for_email = User.find(receiver_id)
+    PickAppMailer.send_email(applied_user_for_email.email, @notification.title, @notification.body, @notification.link)
   end
 
   def notifications_for_travel_request_chat(event, emitter_id, receiver_id, options)

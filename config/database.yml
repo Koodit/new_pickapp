@@ -83,3 +83,4 @@ production:
   database: new_pickapp_production
   username: pickapp
   password: yW6TqyQzrZfoZfeMCZjrfDUv
+  host: 127.0.0.1
