@@ -2036,13 +2036,13 @@ tag, .tag {
       .home-sections .section {
         min-height: 16rem; } }
     .home-sections .section.car {
-      background: url(https://s3-eu-west-1.amazonaws.com/koodit/pickapp/shared/pickapp_in_car.jpg) center no-repeat;
+      background: url(https://s3-eu-west-1.amazonaws.com/pickapp.bucket/shared/pickapp_in_car.jpg) center no-repeat;
       background-size: cover !important; }
     .home-sections .section.driver {
-      background: url(https://s3-eu-west-1.amazonaws.com/koodit/pickapp/shared/pickapp_driver.jpg) center no-repeat;
+      background: url(https://s3-eu-west-1.amazonaws.com/pickapp.bucket/shared/pickapp_driver.jpg) center no-repeat;
       background-size: cover !important; }
     .home-sections .section.road {
-      background: url(https://s3-eu-west-1.amazonaws.com/koodit/pickapp/shared/pickapp_road.jpg) center no-repeat;
+      background: url(https://s3-eu-west-1.amazonaws.com/pickapp.bucket/shared/pickapp_road.jpg) center no-repeat;
       background-size: cover !important; }
     .home-sections .section:after {
       content: "";

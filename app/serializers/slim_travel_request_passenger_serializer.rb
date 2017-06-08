@@ -7,7 +7,7 @@ class SlimTravelRequestPassengerSerializer < ActiveModel::Serializer
     elsif object.provider == "facebook"
       "#{object.image}?width=400&height=400"
     else
-      "https://s3-eu-west-1.amazonaws.com/koodit/pickapp/shared/missing_user_photo.jpg"
+      "https://s3-eu-west-1.amazonaws.com/pickapp.bucket/shared/missing_user_photo.jpg"
     end
   end
 end
