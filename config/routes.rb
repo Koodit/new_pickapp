@@ -58,7 +58,6 @@ Rails.application.routes.draw do
     mount_devise_token_auth_for "User", at: "auth", controllers: {
       registrations: 'api/devise_token_auth/registrations',
       sessions: 'api/devise_token_auth/sessions',
-      passwords: 'api/devise_token_auth/passwords',
       omniauth_callbacks:  'api/devise_token_auth/omniauth_callbacks'
     }, skip: [:omniauth_callbacks]
     post "auth/facebook_login", to: "users/custom_omniauth_callbacks#omniauth_success"
