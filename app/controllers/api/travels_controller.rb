@@ -189,7 +189,7 @@ class Api::TravelsController < Api::ApiController
     if params[:repetitions_amount]
       repetitions_count = params[:repetitions_amount]
     else
-      repetitions_count = params[:repetions_amount]
+      repetitions_count = travel.repetitions_amount.to_i
     end
 
     for i in 1..(repetitions_count-1)
