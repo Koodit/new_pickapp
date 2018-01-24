@@ -184,10 +184,10 @@ class Api::TravelsController < Api::ApiController
   private
 
   def create_recursives_for(travel)
-    if params[:repetitions_amount]
-      repetitions_count = params[:repetitions_amount]
+    if params[:repetions_amount]
+      repetitions_count = params[:repetions_amount]
     else
-      repetitions_count = travel.repetitions_amount.to_i
+      repetitions_count = travel.repetions_amount.to_i
     end
 
     for i in 1..(repetitions_count-1)
