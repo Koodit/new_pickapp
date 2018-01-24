@@ -26,9 +26,6 @@ class Api::TravelsController < Api::ApiController
     if params[:is_recursive]
       travel.is_recursive = true
     end
-    if params[:repetions_amount]
-      travel.is_recursive = params[:repetions_amount]
-    end
     unless params[:travel_stops].nil?
       params[:travel_stops].each do |travel_stop|
         travel.travel_stops.new(address: travel_stop["address"])
@@ -187,21 +184,25 @@ class Api::TravelsController < Api::ApiController
   private
 
   def create_recursives_for(travel)
-    repetitions_count = travel.repetions_amount.to_i
+    if params[:repetions_amount]
+      repetitions_count = params[:repetions_amount].to_i
+    else
+      repetitions_count = travel.repetions_amount.to_i
+    end
 
     for i in 1..(repetitions_count-1)
       recursive_date = Time.parse(params[:departure_datetime]) + (i * 7).days
       travel = Travel.new towards_room: travel.towards_room, driver_id: travel.driver_id, room_id: travel.room_id, car_id: travel.car_id, departure_datetime: recursive_date, is_recursive: true
-      # if travel.towards_room
-      #   travel.starting_address = travel.user_address
-      # else
-      #   travel.destination_address = travel.user_address
-      # end
-      # unless params[:travel_stops].nil?
-      #   params[:travel_stops].each do |travel_stop|
-      #     travel.travel_stops.new(address: travel_stop["address"])
-      #   end
-      # end
+      if travel.towards_room
+        travel.starting_address = params[:user_address]
+      else
+        travel.destination_address = params[:user_address]
+      end
+      unless params[:travel_stops].nil?
+        params[:travel_stops].each do |travel_stop|
+          travel.travel_stops.new(address: travel_stop["address"])
+        end
+      end
       if travel.save
         travel.public_chat_partecipants.create user_id:current_user.id, travel_id:travel.id
         if params[:backwards_too]
