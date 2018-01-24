@@ -39,15 +39,15 @@ class TravelRequest < ApplicationRecord
   def set_address
     if self.towards_room == true
       self.destination_address = self.room.address
-      if @desired_address != '' && @zip_code != '' && @city != ''
+      if @desired_address && @zip_code && @city
         self.starting_address = "#{@desired_address} #{@zip_code} #{@city}"
       end
     else
-      # if @desired_address != '' && @zip_code != '' && @city != ''
-      #   self.destination_address = "#{@desired_address} #{@zip_code} #{@city}"
-      # else 
-      # end
-      self.destination_address = self.starting_address
+      if @desired_address && @zip_code && @city
+        self.destination_address = "#{@desired_address} #{@zip_code} #{@city}"
+      else 
+        self.destination_address = self.starting_address
+      end
       self.starting_address = self.room.address
     end
   end
