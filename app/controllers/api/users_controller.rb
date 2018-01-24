@@ -92,7 +92,7 @@ class Api::UsersController < Api::ApiController
 
   def set_profile_image
     # @user.profile_image = paperclip_object_from_base64(params[:profile_image_data][:base64], params[:profile_image_data][:filename], params[:profile_image_data][:filetype])
-    @user.profile_image = paperclip_object_from_base64(params[:profile_image_data][:base64], "profile-pic-#{@user.id}", params[:profile_image_data][:filetype])
+    @user.profile_image = paperclip_object_from_base64(params[:profile_image_data][:base64], "profile-pic-#{@user.id}.jpg", params[:profile_image_data][:filetype])
     if @user.save
       render json: @user.profile_image.url.to_json, root: false, status: 200
     end
