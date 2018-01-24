@@ -57,6 +57,6 @@ class Api::TravelRequestsController < Api::ApiController
 
   def travel_request_params
     params.require(:travel_request).permit(:back_datetime, :is_one_way, :one_way_datetime,
-      :starting_address, :passenger_id, :room_id, :towards_room, :can_repay, :note, :only_with_feedback, :flexible_departure)
+      :starting_address, :desired_address, :city, :zip_code, :passenger_id, :room_id, :towards_room, :can_repay, :note, :only_with_feedback, :flexible_departure)
   end
 end
