@@ -37,9 +37,9 @@ class Travel < ApplicationRecord
   scope :not_completed, -> { where(completed: false) }
   scope :recursive, -> { where(is_recursive: true) }
 
-  before_create :set_address
-  before_create :set_coordinates
-  before_create :set_completion_token
+  before_save :set_address
+  before_save :set_coordinates
+  before_save :set_completion_token
   after_save :fire_notification_for_completion
 
   attr_writer :city
