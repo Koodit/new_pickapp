@@ -142,6 +142,9 @@ class Travel < ApplicationRecord
         self.starting_lat = start_loc[0].latitude
         self.starting_lng = start_loc[0].longitude
       end
+    end
+    
+    if self.destination_lat.nil?
       destination_loc = Geocoder.search(self.destination_address)
       unless destination_loc[0].nil?
         self.destination_lat = destination_loc[0].latitude
