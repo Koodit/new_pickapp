@@ -26,6 +26,9 @@ class Api::TravelsController < Api::ApiController
     if params[:is_recursive]
       travel.is_recursive = true
     end
+    if params[:repetions_amount]
+      travel.is_recursive = params[:repetions_amount]
+    end
     unless params[:travel_stops].nil?
       params[:travel_stops].each do |travel_stop|
         travel.travel_stops.new(address: travel_stop["address"])
