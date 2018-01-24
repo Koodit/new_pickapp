@@ -7,7 +7,7 @@ class TravelRequest < ApplicationRecord
   has_many :travel_request_chat_partecipants
   has_many :users, through: :travel_request_chat_partecipants
 
-  # before_save :set_address
+  before_save :set_address
   before_save :set_coordinates
 
   scope :available_now, -> { where("one_way_datetime > ?", Time.now) }
@@ -37,7 +37,7 @@ class TravelRequest < ApplicationRecord
   private
 
   def set_address
-    if self.towards_room == true
+    if self.towards_room
       self.destination_address = self.room.address
       if @desired_address && @zip_code && @city
         self.starting_address = "#{@desired_address} #{@zip_code} #{@city}"
@@ -55,10 +55,10 @@ class TravelRequest < ApplicationRecord
   def set_coordinates
     if self.lat.nil?
       loc = nil
-      if self.towards_room == true
+      if self.towards_room
         loc = Geocoder.search(self.room.address)
       else
-        loc = Geocoder.search(self.starting_address)
+        loc = Geocoder.search(self.destination_address)
       end
       unless loc.empty?
         self.lat = loc[0].latitude

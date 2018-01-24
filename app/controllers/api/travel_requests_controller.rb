@@ -3,12 +3,6 @@ class Api::TravelRequestsController < Api::ApiController
 
   def create
     travel_request = TravelRequest.new(travel_request_params)
-    # if travel_request.towards_room
-    #   travel_request.destination_address = travel_request.room.address
-    # else
-    #   travel_request.destination_address = travel_request.starting_address
-    #   travel_request.starting_address = travel_request.room.address
-    # end
     if travel_request.save
       travel_request.travel_request_chat_partecipants.create user_id: current_user.id, travel_request_id: travel_request.id
       render nothing: true, status: 201
