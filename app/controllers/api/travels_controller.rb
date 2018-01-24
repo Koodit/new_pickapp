@@ -192,22 +192,45 @@ class Api::TravelsController < Api::ApiController
 
     for i in 1..(repetitions_count-1)
       recursive_date = Time.parse(params[:departure_datetime]) + (i * 7).days
-      travel = Travel.new towards_room: travel.towards_room, driver_id: travel.driver_id, room_id: travel.room_id, car_id: travel.car_id, departure_datetime: recursive_date, is_recursive: true
-      if travel.towards_room
-        travel.starting_address = params[:user_address]
-      else
-        travel.destination_address = params[:user_address]
-      end
+      travel = Travel.new(
+        towards_room: travel.towards_room, 
+        driver_id: travel.driver_id, 
+        room_id: travel.room_id, 
+        car_id: travel.car_id, 
+        departure_datetime: recursive_date, 
+        is_recursive: true,
+        backwards_too: travel.backwards_too,
+        flexible_departure: travel.flexible_departure,
+        can_repay: travel.can_repay,
+        only_with_feedback: travel.only_with_feedback,
+        starting_address: travel.starting_address,
+        destination_address: travel.destination_address,
+        repetions_amount: 0
+      )
+
+      # if travel.towards_room
+      #   travel.starting_address = params[:user_address]
+      # else
+      #   travel.destination_address = params[:user_address]
+      # end
+
       unless params[:travel_stops].nil?
         params[:travel_stops].each do |travel_stop|
           travel.travel_stops.new(address: travel_stop["address"])
         end
       end
       if travel.save
-        travel.public_chat_partecipants.create user_id:current_user.id, travel_id:travel.id
+        travel.public_chat_partecipants.create user_id: current_user.id, travel_id: travel.id
         if params[:backwards_too]
           recursive_back_date = Time.parse(params[:back_departure_datetime]) + (i * 7).days
-          travel_backwards = Travel.new towards_room: !params[:towards_room], driver_id: params[:driver_id], room_id: params[:room_id], car_id: params[:car_id], departure_datetime: recursive_back_date, is_recursive: true
+          travel_backwards = Travel.new(
+            towards_room: !params[:towards_room], 
+            driver_id: params[:driver_id], 
+            room_id: params[:room_id], 
+            car_id: params[:car_id], 
+            departure_datetime: recursive_back_date, 
+            is_recursive: true
+          )
           travel_backwards.starting_address = travel.destination_address
           travel_backwards.destination_address = travel.starting_address
           if travel_backwards.save

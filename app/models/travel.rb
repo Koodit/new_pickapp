@@ -24,10 +24,9 @@ class Travel < ApplicationRecord
                                 reject_if: :all_blank,
                                 allow_destroy: true
 
-  validates_presence_of :car_id,
-                        :departure_datetime, on: :create
+  validates_presence_of :car_id, :departure_datetime, on: :create
 
-  validates_presence_of :repetions_amount, if: :is_recursive?, on: :create
+  # validates_presence_of :repetions_amount, if: :is_recursive?, on: :create
   validates_presence_of :back_departure_datetime, if: :is_backwards_too?
 
   scope :available_now, -> { where("departure_datetime > ?", Time.now) }
@@ -163,7 +162,7 @@ class Travel < ApplicationRecord
 
   def fire_notification_for_completion
     unless self.waiting_for_confirm || self.completed
-      NotificationWorker.perform_at(self.departure_datetime + 30.minutes, "travel_expired_for_driver", nil, self.driver_id, options = { travel_expired_for_driver: true, travel_id: self.id, completion_token: self.completion_token })
+      # NotificationWorker.perform_at(self.departure_datetime + 30.minutes, "travel_expired_for_driver", nil, self.driver_id, options = { travel_expired_for_driver: true, travel_id: self.id, completion_token: self.completion_token })
     end
   end
 end
