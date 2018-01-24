@@ -43,11 +43,11 @@ class TravelRequest < ApplicationRecord
         self.starting_address = "#{@desired_address} #{@zip_code} #{@city}"
       end
     else
-      if @desired_address != '' && @zip_code != '' && @city != ''
-        self.destination_address = "#{@desired_address} #{@zip_code} #{@city}"
-      else 
-        self.destination_address = self.starting_address
-      end
+      # if @desired_address != '' && @zip_code != '' && @city != ''
+      #   self.destination_address = "#{@desired_address} #{@zip_code} #{@city}"
+      # else 
+      # end
+      self.destination_address = self.starting_address
       self.starting_address = self.room.address
     end
   end
