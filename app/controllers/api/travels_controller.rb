@@ -198,7 +198,7 @@ class Api::TravelsController < Api::ApiController
         room_id: travel.room_id, 
         car_id: travel.car_id, 
         departure_datetime: recursive_date, 
-        is_recursive: false,
+        is_recursive: true,
         backwards_too: travel.backwards_too,
         flexible_departure: travel.flexible_departure,
         can_repay: travel.can_repay,
@@ -229,7 +229,12 @@ class Api::TravelsController < Api::ApiController
             room_id: params[:room_id], 
             car_id: params[:car_id], 
             departure_datetime: recursive_back_date, 
-            is_recursive: false
+            is_recursive: true,
+            backwards_too:  params[:backwards_too],
+            flexible_departure: params[:flexible_departure], 
+            can_repay: params[:can_repay], 
+            only_with_feedback: params[:only_with_feedback]
+            repetions_amount: 0
           )
           travel_backwards.starting_address = travel.destination_address
           travel_backwards.destination_address = travel.starting_address
