@@ -18,13 +18,13 @@ class Api::TravelsController < Api::ApiController
 
   def create
     travel = Travel.new towards_room: params[:towards_room], driver_id: params[:driver_id], room_id: params[:room_id], car_id: params[:car_id], departure_datetime: params[:departure_datetime], flexible_departure: params[:flexible_departure], can_repay: params[:can_repay], only_with_feedback: params[:only_with_feedback]
-    if travel.towards_room
-      travel.starting_address = params[:user_address]
-      travel.destination_address = travel.room.address
-    else
-      travel.starting_address = travel.room.address
-      travel.destination_address = params[:user_address]
-    end
+    # if travel.towards_room
+    #   travel.starting_address = params[:user_address]
+    #   travel.destination_address = travel.room.address
+    # else
+    #   travel.starting_address = travel.room.address
+    #   travel.destination_address = params[:user_address]
+    # end
     if params[:is_recursive]
       travel.is_recursive = true
     end
@@ -195,13 +195,13 @@ class Api::TravelsController < Api::ApiController
     for i in 1..(repetitions_count-1)
       recursive_date = Time.parse(params[:departure_datetime]) + (i * 7).days
       travel = Travel.new towards_room: params[:towards_room], driver_id: params[:driver_id], room_id: params[:room_id], car_id: params[:car_id], departure_datetime: recursive_date, is_recursive: true
-      if travel.towards_room
-        travel.starting_address = params[:user_address]
-        travel.destination_address = travel.room.address
-      else
-        travel.starting_address = travel.room.address
-        travel.destination_address = params[:user_address]
-      end
+      # if travel.towards_room
+      #   travel.starting_address = params[:user_address]
+      #   travel.destination_address = travel.room.address
+      # else
+      #   travel.starting_address = travel.room.address
+      #   travel.destination_address = params[:user_address]
+      # end
       unless params[:travel_stops].nil?
         params[:travel_stops].each do |travel_stop|
           travel.travel_stops.new(address: travel_stop["address"])
