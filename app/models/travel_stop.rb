@@ -1,8 +1,8 @@
 class TravelStop < ApplicationRecord
   belongs_to :travel, optional: true
 
-  before_save :set_address
-  before_save :set_coordinates
+  # before_save :set_address
+  # before_save :set_coordinates
 
   attr_writer :city
   attr_writer :zip_code

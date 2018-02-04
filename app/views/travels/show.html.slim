@@ -163,12 +163,12 @@
                   - if @travel_offer.approved_users.any?
                     - @travel_offer.approved_users.each do |app_user|
                       = form_for @travel_offer, url: cancel_approval_room_travel_path(@travel_offer.room, @travel_offer, app_user.user_id), method: :post do |f|
-                        li onclick="onShowUserProfile(this, #{app_user.user.id})"
-                          .user_image style="background-image: url(#{app_user.user.profile_image_url})"
-                          span ng-click="showProfileDialog(applied_user.id)"
+                        li 
+                          .user_image style="background-image: url(#{app_user.user.profile_image_url})" onclick="onShowUserProfile(this, #{app_user.user.id})"
+                          span
                             | #{app_user.user.full_name}
                           - if !@travel_offer.waiting_for_confirm && !@travel_offer.completed
-                            button.fa.fa-close.action.bg-assertive
+                            button.fa.fa-close.action.bg-assertive type="submit"
                   - else
                     li
                       span Non ci sono utenti approvati.
@@ -177,9 +177,9 @@
                   - if @travel_offer.passenger_travels.any?
                     - @travel_offer.passenger_travels.each do |app_user|
                       = form_for @travel_offer, url: cancel_approval_room_travel_path(@travel_offer.room, @travel_offer, app_user.user_id), method: :post do |f|
-                        li onclick="onShowUserProfile(this, #{app_user.user.id})"
-                          .user_image style="background-image: url(#{app_user.user.profile_image_url})"
-                          span ng-click="showProfileDialog(applied_user.id)"
+                        li 
+                          .user_image style="background-image: url(#{app_user.user.profile_image_url})" onclick="onShowUserProfile(this, #{app_user.user.id})"
+                          span
                             | #{app_user.user.full_name}
                   - else
                     li
@@ -191,12 +191,12 @@
                 - if @travel_offer.applied_users.any?
                   - @travel_offer.applied_users.each do |app_user|
                     = form_for @travel_offer, url: approve_user_room_travel_path(@travel_offer.room, @travel_offer, app_user.user_id), method: :post do |f|
-                      li onclick="onShowUserProfile(this, #{app_user.user.id})"
-                        .user_image style="background-image: url(#{app_user.user.profile_image_url})"
-                        span ng-click="showProfileDialog(applied_user.id)"
+                      li
+                        .user_image style="background-image: url(#{app_user.user.profile_image_url})" onclick="onShowUserProfile(this, #{app_user.user.id})"
+                        span 
                           | #{app_user.user.full_name}
                         - if (@travel_offer.car.sits - @travel_offer.approved_users.count) > 0 && !@travel_offer.waiting_for_confirm && !@travel_offer.completed && Time.now < @travel_offer.departure_datetime
-                          button.fa.fa-check.action.bg-balanced
+                          button.fa.fa-check.action.bg-balanced type="submit"
                 - else
                   li
                     span Non ci sono utenti in attesa.

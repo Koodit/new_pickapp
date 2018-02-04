@@ -24,10 +24,9 @@ class Travel < ApplicationRecord
                                 reject_if: :all_blank,
                                 allow_destroy: true
 
-  validates_presence_of :car_id,
-                        :departure_datetime, on: :create
+  validates_presence_of :car_id, :departure_datetime, on: :create
 
-  validates_presence_of :repetions_amount, if: :is_recursive?, on: :create
+  # validates_presence_of :repetions_amount, if: :is_recursive?, on: :create
   validates_presence_of :back_departure_datetime, if: :is_backwards_too?
 
   scope :available_now, -> { where("departure_datetime > ?", Time.now) }
@@ -37,9 +36,9 @@ class Travel < ApplicationRecord
   scope :not_completed, -> { where(completed: false) }
   scope :recursive, -> { where(is_recursive: true) }
 
-  before_create :set_address
-  before_create :set_coordinates
-  before_create :set_completion_token
+  before_save :set_address
+  before_save :set_coordinates
+  before_save :set_completion_token
   after_save :fire_notification_for_completion
 
   attr_writer :city
@@ -124,10 +123,14 @@ class Travel < ApplicationRecord
   def set_address
     if self.towards_room == true
       self.destination_address = self.room.address
-      self.starting_address = "#{@desired_address} #{@zip_code} #{@city}"
+      if @desired_address && @zip_code && @city
+        self.starting_address = "#{@desired_address} #{@zip_code} #{@city}"
+      end
     else
       self.starting_address = self.room.address
-      self.destination_address = "#{@desired_address} #{@zip_code} #{@city}"
+      if @desired_address && @zip_code && @city
+        self.destination_address = "#{@desired_address} #{@zip_code} #{@city}"
+      end
     end
   end
 
@@ -138,6 +141,9 @@ class Travel < ApplicationRecord
         self.starting_lat = start_loc[0].latitude
         self.starting_lng = start_loc[0].longitude
       end
+    end
+    
+    if self.destination_lat.nil?
       destination_loc = Geocoder.search(self.destination_address)
       unless destination_loc[0].nil?
         self.destination_lat = destination_loc[0].latitude
@@ -156,7 +162,7 @@ class Travel < ApplicationRecord
 
   def fire_notification_for_completion
     unless self.waiting_for_confirm || self.completed
-      NotificationWorker.perform_at(self.departure_datetime + 30.minutes, "travel_expired_for_driver", nil, self.driver_id, options = { travel_expired_for_driver: true, travel_id: self.id, completion_token: self.completion_token })
+      # NotificationWorker.perform_at(self.departure_datetime + 30.minutes, "travel_expired_for_driver", nil, self.driver_id, options = { travel_expired_for_driver: true, travel_id: self.id, completion_token: self.completion_token })
     end
   end
 end

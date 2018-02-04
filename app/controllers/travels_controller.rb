@@ -75,7 +75,7 @@ class TravelsController < ApplicationController
     if current_user.id == @travel_offer.driver_id
       if @travel_offer
         @travel_offer.destroy
-        redirect_to room_path(room)
+        redirect_to room_path(room), notice: "Offerta di passaggio eliminata con successo"
       end
     end
   end
@@ -89,7 +89,11 @@ class TravelsController < ApplicationController
   def cancel_application
     applied = @travel_offer.applied_users.where(user_id: current_user.id).first
     notification_id = applied.notification_id
-    notification = Notification.find notification_id
+    if notification_id
+      notification = Notification.find notification_id
+    else
+      notification = nil
+    end
     applied.destroy
     unless notification.nil?
       notification.destroy

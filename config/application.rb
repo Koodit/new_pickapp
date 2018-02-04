@@ -23,13 +23,23 @@ module Pickapp
 
     # cors
 
-    config.middleware.use Rack::Cors do
+    # config.middleware.use Rack::Cors do
+    #   allow do
+    #     origins '*'
+    #     resource '*',
+    #       :headers => :any,
+    #       :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client', 'X-CSRF-Token'],
+    #       :methods => [:get, :post, :options, :delete, :put]
+    #   end
+    # end
+
+    config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
         resource '*',
-          :headers => :any,
-          :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client', 'X-CSRF-Token'],
-          :methods => [:get, :post, :options, :delete, :put]
+          headers: :any,
+          expose: %i(access-token expiry token-type uid client X-CSRF-Token),
+          methods: %i(get post put patch delete options head)
       end
     end
 

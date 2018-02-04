@@ -37,18 +37,29 @@ class TravelRequest < ApplicationRecord
   private
 
   def set_address
-    if self.towards_room == true
+    if self.towards_room
       self.destination_address = self.room.address
-      self.starting_address = "#{@desired_address} #{@zip_code} #{@city}"
+      if @desired_address && @zip_code && @city
+        self.starting_address = "#{@desired_address} #{@zip_code} #{@city}"
+      end
     else
+      if @desired_address && @zip_code && @city
+        self.destination_address = "#{@desired_address} #{@zip_code} #{@city}"
+      else 
+        self.destination_address = self.starting_address
+      end
       self.starting_address = self.room.address
-      self.destination_address = "#{@desired_address} #{@zip_code} #{@city}"
     end
   end
 
   def set_coordinates
     if self.lat.nil?
-      loc = Geocoder.search(self.starting_address)
+      loc = nil
+      if self.towards_room
+        loc = Geocoder.search(self.room.address)
+      else
+        loc = Geocoder.search(self.destination_address)
+      end
       unless loc.empty?
         self.lat = loc[0].latitude
         self.lng = loc[0].longitude
