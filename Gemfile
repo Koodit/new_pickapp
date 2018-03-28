@@ -32,7 +32,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'active_model_serializers'
 
 ########## AWS e Paperclip
-gem 'aws-sdk', '~> 2'
+gem 'aws-sdk', '~> 3'
+gem 'aws-sdk-s3'
 gem 'paperclip'
 
 # Use Capistrano for deployment

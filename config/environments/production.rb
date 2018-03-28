@@ -36,6 +36,9 @@ Rails.application.configure do
       :ssl                  => true,
       :openssl_verify_mode  => 'none' #Use this because ssl is activated but we have no certificate installed. So clients need to confirm to use the untrusted url.
   }
+  config.action_mailer.default_url_options = {
+    host: "localhost:3000"
+  }
 
 =begin
   config.action_mailer.smtp_settings = {
