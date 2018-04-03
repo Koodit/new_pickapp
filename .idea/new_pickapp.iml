@@ -11,106 +11,6 @@
   </component>
   <component name="ModuleRunConfigurationManager">
     <shared />
-    <local>
-      <configuration default="false" name="test: new_pickapp" type="RakeRunConfigurationType" factoryName="Rake">
-        <module name="new_pickapp" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-        <envs>
-          <env name="RAILS_ENV" value="test" />
-        </envs>
-        <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
-        <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-        <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
-          <COVERAGE_PATTERN ENABLED="true">
-            <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-          </COVERAGE_PATTERN>
-        </EXTENSION>
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="test" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE=":test_unit " />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
-        <method />
-      </configuration>
-      <configuration default="false" name="spec: new_pickapp" type="RakeRunConfigurationType" factoryName="Rake">
-        <module name="new_pickapp" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-        <envs />
-        <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
-        <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-        <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
-          <COVERAGE_PATTERN ENABLED="true">
-            <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-          </COVERAGE_PATTERN>
-        </EXTENSION>
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="spec" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE=":rspec " />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
-        <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
-        <method />
-      </configuration>
-      <configuration default="false" name="Production: new_pickapp" type="RailsRunConfigurationType" factoryName="Rails">
-        <predefined_log_file id="RUBY_RAILS_SERVER" enabled="true" />
-        <module name="new_pickapp" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-        <envs />
-        <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
-        <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-        <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
-          <COVERAGE_PATTERN ENABLED="true">
-            <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-          </COVERAGE_PATTERN>
-        </EXTENSION>
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SCRIPT_ARGS" VALUE="" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="PORT" VALUE="3000" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="IP" VALUE="0.0.0.0" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="DUMMY_APP" VALUE="test/dummy" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="Default" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="production" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
-        <method />
-      </configuration>
-      <configuration default="false" name="Development: new_pickapp" type="RailsRunConfigurationType" factoryName="Rails">
-        <predefined_log_file id="RUBY_RAILS_SERVER" enabled="true" />
-        <module name="new_pickapp" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-        <envs />
-        <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
-        <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-        <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
-          <COVERAGE_PATTERN ENABLED="true">
-            <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-          </COVERAGE_PATTERN>
-        </EXTENSION>
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SCRIPT_ARGS" VALUE="" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="PORT" VALUE="3000" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="IP" VALUE="0.0.0.0" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="DUMMY_APP" VALUE="test/dummy" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="Default" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="development" />
-        <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
-        <method />
-      </configuration>
-    </local>
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
@@ -122,12 +22,306 @@
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bundle" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Remote: ruby-2.3.1-p112" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="i18n (v0.7.0, ruby-2.0.0-p648) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="minitest (v5.9.1, ruby-2.0.0-p648) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="thread_safe (v0.3.5, ruby-2.0.0-p648) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="tzinfo (v1.2.2, ruby-2.0.0-p648) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="actioncable (v5.0.6, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="actionmailer (v5.0.6, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="actionpack (v5.0.6, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="actionview (v5.0.6, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="active_model_serializers (v0.10.7, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="activejob (v5.0.6, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="activemodel (v5.0.6, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="activerecord (v5.0.6, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="activesupport (v5.0.6, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="airbrussh (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="arel (v7.1.4, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ast (v2.4.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-partitions (v1.73.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk (v3.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-acm (v1.4.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-alexaforbusiness (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-apigateway (v1.9.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-applicationautoscaling (v1.8.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-applicationdiscoveryservice (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-appstream (v1.7.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-appsync (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-athena (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-autoscaling (v1.5.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-autoscalingplans (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-batch (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-budgets (v1.5.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-cloud9 (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-clouddirectory (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-cloudformation (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-cloudfront (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-cloudhsm (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-cloudhsmv2 (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-cloudsearch (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-cloudsearchdomain (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-cloudtrail (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-cloudwatch (v1.4.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-cloudwatchevents (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-cloudwatchlogs (v1.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-codebuild (v1.7.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-codecommit (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-codedeploy (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-codepipeline (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-codestar (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-cognitoidentity (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-cognitoidentityprovider (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-cognitosync (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-comprehend (v1.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-configservice (v1.7.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-core (v3.17.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-costandusagereportservice (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-costexplorer (v1.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-databasemigrationservice (v1.4.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-datapipeline (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-dax (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-devicefarm (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-directconnect (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-directoryservice (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-dynamodb (v1.5.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-dynamodbstreams (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-ec2 (v1.29.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-ecr (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-ecs (v1.12.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-efs (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-elasticache (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-elasticbeanstalk (v1.5.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-elasticloadbalancing (v1.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-elasticloadbalancingv2 (v1.8.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-elasticsearchservice (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-elastictranscoder (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-emr (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-firehose (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-gamelift (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-glacier (v1.6.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-glue (v1.6.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-greengrass (v1.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-guardduty (v1.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-health (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-iam (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-importexport (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-inspector (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-iot (v1.4.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-iotdataplane (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-iotjobsdataplane (v1.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-kinesis (v1.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-kinesisanalytics (v1.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-kinesisvideo (v1.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-kinesisvideoarchivedmedia (v1.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-kinesisvideomedia (v1.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-kms (v1.5.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-lambda (v1.4.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-lambdapreview (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-lex (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-lexmodelbuildingservice (v1.5.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-lightsail (v1.4.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-machinelearning (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-marketplacecommerceanalytics (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-marketplaceentitlementservice (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-marketplacemetering (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-mediaconvert (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-medialive (v1.4.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-mediapackage (v1.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-mediastore (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-mediastoredata (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-migrationhub (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-mobile (v1.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-mq (v1.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-mturk (v1.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-opsworks (v1.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-opsworkscm (v1.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-organizations (v1.8.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-pinpoint (v1.4.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-polly (v1.4.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-pricing (v1.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-rds (v1.15.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-redshift (v1.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-rekognition (v1.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-resourcegroups (v1.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-resourcegroupstaggingapi (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-resources (v3.12.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-route53 (v1.9.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-route53domains (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-s3 (v1.8.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-sagemaker (v1.6.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-sagemakerruntime (v1.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-serverlessapplicationrepository (v1.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-servicecatalog (v1.4.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-servicediscovery (v1.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-ses (v1.6.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-shield (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-simpledb (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-sms (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-snowball (v1.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-sns (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-sqs (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-ssm (v1.8.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-states (v1.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-storagegateway (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-support (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-swf (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-transcribeservice (v1.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-translate (v1.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-waf (v1.4.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-wafregional (v1.4.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-workdocs (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-workmail (v1.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-workspaces (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sdk-xray (v1.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sigv2 (v1.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="aws-sigv4 (v1.0.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bcrypt (v3.1.11, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="better_errors (v2.4.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bindex (v0.5.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="binding_of_caller (v0.8.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bourbon (v5.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bower-rails (v0.11.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.3, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.16.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="byebug (v10.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="capistrano (v3.10.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="capistrano-bundler (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="capistrano-db-tasks (v0.6, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="capistrano-passenger (v0.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="capistrano-rails (v1.3.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="capistrano-rvm (v0.1.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="case_transform (v0.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="climate_control (v0.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="cocoon (v1.2.11, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="coderay (v1.1.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="coffee-rails (v4.2.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.4.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="coffee-script-source (v1.12.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.0.5, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="connection_pool (v2.2.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.3, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="debase (v0.2.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="debase-ruby_core_source (v0.10.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="debug_inspector (v0.0.3, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="devise (v4.4.3@c9a2d0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="devise-i18n (v1.6.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="devise_mailchimp (v0.0.5@cdb151, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="devise_token_auth (v0.1.43@d4c0e9, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.3, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="elasticsearch (v6.0.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="elasticsearch-api (v6.0.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="elasticsearch-transport (v6.0.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="em-websocket (v0.5.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="erubi (v1.7.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="erubis (v2.7.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="eventmachine (v1.2.5, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="execjs (v2.7.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="faraday (v0.12.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ffi (v1.9.23, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="font-awesome-rails (v4.7.0.3, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="formatador (v0.2.5, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="geocoder (v1.4.7, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="globalid (v0.4.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="guard (v2.14.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="guard-compat (v1.2.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="guard-livereload (v2.5.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="guard-rspec (v4.6.5@77ee56, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="guard-rubocop (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="hashie (v3.5.7, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="highline (v1.7.10, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="hominid (v3.0.5, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="http_parser.rb (v0.6.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="i18n (v0.9.5, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.7.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="jmespath (v1.3.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="jquery-rails (v4.3.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="jsonapi-renderer (v0.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="jwt (v1.5.6, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="listen (v3.0.8, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="loofah (v2.2.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="lumberjack (v1.0.12, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mail (v2.7.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="method_source (v0.9.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mime-types (v3.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mime-types-data (v3.2016.0521, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mimemagic (v0.3.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mini_mime (v1.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mini_portile2 (v2.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="minitest (v5.11.3, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.13.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="multi_xml (v0.6.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="multipart-post (v2.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mustermann (v1.0.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="nenv (v0.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="net-scp (v1.2.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="net-ssh (v4.2.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="newrelic_rpm (v5.0.0.342, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="nio4r (v2.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.8.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="notiffany (v0.1.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="oauth2 (v1.4.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="omniauth (v1.8.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="omniauth-facebook (v4.0.0@0b5c66, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="omniauth-oauth2 (v1.5.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="paloma (v5.1.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="paperclip (v6.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="parallel (v1.12.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="parser (v2.5.0.5, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="pg (v0.21.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="powerpack (v0.1.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="pry (v0.11.3, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="pry-rails (v0.3.6, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="puma (v3.11.3, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rack (v2.0.4, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rack-cors (v1.0.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rack-livereload (v0.3.16, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rack-protection (v2.0.1@44660b, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rack-test (v0.6.3, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rails (v5.0.6, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rails-dom-testing (v2.0.3, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rails-html-sanitizer (v1.0.4, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="railties (v5.0.6, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rainbow (v3.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rake (v12.3.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rb-fsevent (v0.10.3, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.9.10, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="redis (v4.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="responders (v2.4.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec (v3.7.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-core (v3.7.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v3.7.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.7.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.7.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubocop (v0.54.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ruby-debug-ide (v0.6.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ruby-progressbar (v1.9.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sass (v3.5.6, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sass-listen (v4.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sass-rails (v5.0.7, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="searchkick (v3.0.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="shellany (v0.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sidekiq (v5.1.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sidekiq-failures (v1.0.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sinatra (v2.0.1@44660b, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="slim (v3.0.9, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="slim-rails (v3.1.3, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="spring (v2.0.2, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="spring-watcher-listen (v2.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sprockets (v3.7.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sprockets-rails (v3.2.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sshkit (v1.16.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="temple (v0.8.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="terrapin (v0.6.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="textacular (v5.0.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="thor (v0.20.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="thread_safe (v0.3.6, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="tilt (v2.0.8, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="tzinfo (v1.2.5, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="uglifier (v4.1.8, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="unicode-display_width (v1.3.0, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="warden (v1.2.7, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="web-console (v3.5.1, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="websocket-driver (v0.6.5, Remote: ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="websocket-extensions (v0.1.3, Remote: ruby-2.3.1-p112) [gem]" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
     <LOAD_PATH number="0" />

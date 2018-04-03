@@ -24,7 +24,10 @@ default: &default
 
 development:
   <<: *default
-  database: new_pickapp_development
+  database: new_pickapp_production
+  username: pickapp
+  password: yW6TqyQzrZfoZfeMCZjrfDUv
+  host: 127.0.0.1
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

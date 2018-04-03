@@ -14,13 +14,14 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.mandrillapp.com",
-    port: 587,
-    #domain: "koodit.it",
-    #authentication: "plain",
-    #enable_starttls_auto: true,
-    user_name: "a.macchieraldo@koodit.it",
-    password: "8TGbblcuNApLQRAw4FQ4Jw"
+      :address              => 'smtps.aruba.it',
+      :port                 => 465,
+      :domain               => 'vidyasoft.it',
+      :user_name            => 'roberto.vergallo@vidyasoft.it',
+      :password             => 'R1Ve0jkk',
+      :authentication       => :login,
+      :ssl                  => true,
+      :openssl_verify_mode  => 'none' #Use this because ssl is activated but we have no certificate installed. So clients need to confirm to use the untrusted url.
   }
 
   config.action_mailer.raise_delivery_errors = true

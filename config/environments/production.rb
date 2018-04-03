@@ -27,14 +27,13 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      :address              => 'smtps.aruba.it',
-      :port                 => 465,
-      :domain               => 'vidyasoft.it',
-      :user_name            => 'roberto.vergallo@vidyasoft.it',
-      :password             => 'R1Ve0jkk',
-      :authentication       => :login,
-      :ssl                  => true,
-      :openssl_verify_mode  => 'none' #Use this because ssl is activated but we have no certificate installed. So clients need to confirm to use the untrusted url.
+      address:              'smtp.gmail.com',
+      port:                 587,
+      domain:               'gmail.com',
+      user_name:            'roberto.vergallo@gmail.com',
+      password:             '50792441j',
+      authentication:       :login,
+      enable_starttls_auto: true
   }
   config.action_mailer.default_url_options = {
     host: "localhost:3000"
@@ -97,7 +96,7 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = :debug
+  config.log_level = :info
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]

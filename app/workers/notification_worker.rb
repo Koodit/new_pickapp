@@ -63,7 +63,7 @@ class NotificationWorker
 
         #roberto
         applied_user = User.find(receiver_id)
-        PickAppMailer.send_email(applied_user.email, @notification.title, @notification.body, @notification.link)
+        PickAppMailer.send_email(applied_user.email, @notification.title, @notification.body, @notification.link).deliver_now
       else
         puts "Travel needs to be marked as completed, notification for driver"
         if options["completion_token"] == travel.completion_token
@@ -87,7 +87,7 @@ class NotificationWorker
 
             #roberto
             applied_user = User.find(receiver_id)
-            PickAppMailer.send_email(applied_user.email, @notification.title, @notification.body, @notification.link)
+            PickAppMailer.send_email(applied_user.email, @notification.title, @notification.body, @notification.link).deliver_now
           end
         end
       end
@@ -100,6 +100,8 @@ class NotificationWorker
     @notification.emitter_id = emitter_id
     ns = NotificationService.new
 
+
+    Rails.logger.info '#############################'
     travel = Travel.find(options["travel_id"])
     room = travel.room
     applied_user = User.find(emitter_id)
@@ -110,6 +112,12 @@ class NotificationWorker
     @notification.body = ns.body_for_user_applied_to_travel(applied_user.name, applied_user.surname, travel.towards_room ? "verso" : "da", room.name)
     @notification.link = ns.link_for_user_applied_to_travel(room.id, travel.id)
     @notification.params = options
+
+
+      #roberto
+      applied_user_for_email = User.find(receiver_id)
+      PickAppMailer.send_email(applied_user_for_email.email, @notification.title, @notification.body, @notification.link).deliver_now
+
     if @notification.save
       puts "applied user: #{applied_user_for_notification.user_id}"
       puts "notification: #{@notification.id}"
@@ -117,9 +125,6 @@ class NotificationWorker
       applied_user_for_notification.save
       puts "salva l'id? #{applied_user_for_notification.notification_id}"
 
-      #roberto
-      applied_user_for_email = User.find(receiver_id)
-      PickAppMailer.send_email(applied_user_for_email.email, @notification.title, @notification.body, @notification.link)
     end
   end
 
@@ -141,7 +146,7 @@ class NotificationWorker
 
     #roberto
     applied_user_for_email = User.find(receiver_id)
-    PickAppMailer.send_email(applied_user_for_email.email, @notification.title, @notification.body, @notification.link)
+    PickAppMailer.send_email(applied_user_for_email.email, @notification.title, @notification.body, @notification.link).deliver_now
   end
 
   def notification_to_remind_review(event, emitter_id, receiver_id, options)
@@ -164,7 +169,7 @@ class NotificationWorker
       @notification.save
 
       #roberto
-      PickAppMailer.send_email(user_to_review.email, @notification.title, @notification.body, @notification.link)
+      PickAppMailer.send_email(user_to_review.email, @notification.title, @notification.body, @notification.link).deliver_now
     end
   end
 
@@ -184,7 +189,7 @@ class NotificationWorker
 
     #roberto
     applied_user_for_email = User.find(receiver_id)
-    PickAppMailer.send_email(applied_user_for_email.email, @notification.title, @notification.body, @notification.link)
+    PickAppMailer.send_email(applied_user_for_email.email, @notification.title, @notification.body, @notification.link).deliver_now
   end
 
   def notifications_for_travel_request_chat(event, emitter_id, receiver_id, options)

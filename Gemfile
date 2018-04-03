@@ -109,6 +109,10 @@ gem 'rack-cors', require: 'rack/cors'
 ##### Porcata vecchia per la ricerca
 gem 'textacular'
 
+# Debug
+gem 'ruby-debug-ide'
+gem 'debase'
+
 group :production do
   ##### NewRelic
   gem 'newrelic_rpm'
