@@ -82,13 +82,13 @@ class TravelsController < ApplicationController
 
   def apply_user
     @travel_offer.applied_users.create user_id: current_user.id
-    #NotificationWorker.perform_async("user_applied_to_travel", current_user.id, @travel_offer.driver_id, options = { user_applied_to_travel: true, travel_id: @travel_offer.id })
+    NotificationWorker.perform_async("user_applied_to_travel", current_user.id, @travel_offer.driver_id, options = { user_applied_to_travel: true, travel_id: @travel_offer.id })
     @room = Room.find(params[:room_id])
     ns = NotificationService.new
     title = ns.title_for_user_applied_to_travel
     body = ns.body_for_user_applied_to_travel(current_user.name, current_user.surname, @travel_offer.towards_room ? "verso" : "da", @room.name)
-    link = ns.link_for_user_applied_to_travel(@room.id, @travel_offer.id)
-    PickAppMailer.send_email(current_user.email, title, body, link).deliver_now
+    link = "<a href='http://www.pick-app.it"+room_travel_path(@travel_offer.room, @travel_offer)+"'>Link</a>"
+    PickAppMailer.send_email(current_user.email, title, body, link).deliver_later
 
     redirect_to room_travel_path(@travel_offer.room, @travel_offer)
   end
@@ -113,6 +113,16 @@ class TravelsController < ApplicationController
     applied.destroy
     approved = @travel_offer.approved_users.create user_id: params[:user_id]
     NotificationWorker.perform_async("user_approved_by_driver", current_user.id, params[:user_id], options = { user_approved_by_driver: true, travel_id: @travel_offer.id })
+
+    ns = NotificationService.new
+    room = @travel_offer.room
+
+    title = ns.title_for_user_approved_by_driver(current_user.name, current_user.surname)
+    body = ns.body_for_user_approved_by_driver(current_user.name, current_user.surname, @travel_offer.towards_room ? "verso" : "da", room.name)
+    link = "<a href='http://www.pick-app.it"+ns.link_for_user_approved_by_driver(room.id, @travel_offer.id)+"'>Link</a>"
+    applying = User.find(params[:user_id])
+    PickAppMailer.send_email(applying.email, title, body, link).deliver_later
+
     redirect_to room_travel_path(@travel_offer.room, @travel_offer)
   end
 

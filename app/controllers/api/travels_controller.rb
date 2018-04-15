@@ -84,6 +84,16 @@ class Api::TravelsController < Api::ApiController
     end
     @travel.save
     NotificationWorker.perform_async("user_approved_by_driver", current_user.id, params[:user_id], options = {user_approved_by_driver: true, travel_id: @travel.id})
+
+    ns = NotificationService.new
+    room = @travel.room
+
+    title = ns.title_for_user_approved_by_driver(current_user.name, current_user.surname)
+    body = ns.body_for_user_approved_by_driver(current_user.name, current_user.surname, @travel.towards_room ? "verso" : "da", room.name)
+    link = "<a href='http://www.pick-app.it"+ns.link_for_user_approved_by_driver(room.id, @travel.id)+"'>Link</a>"
+    applying = User.find(params[:user_id])
+    PickAppMailer.send_email(applying.email, title, body, link).deliver_later
+
     render json: @travel, serializer: DriverTravelSerializer, root:false, status:200
   end
 
@@ -101,6 +111,13 @@ class Api::TravelsController < Api::ApiController
     @travel.applied_users.create user_id: current_user.id, travel_id: @travel.id
     @travel.save
     NotificationWorker.perform_async("user_applied_to_travel", current_user.id, @travel.driver.id, options = {user_applied_to_travel: true, travel_id: @travel.id})
+
+    ns = NotificationService.new
+    title = ns.title_for_user_applied_to_travel
+    body = ns.body_for_user_applied_to_travel(current_user.name, current_user.surname, @travel.towards_room ? "verso" : "da", @room.name)
+    link = "<a href='http://www.pick-app.it"+room_travel_path(@travel.room, @travel)+"'>Link</a>"
+    PickAppMailer.send_email(current_user.email, title, body, link).deliver_later
+
     render json: @travel, serializer:TravelSerializer, root: false, status: 200
   end
 
