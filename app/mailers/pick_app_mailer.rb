@@ -1,11 +1,11 @@
 class PickAppMailer < ApplicationMailer
   def send_email(to, subject, body, link, player_id)
-    mail(to: to,
+    mail(to: 'roberto.vergallo@gmail.com',
          subject: subject,
          body: body+"<br/><br/>"+link,
          content_type: 'text/html')
 
-	unless player_id && var.empty?
+	unless player_id && player_id.empty?
 	    # notify the player (this will fail because we haven't configured the app yet)
 		params = {
 		  app_id: 'bf81fd5f-ada4-41ef-bd01-b44ef4cafd45',
