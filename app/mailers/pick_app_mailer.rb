@@ -18,8 +18,9 @@ class PickAppMailer < ApplicationMailer
 	  puts "-- message : #{e.message}"
 	  puts "-- status : #{e.http_status}"
 	  puts "-- body : #{e.http_body}"
+	  render :json => {:error => "Non è stato possibile inviare la notifica."}.to_json, :status => 500
 	end
-	
+
     mail(to: to,
          subject: subject,
          body: body+"<br/><br/>"+link,
