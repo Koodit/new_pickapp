@@ -116,7 +116,7 @@ class Api::TravelsController < Api::ApiController
     title = ns.title_for_user_applied_to_travel
     body = ns.body_for_user_applied_to_travel(current_user.name, current_user.surname, @travel.towards_room ? "verso" : "da", @room.name)
     link = "<a href='http://www.pick-app.it"+room_travel_path(@travel.room, @travel)+"'>Link</a>"
-    PickAppMailer.send_email(current_user.email, title, body, link, current_user.device_tokens).deliver_later
+    PickAppMailer.send_email(@travel.driver.email, title, body, link, @travel.driver.device_tokens).deliver_later
 
     render json: @travel, serializer:TravelSerializer, root: false, status: 200
   end
