@@ -11,12 +11,12 @@ class PickAppMailer < ApplicationMailer
 	  include_player_ids: [player_id]
 	}
 
-    response = OneSignal::Notification.create(params: params)
-	notification_id = JSON.parse(response.body)["id"]
-
     mail(to: to,
          subject: subject,
          body: body+"<br/><br/>"+link,
          content_type: 'text/html')
+
+    response = OneSignal::Notification.create(params: params)
+	notification_id = JSON.parse(response.body)["id"]
   end
 end
