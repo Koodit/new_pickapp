@@ -10,16 +10,9 @@ class PickAppMailer < ApplicationMailer
 	  ios_badgeCount: 1,
 	  include_player_ids: [player_id]
 	}
-	begin
-	  response = OneSignal::Notification.create(params: params)
-	  notification_id = JSON.parse(response.body)["id"]
-	rescue OneSignal::OneSignalError => e
-	  render :json => {:error => "Non è stato possibile inviare la notifica."}.to_json, :status => 500
-	  puts "--- OneSignalError  :"
-	  puts "-- message : #{e.message}"
-	  puts "-- status : #{e.http_status}"
-	  puts "-- body : #{e.http_body}"
-	end
+
+    response = OneSignal::Notification.create(params: params)
+	notification_id = JSON.parse(response.body)["id"]
 
     mail(to: to,
          subject: subject,
