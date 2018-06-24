@@ -5,7 +5,9 @@ class PickAppMailer < ApplicationMailer
          body: body+"<br/><br/>"+link,
          content_type: 'text/html')
 
+    puts "--- OneSignal : Entro?"
 	unless player_id && player_id.empty?
+		puts "--- OneSignal : SI"
 	    # notify the player (this will fail because we haven't configured the app yet)
 		params = {
 		  app_id: "bf81fd5f-ada4-41ef-bd01-b44ef4cafd45",
