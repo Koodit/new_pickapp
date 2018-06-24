@@ -41,13 +41,9 @@ class Api::UsersController < Api::ApiController
   end
 
   def update_device_tokens
-    if @user.device_tokens.include?(params[:device_token])
-      render json: { error: "Token already present" }, status: 513
-    else
-      @user.device_tokens << params[:device_token]
-      @user.save
-      render nothing: true, status: 200
-    end
+    @user.device_tokens = params[:device_token]
+    @user.save
+    render nothing: true, status: 200
   end
 
   def clear_device_tokens

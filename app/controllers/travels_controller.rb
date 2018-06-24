@@ -88,8 +88,8 @@ class TravelsController < ApplicationController
     title = ns.title_for_user_applied_to_travel
     body = ns.body_for_user_applied_to_travel(current_user.name, current_user.surname, @travel_offer.towards_room ? "verso" : "da", @room.name)
     link = "<a href='http://www.pick-app.it"+room_travel_path(@travel_offer.room, @travel_offer)+"'>Link</a>"
-    PickAppMailer.send_email(current_user.email, title, body, link).deliver_later
-
+    PickAppMailer.send_email(current_user.email, title, body, link, current_user.device_tokens).deliver_later
+    #OneSignal::Notification.create(params:)
     redirect_to room_travel_path(@travel_offer.room, @travel_offer)
   end
 
@@ -121,7 +121,7 @@ class TravelsController < ApplicationController
     body = ns.body_for_user_approved_by_driver(current_user.name, current_user.surname, @travel_offer.towards_room ? "verso" : "da", room.name)
     link = "<a href='http://www.pick-app.it"+ns.link_for_user_approved_by_driver(room.id, @travel_offer.id)+"'>Link</a>"
     applying = User.find(params[:user_id])
-    PickAppMailer.send_email(applying.email, title, body, link).deliver_later
+    PickAppMailer.send_email(applying.email, title, body, link, applying.device_tokens).deliver_later
 
     redirect_to room_travel_path(@travel_offer.room, @travel_offer)
   end

@@ -113,6 +113,9 @@ gem 'textacular'
 gem 'ruby-debug-ide'
 gem 'debase'
 
+# Notifiche push
+gem 'one_signal'
+
 group :production do
   ##### NewRelic
   gem 'newrelic_rpm'

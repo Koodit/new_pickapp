@@ -63,7 +63,7 @@ class NotificationWorker
 
         #roberto
         applied_user = User.find(receiver_id)
-        PickAppMailer.send_email(applied_user.email, @notification.title, @notification.body, @notification.link).deliver_now
+        PickAppMailer.send_email(applied_user.email, @notification.title, @notification.body, @notification.link, applied_user.device_tokens).deliver_now
       else
         puts "Travel needs to be marked as completed, notification for driver"
         if options["completion_token"] == travel.completion_token
@@ -87,7 +87,7 @@ class NotificationWorker
 
             #roberto
             applied_user = User.find(receiver_id)
-            PickAppMailer.send_email(applied_user.email, @notification.title, @notification.body, @notification.link).deliver_now
+            PickAppMailer.send_email(applied_user.email, @notification.title, @notification.body, @notification.link, applied_user.device_tokens).deliver_now
           end
         end
       end
@@ -116,7 +116,7 @@ class NotificationWorker
 
       #roberto
       applied_user_for_email = User.find(receiver_id)
-      PickAppMailer.send_email(applied_user_for_email.email, @notification.title, @notification.body, @notification.link).deliver_now
+      PickAppMailer.send_email(applied_user_for_email.email, @notification.title, @notification.body, @notification.link, applied_user.device_tokens).deliver_now
 
     if @notification.save
       puts "applied user: #{applied_user_for_notification.user_id}"
@@ -146,7 +146,7 @@ class NotificationWorker
 
     #roberto
     applied_user_for_email = User.find(receiver_id)
-    PickAppMailer.send_email(applied_user_for_email.email, @notification.title, @notification.body, @notification.link).deliver_now
+    PickAppMailer.send_email(applied_user_for_email.email, @notification.title, @notification.body, @notification.link, applied_user_for_email.device_tokens).deliver_now
   end
 
   def notification_to_remind_review(event, emitter_id, receiver_id, options)
@@ -169,7 +169,7 @@ class NotificationWorker
       @notification.save
 
       #roberto
-      PickAppMailer.send_email(user_to_review.email, @notification.title, @notification.body, @notification.link).deliver_now
+      PickAppMailer.send_email(user_to_review.email, @notification.title, @notification.body, @notification.link, user_to_review.device_tokens).deliver_now
     end
   end
 
@@ -189,7 +189,7 @@ class NotificationWorker
 
     #roberto
     applied_user_for_email = User.find(receiver_id)
-    PickAppMailer.send_email(applied_user_for_email.email, @notification.title, @notification.body, @notification.link).deliver_now
+    PickAppMailer.send_email(applied_user_for_email.email, @notification.title, @notification.body, @notification.link, applied_user_for_email.device_tokens).deliver_now
   end
 
   def notifications_for_travel_request_chat(event, emitter_id, receiver_id, options)

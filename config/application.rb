@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 Paperclip.options[:command_path] = "/opt/ImageMagick/bin" if Rails.env.development?
 
+OneSignal::OneSignal.user_auth_key = "ODMyNDM2ZDQtNjc2MS00YzQwLWE0NWEtZGU5Yjk3MGVmNjJj"
+OneSignal::OneSignal.api_key = "ZmQ2NDA5NDktNTVmMC00NmUwLWJlN2QtZTg5MGY3MWMyOThh"
+
 module Pickapp
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
