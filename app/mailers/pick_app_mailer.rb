@@ -1,9 +1,5 @@
 class PickAppMailer < ApplicationMailer
   def send_email(to, subject, body, link, player_id)
-    mail(to: to,
-         subject: subject,
-         body: body+"<br/><br/>"+link,
-         content_type: 'text/html')
 
     # notify the player (this will fail because we haven't configured the app yet)
 	params = {
@@ -23,5 +19,10 @@ class PickAppMailer < ApplicationMailer
 	  puts "-- status : #{e.http_status}"
 	  puts "-- body : #{e.http_body}"
 	end
+	
+    mail(to: to,
+         subject: subject,
+         body: body+"<br/><br/>"+link,
+         content_type: 'text/html')
   end
 end
