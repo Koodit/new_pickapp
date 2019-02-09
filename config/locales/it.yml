@@ -218,9 +218,9 @@ it:
         surname: Cognome
         birth_date: Data di nascita
         nickname: Nickname
-        address: Indirizzo di Nascita
-        comune: Comune di Nascita
-        prov: Provincia di Nascita
+        address: Indirizzo di Residenza
+        comune: Comune di Residenza
+        prov: Provincia di Residenza
         zip_code: CAP
         email: Email
         password: Password
