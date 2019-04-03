@@ -45,7 +45,7 @@ namespace :reindex do
   task :all do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       within release_path do
-         execute :rake, 'searchkick:reindex CLASS=Room RAILS_ENV=production'
+         #execute :rake, 'searchkick:reindex CLASS=Room RAILS_ENV=production'
       end
     end
   end
