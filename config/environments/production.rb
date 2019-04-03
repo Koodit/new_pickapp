@@ -24,13 +24,13 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-      address: "smtp.mandrillapp.com",
-      port: 587,
+      address: "smtp.libero.it",
+      port: 465,
       #domain: "koodit.it",
       #authentication: "plain",
       #enable_starttls_auto: true,
-      user_name: "a.macchieraldo@koodit.it",
-      password: "8TGbblcuNApLQRAw4FQ4Jw"
+      user_name: "pickapp@libero.it",
+      password: "pickapp1234567890"
   }
 
   config.action_mailer.default_url_options = {
