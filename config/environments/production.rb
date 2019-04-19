@@ -27,7 +27,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :address              => 'smtp.libero.it',
     :port                 => 465,
-    :domain               => 'libero.it',
+    #:domain               => 'libero.it',
     :user_name            => 'pickapp@libero.it',
     :password             => 'pickapp1234567890',
     :authentication       => :login,
