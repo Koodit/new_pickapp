@@ -24,23 +24,12 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
 
-  # ORIGINAL CONF
-  #config.action_mailer.smtp_settings = {
-  #  :address              => 'smtp.mandrillapp.com',
-  #  :port                 => 587,
-  #  :domain               => 'koodit.it',#
-  #  :user_name            => 'a.macchieraldo@koodit.it',
-  #  :password             => '8TGbblcuNApLQRAw4FQ4Jw',
-  #  :authentication       => :plain,#
-  #  :ssl                  => true,
-  #  :openssl_verify_mode  => 'none' #Use this because ssl is activated but we have no certificate installed. So clients need to confirm to use the untrusted url.
-  #}
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'koodit.it',
-    user_name:            'ppanatest@gmail.com',
-    password:             'P4ssW0rPok051cUr4',
+    user_name:            'grooveaps@gmail.com',
+    password:             'riccafedevale',
     enable_starttls_auto: true,
     authentication:       'login',
     openssl_verify_mode: 'none'
@@ -49,25 +38,6 @@ Rails.application.configure do
   config.action_mailer.default_url_options = {
       host: "pick-app.it"
   }
-
-=begin
-  config.action_mailer.smtp_settings = {
-    address: "smtp.aruba.it",
-    port: 465,
-    #domain: "koodit.it",
-    #authentication: "plain",
-    #enable_starttls_auto: true,
-    user_name: "roberto.vergallo@vidyasoft.it",
-    password: "R1Ve0jkk",
-    authentication: 'login',
-    ssl: true,
-    openssl_verify_mode: 'none' #Use this because ssl is activated but we have no certificate installed. So clients need to confirm to use the untrusted url.
-  }
-
-  config.action_mailer.default_url_options = {
-    host: "pick-app.it"
-  }
-=end
 
   ##### ACTIONCABLE
   config.action_cable.url = "ws://www.pick-app.it/cable"
