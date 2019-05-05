@@ -1710,7 +1710,7 @@ tag, .tag {
       display: -moz-flex;
       display: -ms-flexbox;
       display: flex; }
-      .footer .footer_copy .grid .copy_right p {
+      .footer .footer_copy .grid .copy_right span {
         margin: auto 0px auto auto;
         color: white;
         font-size: 14px;
