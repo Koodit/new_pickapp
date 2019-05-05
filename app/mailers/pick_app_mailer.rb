@@ -2,11 +2,6 @@ require 'one_signal'
 
 class PickAppMailer < ApplicationMailer
   def send_email(to, subject, body, link, player_id)
-    Rails.logger.info to
-    Rails.logger.info subject
-    Rails.logger.info body
-    Rails.logger.info link
-    Rails.logger.info player_id
     mail(to: to,
          subject: subject,
          body: body+"<br/><br/>"+link,
