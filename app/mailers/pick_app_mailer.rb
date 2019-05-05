@@ -2,8 +2,12 @@ require 'one_signal'
 
 class PickAppMailer < ApplicationMailer
   def send_email(to, subject, body, link, player_id)
-
-    mail(to: 'roberto.vergallo@gmail.com',
+    puts to
+    puts subject
+    puts body
+    puts link
+    puts player_id
+    mail(to: to,
          subject: subject,
          body: body+"<br/><br/>"+link,
          content_type: 'text/html')
