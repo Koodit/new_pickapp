@@ -6,6 +6,18 @@ GIT
       omniauth-oauth2 (~> 1.2)
 
 GIT
+  remote: git://github.com/sinatra/sinatra.git
+  revision: eee711bce740d38a9a91aa6028688c9a6d74b23b
+  specs:
+    rack-protection (2.0.5)
+      rack
+    sinatra (2.0.5)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.5)
+      tilt (~> 2.0)
+
+GIT
   remote: https://github.com/lynndylanhurley/devise_token_auth.git
   revision: fcb1e6d22666175aa31945f7b4f0593dc111ff1c
   specs:
@@ -41,18 +53,6 @@ GIT
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec
-
-GIT
-  remote: https://github.com/sinatra/sinatra.git
-  revision: eee711bce740d38a9a91aa6028688c9a6d74b23b
-  specs:
-    rack-protection (2.0.5)
-      rack
-    sinatra (2.0.5)
-      mustermann (~> 1.0)
-      rack (~> 2.0)
-      rack-protection (= 2.0.5)
-      tilt (~> 2.0)
 
 GEM
   remote: https://rubygems.org/
