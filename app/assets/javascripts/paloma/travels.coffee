@@ -35,6 +35,7 @@ Paloma.controller('Travels', {
       enableTime: true,
       time_24hr: true,
       locale:'it',
+      disableMobile: true,
       onChange: (selectedDates, dateStr, instance) ->
         setBackDepartureDatetimePicker(selectedDates[0])
     }
@@ -58,7 +59,8 @@ Paloma.controller('Travels', {
         defaultDate: min_date,
         enableTime: true,
         time_24hr: true,
-        locale:'it'
+        locale:'it',
+        disableMobile: true
       }
       back_departure_datetime_picker = document.getElementById("back_departure_datetime").flatpickr(flatpickr_config)
 

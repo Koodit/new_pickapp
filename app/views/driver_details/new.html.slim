@@ -76,6 +76,7 @@ coffee:
     altFormat: "j F Y",
     enableTime: false,
     locale:'it',
+    disableMobile: true,
     onChange: (selectedDates, dateStr, instance) ->
       setBackDepartureDatetimePicker(selectedDates[0])
   }
@@ -96,7 +97,8 @@ coffee:
       altFormat: "j F Y",
       minDate: new Date(min_date - 60000),
       enableTime: false,
-      locale:'it'
+      locale:'it',
+      disableMobile: true
     }
     back_departure_datetime_picker = document.getElementById("expire_date").flatpickr(flatpickr_config)
 

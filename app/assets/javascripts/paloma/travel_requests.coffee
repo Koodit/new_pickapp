@@ -32,7 +32,8 @@ Paloma.controller('TravelRequests', {
       defaultDate: current_date,
       enableTime: true,
       time_24hr: true,
-      locale:'it'
+      locale:'it',
+      disableMobile: true
     }
     document.getElementById("one_way_datetime").flatpickr(flatpickr_config)
 

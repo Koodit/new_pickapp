@@ -127,6 +127,7 @@ coffee:
     minDate: current_date,
     enableTime: false,
     locale:'it',
+    disableMobile: true,
     onChange: (selectedDates, dateStr, instance) ->
       setEndDatePicker(selectedDates[0])
   }
@@ -148,7 +149,8 @@ coffee:
       altInput: true,
       minDate: new Date(min_date - 60000),
       enableTime: false,
-      locale:'it'
+      locale:'it',
+      disableMobile: true
     }
     end_date_picker = document.getElementById("room_end_date").flatpickr(flatpickr_config)
 

@@ -52,6 +52,7 @@ Paloma.controller('Rooms', {
       enableTime: true,
       time_24hr: true,
       locale:'it',
+      disableMobile: true,
       onChange: (selectedDates, dateStr, instance) ->
         setBackDepartureDatetimePicker(selectedDates[0])
     }
