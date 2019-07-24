@@ -1043,6 +1043,7 @@ DEPENDENCIES
   rack-cors
   rack-livereload
   rails (~> 5.0.0, >= 5.0.0.1)
+  redis (~> 4.0.1)
   ruby-debug-ide
   sass-rails (~> 5.0)
   searchkick
