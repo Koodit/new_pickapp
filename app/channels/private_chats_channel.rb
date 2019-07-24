@@ -26,7 +26,7 @@ class PrivateChatsChannel < ApplicationCable::Channel
       #   receiver_id = pc.driver_id
       #   NotificationWorker.perform_async("received_a_private_message_as_driver", current_user.id, receiver_id, options = {from_private_chat: true, from_driver: false, private_chat_id: pc.id})
       # end
-      PrivateMessageBroadcastJob.perform_later(private_message, current_user.id)
+      PrivateMessageBroadcastJob.perform(private_message, current_user.id)
     end
   end
 
