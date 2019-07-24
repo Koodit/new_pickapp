@@ -39,6 +39,7 @@ document.addEventListener "DOMContentLoaded", ->
         console.log "ActionCable on 'TravelsChannel' is disconnected for travel_id: #{travel_id}."
 
       received: (data) ->
+        console.log(data)
         # chat_message = document.createElement('div')
         # chat_message.classList.add('chat_message')
         # chat_message.classList.add('is_yours') if CURRENT_USER_ID == data.sender_id
@@ -57,7 +58,8 @@ document.addEventListener "DOMContentLoaded", ->
     new_public_message_form.addEventListener 'submit', (e) ->
       e.preventDefault()
       text_to_send = document.querySelector('#public_message_content').value
+      console.log(text_to_send)
       if text_to_send != ''
         App.TravelPublicMessages.send_message(text_to_send, travel_id)
         document.querySelector('#public_message_content').value = ''
-      
+    
