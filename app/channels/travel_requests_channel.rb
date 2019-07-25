@@ -27,7 +27,7 @@ class TravelRequestsChannel < ApplicationCable::Channel
         # puts travel.public_chat_partecipants.to_a.first.user.name
         NotificationWorker.perform_async("received_a_travel_request_message", current_user.id, Array.new, options = {from_travel_request_chat: true, owner_id:travel_request.passenger.id, travel_request_id: travel_request.id})
       end
-      TravelRequestMessageBroadcastJob.perform(travel_request_message, current_user.id)
+      TravelRequestMessageBroadcastJob.perform_now(travel_request_message, current_user.id)
     end
   end
 

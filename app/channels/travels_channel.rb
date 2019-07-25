@@ -27,7 +27,7 @@ class TravelsChannel < ApplicationCable::Channel
         # puts travel.public_chat_partecipants.to_a.first.user.name
         
         # NotificationWorker.perform_async("received_a_public_message", current_user.id, Array.new, options = {from_public_chat: true, owner_id:travel.driver.id, travel_id: travel.id})
-        PublicMessageBroadcastJob.perform(public_message, current_user.id)
+        PublicMessageBroadcastJob.perform_now(public_message, current_user.id)
       end
     end
   end
