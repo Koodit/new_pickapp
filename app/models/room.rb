@@ -91,8 +91,10 @@ class Room < ApplicationRecord
     if self.lat.nil?
       loc = Geocoder.search(self.address)
       unless loc.nil?
-        self.lat = loc[0].latitude
-        self.long = loc[0].longitude
+        if loc.length > 0
+          self.lat = loc[0].latitude
+          self.long = loc[0].longitude
+        end
       end
     end
   end
