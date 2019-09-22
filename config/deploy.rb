@@ -46,6 +46,7 @@ namespace :reindex do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       within release_path do
         puts Gem.loaded_specs["elasticsearch"].version
+        puts Gem.loaded_specs["searchkick"].version
         execute :rake, 'searchkick:reindex CLASS=Room RAILS_ENV=production'
       end
     end
