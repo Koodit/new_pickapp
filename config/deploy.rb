@@ -42,6 +42,7 @@ end
 
 namespace :reindex do
   desc "Invoke rake task"
+  puts Gem.loaded_specs["elasticsearch"].version
   task :all do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       within release_path do
