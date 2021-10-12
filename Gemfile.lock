@@ -1009,7 +1009,9 @@ GEM
     mime-types (3.3)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2019.0904)
-    mimemagic (0.3.3)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
@@ -1058,7 +1060,8 @@ GEM
       method_source (~> 0.9.0)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
-    puma (3.12.1)
+    puma (5.5.1)
+      nio4r (~> 2.0)
     rack (2.0.7)
     rack-cors (1.0.3)
     rack-livereload (0.3.17)
@@ -1234,7 +1237,7 @@ DEPENDENCIES
   pg (~> 0.18)
   pry
   pry-rails
-  puma (~> 3.0)
+  puma (~> 5.5)
   rack-cors
   rack-livereload
   rails (~> 5.0.0, >= 5.0.0.1)
